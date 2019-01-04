@@ -20,6 +20,11 @@ public class Search{
       System.out.println(json);
     }catch(MalformedURLException e){
       e.printStackTrace();
+    }catch(IOException e){
+      e.printStackTrace();
     }
+  }
+  public static void main(String[] args){//for testing purposes
+    Search s = new Search(String.join(" ",args));
   }
 }
