@@ -1,4 +1,8 @@
 import com.google.gson.Gson;
+import com.google.gson.FieldAttributes;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonArray;
+import com.google.*;
 import java.io.*;
 import java.util.*;
 
@@ -11,6 +15,11 @@ public class JSONTest {
     Scanner sca = new Scanner(new File("samplefile.json"));
     String inp = "";
     while(sca.hasNextLine()) inp += sca.nextLine()+"\n";
-    System.out.println(inp);
+    SearchDownload g = obj.fromJson(inp,SearchDownload.class);
+    System.out.println(g.start);
+  }
+  private class SearchDownload{
+    String start;
+    int numFound;
   }
 }
