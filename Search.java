@@ -16,7 +16,14 @@ public class Search{
     this.searchTerm = searchTerm;
     try{
       URL webpage = new URL("https://openlibrary.org/search.json?q="+searchTerm);
-      String json = (String) webpage.getContent();
+      Class[] temp = {String.class};
+      String json = "";
+      //code from oracle official tutorials
+      BufferedReader in = new BufferedReader(new InputStreamReader(oracle.openStream()));
+      String inputLine;
+      while ((inputLine = in.readLine()) != null)
+          json += inputLine + "\n";
+      in.close();
       System.out.println(json);
     }catch(MalformedURLException e){
       e.printStackTrace();
