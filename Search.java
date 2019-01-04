@@ -13,6 +13,8 @@ import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.input.KeyMappingProfile;
 import com.googlecode.lanterna.gui.Window;
 import com.googlecode.lanterna.gui.dialog.TextInputDialog;
+import com.googlecode.lanterna.gui.GUIScreen;
+import com.googlecode.lanterna.screen.Screen;
 
 
 public class Search {
@@ -38,14 +40,19 @@ public class Search {
 
   public static void main(String[] args) {
 
+
     Terminal terminal = TerminalFacade.createTerminal();
 		terminal.enterPrivateMode();
 
 		TerminalSize terminalSize = terminal.getTerminalSize();
 
+    Screen scr = new Screen(terminal);
+    GUIScreen gscr = new GUIScreen(scr);
+
+
     putString(1,2,terminal,"Search for your book using its ISBN: ");
 
-    showTextInputBox(terminal, "Search box", "search by ISBN", "Please enter the ISBN");
+    TextInputDialog.showTextInputBox(gscr, "Search box", "search by ISBN", "Please enter the ISBN");
 
 
 
