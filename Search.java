@@ -18,6 +18,14 @@ public class Search {
   //private Book[] booksFound;
   private String searchTerm;
 
+  public static void putString(int r, int c,Terminal t, String s){
+		t.moveCursor(r,c);
+		for(int i = 0; i < s.length();i++){
+			t.putCharacter(s.charAt(i));
+		}
+	}
+
+
   public static void main(String[] args) {
 
   }
