@@ -16,10 +16,9 @@ public class Search{
     this.searchTerm = searchTerm;
     try{
       URL webpage = new URL("https://openlibrary.org/search.json?q="+searchTerm);
-      Class[] temp = {String.class};
       String json = "";
-      //code from oracle official tutorials
-      BufferedReader in = new BufferedReader(new InputStreamReader(oracle.openStream()));
+      //code from oracle official tutorials, https://docs.oracle.com/javase/tutorial/networking/urls/readingURL.html
+      BufferedReader in = new BufferedReader(new InputStreamReader(webpage.openStream()));
       String inputLine;
       while ((inputLine = in.readLine()) != null)
           json += inputLine + "\n";
