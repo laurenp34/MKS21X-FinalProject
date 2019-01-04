@@ -15,6 +15,11 @@ import com.googlecode.lanterna.gui.Window;
 import com.googlecode.lanterna.gui.dialog.TextInputDialog;
 import com.googlecode.lanterna.gui.GUIScreen;
 import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.gui2;
+//import com.googlecode.lanterna.gui.Panels;
+import com.googlecode.lanterna.gui2.AbstractComponent<T>;
+import com.googlecode.lanterna.gui2.AbstractInteractableComponent;<TextBox>;
+import com.googlecode.lanterna.gui2.TextBox;
 
 
 public class Search {
@@ -50,10 +55,19 @@ public class Search {
     GUIScreen gscr = new GUIScreen(scr);
 
 
-    putString(1,2,terminal,"Search for your book using its ISBN: ");
+    //putString(1,2,terminal,"Search for your book using its ISBN: ");
 
-    TextInputDialog.showTextInputBox(gscr, "Search box", "search by ISBN", "Please enter the ISBN");
+    //TextInputDialog.showTextInputBox(gscr, "Search box", "search by ISBN", "Please enter the ISBN");
 
+    //  example code from Stack Overflow
+    /*
+    Panel username = new Panel(new Border.Invisible(), Panel.Orientation.HORISONTAL);
+    username.addComponent(new Label("Username: "));
+    username.addComponent(new TextBox(null, 15));
+    addComponent(username);
+    */
+
+    TextBox test = new TextBox("Search for your ISBN");
 
 
   }
