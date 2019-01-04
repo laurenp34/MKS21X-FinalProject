@@ -6,9 +6,20 @@ import com.google.gson.JsonArray;
 import com.google.*;
 import java.io.*;
 import java.util.*;
+import java.net.*;
 
 public class Search{
   private String searchTerm;
   private int numFound;
   private Book[] docs;
+  public Search(String searchTerm){
+    this.searchTerm = searchTerm;
+    try{
+      URL webpage = new URL("https://openlibrary.org/search.json?q="+searchTerm);
+      String json = (String) webpage.getContent();
+      System.out.println(json);
+    }catch(MalformedURLException e){
+      e.printStackTrace();
+    }
+  }
 }
