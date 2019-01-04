@@ -25,8 +25,25 @@ public class Search {
 		}
 	}
 
+  public static void putStringColor(int r, int c,Terminal t, String s, Terminal.Color color){
+		t.moveCursor(r,c);
+		for(int i = 0; i < s.length();i++){
+      t.applyBackgroundColor(color);
+			t.putCharacter(s.charAt(i));
+		}
+	}
+
 
   public static void main(String[] args) {
+
+    Terminal terminal = TerminalFacade.createTerminal();
+		terminal.enterPrivateMode();
+
+		TerminalSize terminalSize = terminal.getTerminalSize();
+
+    putString(1,2,terminal,"Search for your book using its ISBN: ");
+
+
 
   }
 
