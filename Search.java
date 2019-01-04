@@ -12,8 +12,8 @@ public class Search{
   private String searchTerm;
   private int numFound;
   private Book[] docs;
-  public Search(String searchTerm){
-    this.searchTerm = searchTerm;
+  public static Search buildSearch(String searchTerm){
+    Search out = null;
     try{
       URL webpage = new URL("https://openlibrary.org/search.json?q="+searchTerm);
       String json = "";
@@ -23,12 +23,15 @@ public class Search{
       while ((inputLine = in.readLine()) != null)
           json += inputLine + "\n";
       in.close();
-      System.out.println(json);
+      Gson g = new Gson();
+      out = g.fromJson(json,Search.class);
+      out.searchTerm = searchTerm;
     }catch(MalformedURLException e){
       e.printStackTrace();
     }catch(IOException e){
       e.printStackTrace();
     }
+    return out;
   }
   public static void main(String[] args){//for testing purposes
     Search s = new Search(String.join("+",args));
