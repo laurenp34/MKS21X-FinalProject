@@ -31,6 +31,6 @@ public class Search{
     }
   }
   public static void main(String[] args){//for testing purposes
-    Search s = new Search(String.join(" ",args));
+    Search s = new Search(String.join("+",args));
   }
 }
