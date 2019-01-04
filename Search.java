@@ -11,6 +11,8 @@ import com.googlecode.lanterna.input.InputDecoder;
 import com.googlecode.lanterna.input.InputProvider;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.input.KeyMappingProfile;
+import com.googlecode.lanterna.gui.Window;
+import com.googlecode.lanterna.gui.dialog.TextInputDialog;
 
 
 public class Search {
@@ -42,6 +44,8 @@ public class Search {
 		TerminalSize terminalSize = terminal.getTerminalSize();
 
     putString(1,2,terminal,"Search for your book using its ISBN: ");
+
+    showTextInputBox(terminal, "Search box", "search by ISBN", "Please enter the ISBN");
 
 
 
