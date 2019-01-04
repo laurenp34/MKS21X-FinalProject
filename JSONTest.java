@@ -17,9 +17,15 @@ public class JSONTest {
     while(sca.hasNextLine()) inp += sca.nextLine()+"\n";
     SearchDownload g = obj.fromJson(inp,SearchDownload.class);
     System.out.println(g.start);
+    System.out.println(Arrays.toString(g.docs[0].isbn));
   }
   private class SearchDownload{
     String start;
     int numFound;
+    Doc[] docs;
+    private class Doc{
+      String title_suggest;
+      String[] isbn;
+    }
   }
 }
