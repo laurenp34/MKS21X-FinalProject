@@ -34,6 +34,13 @@ public class Search{
     return out;
   }
   public static void main(String[] args){//for testing purposes
-    Search s = new Search(String.join("+",args));
+    Search s = buildSearch(String.join("+",args));
+    System.out.println(s.numFound);
+    for(int i=0;i<s.docs.length;i++){
+      System.out.println(s.docs[i].title);
+      if(s.docs[i].author_name[0] != null) System.out.println(s.docs[i].author_name[0]);
+      System.out.println(Arrays.toString(s.docs[i].isbn));
+      System.out.println("\n\n");
+    }
   }
 }
