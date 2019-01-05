@@ -7,6 +7,6 @@ public class NYPLAccessor implements CatalogAccessor{
     return null;
   }
   private String genSearch(String[] terms){
-    return "";
+    return "%28"+String.join("%20%7C%20",terms)+"%29";
   }
 }
