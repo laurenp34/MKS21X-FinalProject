@@ -12,7 +12,7 @@ public class Search{
   public static Search buildSearch(String searchTerm){
     Search out = null;
     try{
-      //URL object accesses webpage, InputStreamReader to get data
+      //URL object accesses webpage, InputStreamReader allows reading of its data
       URL webpage = new URL("https://openlibrary.org/search.json?q="+searchTerm);
       Reader json = new InputStreamReader(webpage.openStream());
       //for accessing nonstatic methods in Gson class
