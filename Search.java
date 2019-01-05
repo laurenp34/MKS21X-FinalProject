@@ -12,10 +12,12 @@ public class Search{
   public static Search buildSearch(String searchTerm){
     Search out = null;
     try{
+      //URL object accesses webpage, InputStreamReader to get data
       URL webpage = new URL("https://openlibrary.org/search.json?q="+searchTerm);
-      Reader isr = new InputStreamReader(webpage.openStream());
-      JsonReader json = new JsonReader(isr);
+      Reader json = new InputStreamReader(webpage.openStream());
+      //for accessing nonstatic methods in Gson class
       Gson g = new Gson();
+      //parses data from json file into
       out = g.fromJson(json,Search.class);
       out.searchTerm = searchTerm;
     }catch(MalformedURLException e){
