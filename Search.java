@@ -33,6 +33,9 @@ public class Search{
     }
     return out;
   }
+  public Book getResult(int i){
+    return docs[i];
+  }
   public static void main(String[] args){//for testing purposes
     Search s = buildSearch(String.join("+",args));
     System.out.println(s.numFound);
