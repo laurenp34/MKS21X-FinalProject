@@ -70,6 +70,15 @@ public class Search {
   //private Book[] booksFound;
   private String searchTerm;
 
+  public Search() {
+    searchTerm = "";
+
+  }
+
+  public String getSearchTerm() {
+    return searchTerm;
+  }
+
   public static void putString(int r, int c,Terminal t, String s){
 		t.moveCursor(r,c);
 		for(int i = 0; i < s.length();i++){
@@ -101,9 +110,10 @@ public class Search {
     putString(1,2,terminal,"Search for your book using its ISBN: ");
 
 
-    Key key = terminal.readInput();
-
     while (searching) {
+
+      Key key = terminal.readInput();
+
       if (key != null) {
 
         if (key.getKind().equals(Key.Kind.Enter)) {
@@ -111,14 +121,15 @@ public class Search {
           searching = false;
 
 
+        } else {
+          search.searchTerm += key.getCharacter();
         }
-        search.searchTerm += key.getCharacter();
 
 
       }
     }
 
-    System.out.println(search.searchTerm);
+    System.out.println("Your search term is: " + search.searchTerm);
 
 
 
