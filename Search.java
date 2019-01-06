@@ -106,6 +106,7 @@ public class Search {
     //initialize Screen
     Terminal terminal = TerminalFacade.createTerminal();
     terminal.enterPrivateMode();
+    //TerminalFacade.createTextTerminal();
 
     TerminalSize terminalSize = terminal.getTerminalSize();
 
@@ -131,6 +132,9 @@ public class Search {
 
       }
     }
+
+    System.out.println("your search term is: " + searchTerm);
+    terminal.setCursorVisible(false);
 
 
   }
