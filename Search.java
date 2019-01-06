@@ -63,6 +63,8 @@ import com.googlecode.lanterna.input.InputDecoder;
 import com.googlecode.lanterna.input.InputProvider;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.input.KeyMappingProfile;
+//import com.googlecode.lanterna.screen.AbstractScreen ;
+//import com.googlecode.lanterna.screen.TerminalScreen;
 
 
 public class Search {
@@ -106,6 +108,7 @@ public class Search {
     //initialize Screen
     Terminal terminal = TerminalFacade.createTerminal();
     terminal.enterPrivateMode();
+    terminal.clearScreen();
     //TerminalFacade.createTextTerminal();
 
     TerminalSize terminalSize = terminal.getTerminalSize();
@@ -125,6 +128,10 @@ public class Search {
           searching = false;
 
 
+        } if (key.getKind().equals(Key.Kind.Escape)) {
+          terminal.clearScreen();
+          terminal.exitPrivateMode();
+					System.exit(0);
         } else {
           searchTerm += key.getCharacter();
         }
