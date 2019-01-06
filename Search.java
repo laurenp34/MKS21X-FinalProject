@@ -87,6 +87,9 @@ public class Search {
 
 
   public static void main(String[] args) {
+
+    Search search = new Search();
+
     boolean searching = true;
 
 
@@ -100,17 +103,22 @@ public class Search {
 
     Key key = terminal.readInput();
 
-    if (key != null) {
+    while (searching) {
+      if (key != null) {
 
-      if (key == Key.Kind.Enter) {
-        terminal.setCursorVisible(false);
+        if (key.getKind().equals(Key.Kind.Enter)) {
+          terminal.setCursorVisible(false);
+          searching = false;
+
+
+        }
+        search.searchTerm += key.getCharacter();
 
 
       }
-      searchTerm += key.getCharacter();
-
-
     }
+
+    System.out.println(search.searchTerm);
 
 
 
