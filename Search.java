@@ -109,6 +109,8 @@ public class Search {
 
     TerminalSize terminalSize = terminal.getTerminalSize();
 
+    putString(1,2,terminal,"Search for your book by entering its ISBN:");
+
     //run search until enter is pressed.
     boolean searching = true;
     while (searching) {
