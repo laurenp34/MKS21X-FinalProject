@@ -94,22 +94,23 @@ public class Search {
 		}
 	}
 
-
-  public static void main(String[] args) {
-
-    Search search = new Search();
-
-    boolean searching = true;
+  public static void initScreen() {
+    //boolean searching = true;
 
 
+
+  }
+
+  public void generateSearchTerm() {
+
+    //initialize Screen
     Terminal terminal = TerminalFacade.createTerminal();
-		terminal.enterPrivateMode();
+    terminal.enterPrivateMode();
 
-		TerminalSize terminalSize = terminal.getTerminalSize();
+    TerminalSize terminalSize = terminal.getTerminalSize();
 
-    putString(1,2,terminal,"Search for your book using its ISBN: ");
-
-
+    //run search until enter is pressed.
+    boolean searching = true;
     while (searching) {
 
       Key key = terminal.readInput();
@@ -122,29 +123,29 @@ public class Search {
 
 
         } else {
-          search.searchTerm += key.getCharacter();
+          searchTerm += key.getCharacter();
         }
 
 
       }
     }
 
-    System.out.println("Your search term is: " + search.searchTerm);
+
+  }
+
+  public String runSearch() {
+    //initScreen();
+    generateSearchTerm();
+    return searchTerm;
+
+  }
 
 
+  public static void main(String[] args) {
 
-    //putString(1,2,terminal,"Search for your book using its ISBN: ");
+    Search s = new Search();
 
-    //TextInputDialog.showTextInputBox(gscr, "Search box", "search by ISBN", "Please enter the ISBN");
-
-    //  example code from Stack Overflow
-    /*
-    Panel username = new Panel(new Border.Invisible(), Panel.Orientation.HORISONTAL);
-    username.addComponent(new Label("Username: "));
-    username.addComponent(new TextBox(null, 15));
-    addComponent(username);
-    */
-
+    s.runSearch();
 
   }
 
