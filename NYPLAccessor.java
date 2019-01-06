@@ -1,8 +1,8 @@
 import java.net.*;
 import java.io.*;
 import javax.xml.parsers.*;
-import org.w3c.dom.*;
-import org.xml.sax.SAXException;
+import org.jsoup.*;
+import org.jsoup.nodes.*;
 
 public class NYPLAccessor implements CatalogAccessor{
   public Copy[] getAllCopies(Book bk){
@@ -11,22 +11,14 @@ public class NYPLAccessor implements CatalogAccessor{
       String[] ISBNs = bk.getISBNs();
       String searchStr = genSearch(ISBNs);
       String searchUrl = "https://browse.nypl.org/iii/encore/search/C__S"+searchStr+"__Orightresult__U?lang=eng&suite=def";
+      System.out.println(searchUrl);
       URL searchPage = new URL(searchUrl);
-      System.out.println("reached 15");
-      DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-      System.out.println("reached 17");
-      InputStream is = searchPage.openStream();
-      System.out.println("reached 18");
-      Document html = db.parse(is);
-      System.out.println("reached 19");
+      Document html = Jsoup.connect(searchUrl).get();
+
       return null;
     }catch(MalformedURLException e){
       e.printStackTrace();
-    }catch(SAXException e){
-      e.printStackTrace();
     }catch(IOException e){
-      e.printStackTrace();
-    }catch(ParserConfigurationException e){
       e.printStackTrace();
     }
     return out;
