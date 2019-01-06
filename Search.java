@@ -15,11 +15,11 @@ import com.googlecode.lanterna.gui.Window;
 import com.googlecode.lanterna.gui.dialog.TextInputDialog;
 import com.googlecode.lanterna.gui.GUIScreen;
 import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.gui2;
+//import com.googlecode.lanterna.gui2;
 //import com.googlecode.lanterna.gui.Panels;
-import com.googlecode.lanterna.gui2.AbstractComponent<T>;
-import com.googlecode.lanterna.gui2.AbstractInteractableComponent;<TextBox>;
-import com.googlecode.lanterna.gui2.TextBox;
+import com.googlecode.lanterna.gui.component.AbstractComponent;
+import com.googlecode.lanterna.gui.component.AbstractInteractableComponent;
+import com.googlecode.lanterna.gui.component.TextBox;
 
 
 public class Search {
