@@ -12,11 +12,11 @@ Lauren-was sick :(
 
 *5 January 2019*\
 Kiran-\
-Lauren-Created Search program which generates a search message at the top of the terminal and stores the input as a string. Also worked on creating a class structure (because I originally wrote everything in the main). \
+Lauren-Created Search program which generates a search message at the top of the terminal and stores the input as a string. Also worked on creating a class structure (because I originally wrote everything in the main). 
 
 *6 January 2019*\
 Kiran-\
-Lauren-Worked on fixing the usage of the program. For example, clearing the terminal screen and exiting the program. Also familiarized myself with TerminalScreen in Lanterna.\
+Lauren-Worked on fixing the usage of the program. For example, clearing the terminal screen and exiting the program. Also familiarized myself with TerminalScreen in Lanterna.
 
 *7 Janary 2019*\
 Kiran-\
