@@ -8,7 +8,7 @@ Lauren-Downloaded Lanterna and Mr. K's TerminalDemo. Figured out differences bet
 
 *4 January 2019*\
 Kiran-\
-Lauren-was sick :( \
+Lauren-was sick :( 
 
 *5 January 2019*\
 Kiran-\
