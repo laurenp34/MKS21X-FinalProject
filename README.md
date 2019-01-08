@@ -1,17 +1,17 @@
 # MKS21X-FinalProject
 note: when running, the necessary classpath is
-`-cp gson-2.8.5.jar\;.`
+`-cp gson-2.8.5.jar\;lanterna.jar\;.`
 # Daily Logs
 *3 January 2019*\
 Kiran-Familiarized myself with Google GSON library and built rudimentary code for inputting a search term and receiving relevant data from OpenLibrary\
 Lauren-Downloaded Lanterna and Mr. K's TerminalDemo. Figured out differences between Windows and the computers at school for Lanterna (-cp is different). Looked into TextBox as a possible class for inputting the search term.
 
 *4 January 2019*\
-Kiran-\
+Kiran-Began exploration of XML parsing in Java, as well as the structure of NYPL's catalog and how it would be necessary to search. Set up structural classes and interfaces in preparation for web scraping code.\
 Lauren-was sick :( 
 
 *5 January 2019*\
-Kiran-\
+Kiran-Clarified and simplified code from JSON parsing of OpenLibrary with comments and proper Reader methods rather than online example code.\
 Lauren-Created Search program which generates a search message at the top of the terminal and stores the input as a string. Also worked on creating a class structure (because I originally wrote everything in the main). 
 
 *6 January 2019*\
