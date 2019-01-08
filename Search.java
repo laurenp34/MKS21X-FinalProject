@@ -94,6 +94,9 @@ public class Search{
   public String runSearch() {
     //initScreen();
     generateSearchTerm();
+    buildSearch(searchTerm);
+    printSearchResults();
+
     return searchTerm;
 
   }
