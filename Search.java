@@ -24,11 +24,10 @@ public class Search{
   private String searchTerm;
   private int numFound;
   private Book[] docs;
-  private Terminal terminal;
+  //private Terminal terminal;
 
   public Search() {
     searchTerm = "";
-    Terminal terminal = TerminalFacade.createTerminal();
 
   }
 
@@ -54,7 +53,7 @@ public class Search{
   public void generateSearchTerm() {
 
     //initialize Screen
-    //Terminal terminal = TerminalFacade.createTerminal();
+    Terminal terminal = TerminalFacade.createTerminal();
     terminal.enterPrivateMode();
     terminal.clearScreen();
     //TerminalFacade.createTextTerminal();
@@ -120,6 +119,10 @@ public class Search{
   }
 
   public void printSearchResults() {
+
+
+    Terminal terminal = TerminalFacade.createTerminal();
+
     putString(1,4,terminal,docs[0].title);
     putString(1,5,terminal,docs[0].author_name[0]);
 
