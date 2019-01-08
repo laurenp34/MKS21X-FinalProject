@@ -24,9 +24,12 @@ public class Search{
   private String searchTerm;
   private int numFound;
   private Book[] docs;
+  private Terminal terminal;
 
   public Search() {
     searchTerm = "";
+    Terminal terminal = TerminalFacade.createTerminal();
+
   }
 
   public String getSearchTerm() {
@@ -51,7 +54,7 @@ public class Search{
   public void generateSearchTerm() {
 
     //initialize Screen
-    Terminal terminal = TerminalFacade.createTerminal();
+    //Terminal terminal = TerminalFacade.createTerminal();
     terminal.enterPrivateMode();
     terminal.clearScreen();
     //TerminalFacade.createTextTerminal();
@@ -115,9 +118,32 @@ public class Search{
     }
     return out;
   }
+
+  public void printSearchResults() {
+    putString(1,4,terminal,docs[0].title);
+    putString(1,5,terminal,docs[0].author_name[0]);
+
+    putString(1,6,terminal,"" + docs.length);
+
+    //count copies found.
+    int countCopies;
+
+    //this loop prints out various statements to check search.
+    for(int i=0;i<docs.length;i++){
+      System.out.println(docs[i].title);
+      if(docs[i].author_name[0] != null) System.out.println(docs[i].author_name[0]);
+      System.out.println(Arrays.toString(docs[i].isbn));
+      System.out.println("\n\n");
+    }
+
+
+  }
+
+
   public static void main(String[] args){//for testing purposes
     // method used here effectively converts simplistic search terms from args
     // can be made more indepth and input can come from places other than shell args
+    /*
     Search s = buildSearch(String.join("+",args));
     //printing of various variables to demonstrate successful conversion
     System.out.println(s.numFound);
@@ -127,6 +153,7 @@ public class Search{
       System.out.println(Arrays.toString(s.docs[i].isbn));
       System.out.println("\n\n");
     }
+    */
 
 
     Search sea = new Search();
