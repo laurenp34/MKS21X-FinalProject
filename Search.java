@@ -115,7 +115,7 @@ public class Search{
   }
 
 
-  public static Search buildSearch(String searchTerm){
+  public Search buildSearch(String searchTerm){
     Search out = null;
 
     try{
@@ -133,6 +133,15 @@ public class Search{
     }catch(IOException e){
       e.printStackTrace();
     }
+
+    //since a new search object out was created to store the json data, now we will transfer this data
+    // to the current object calling this method.
+    this.docs = out.docs;
+    this.numFound = out.numFound;
+    this.text = out.text;
+
+
+
     return out;
   }
 
