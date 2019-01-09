@@ -4,7 +4,7 @@ import java.util.*;
 
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
-import org.xml.sax.SAXException;
+import org.xml.sax.*;
 
 public class NYPLAccessor implements CatalogAccessor{
   public Copy[] getAllCopies(Book bk){
@@ -22,11 +22,13 @@ public class NYPLAccessor implements CatalogAccessor{
       //for(String s : htmlBlocks) System.out.println(s+"\n_______________________________________________________________________\n");
       for(int i=0;i<htmlBlocks.size();i++){
         Document d = getDocument(htmlBlocks.get(i));
+        System.out.println(d);
       }
       System.out.println("complete");
       return null;
     }catch(IOException e){
       e.printStackTrace();
+      System.exit(1);
     }
     return null;
   }
@@ -37,8 +39,9 @@ public class NYPLAccessor implements CatalogAccessor{
   private ArrayList<String> getCopyHTML(Scanner sca){
     ArrayList<String> out = new ArrayList<String>();
     while(sca.hasNextLine()){
-      if(sca.nextLine().contains("class=\"availableMaxItemsSection\""))
-       out.add("<div>"+getDiv(sca));
+      if(sca.nextLine().contains("class=\"availableMaxItemsSection\"")){
+        out.add("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<div>\n"+getDiv(sca));
+      }
     }
     return out;
   }
@@ -59,13 +62,21 @@ public class NYPLAccessor implements CatalogAccessor{
     try{
       DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
       DocumentBuilder builder = factory.newDocumentBuilder();
-      return builder.parse(XMLStr);
+      return builder.parse(new InputSource(
+                            new ByteArrayInputStream(
+                              XMLStr.getBytes("utf-8"))));
     }catch(ParserConfigurationException e){
+      System.out.println(e.getClass().getName());
       e.printStackTrace();
+      System.exit(1);
     }catch(SAXException e){
+      System.out.println(e.getClass().getName());
       e.printStackTrace();
+      System.exit(2);
     }catch(IOException e){
+      System.out.println(e.getClass().getName());
       e.printStackTrace();
+      System.exit(3);
     }
     return null;
   }
