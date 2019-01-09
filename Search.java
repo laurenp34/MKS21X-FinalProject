@@ -21,12 +21,15 @@ import java.util.*;
 import java.net.*;
 
 public class Search{
-  private String searchTerm;
+  private String searchTermInput;
   private int numFound;
   private Book[] docs;
+  private String[] text;
+  private String searchTerm;
   //private Terminal terminal;
 
   public Search() {
+    searchTermInput = "";
     searchTerm = "";
 
   }
@@ -80,21 +83,21 @@ public class Search{
           terminal.exitPrivateMode();
           System.exit(0);
         } else {
-          searchTerm += key.getCharacter();
+          searchTermInput += key.getCharacter();
         }
 
 
       }
     }
 
-    System.out.println("your search term is: " + searchTerm);
+    System.out.println("your search term is: " + searchTermInput);
     terminal.setCursorVisible(false);
   }
 
   public String runSearch() {
     //initScreen();
     generateSearchTerm();
-    buildSearch(searchTerm);
+    buildSearch(searchTermInput);
     printSearchResults();
 
     return searchTerm;
@@ -104,15 +107,27 @@ public class Search{
 
   public static Search buildSearch(String searchTerm){
     Search out = null;
+
+    String formattedSearchTerm = "";
+
+    //to add the search term to the URL, + needs to replace space.
+    for (char c: searchTerm.toCharArray()) {
+      if (c == ' ') {
+        formattedSearchTerm += '+';
+      } else {
+        formattedSearchTerm += c;
+      }
+    }
+
     try{
       //URL object accesses webpage, InputStreamReader allows reading of its data
-      URL webpage = new URL("https://openlibrary.org/search.json?q="+searchTerm);
+      URL webpage = new URL("https://openlibrary.org/search.json?q="+formattedSearchTerm);
       Reader json = new InputStreamReader(webpage.openStream());
       //for accessing nonstatic methods in Gson class
       Gson g = new Gson();
       //parses data from json file into an object
       out = g.fromJson(json,Search.class);
-      out.searchTerm = searchTerm;
+      out.searchTerm = formattedSearchTerm;
     }catch(MalformedURLException e){
       e.printStackTrace();
     }catch(IOException e){
@@ -125,6 +140,8 @@ public class Search{
 
 
     Terminal terminal = TerminalFacade.createTerminal();
+
+    System.out.println(Arrays.toString(text));
 
     putString(1,4,terminal,docs[0].title);
     putString(1,5,terminal,docs[0].author_name[0]);
