@@ -24,4 +24,4 @@ Lauren-Merged my search branch with master, which meant merging the two Search.j
 
 *8 January 2019*\
 Kiran-Successfully wrote method to access only the blocks of code containing the relevant data from the NYPL's catalog search. Though the program still runs relatively slowly, it is now able to successfully retreive data, in the form of HTML only including the necessary sections.\
-Lauren-
+Lauren-Successfully modified the searchTerm instance variable and buildSearch() in the object directly rather than thorugh a static method. At the end, was debugging in order to figure out how the data is stored in the instance variables. Will continue looking at the json file and how it is transferred into isntance variables, because the next step is creating a formatted list of search results.\
