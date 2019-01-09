@@ -25,7 +25,6 @@ public class Search{
   private int numFound;
   private String[] isbn;
   private Book[] docs;
-  private String[] text;
   private String searchTerm;
   //private Terminal terminal;
 
@@ -139,7 +138,6 @@ public class Search{
     // to the current object calling this method.
     this.docs = out.docs;
     this.numFound = out.numFound;
-    this.text = out.text;
 
 
 
@@ -149,30 +147,57 @@ public class Search{
   public void printSearchResults() {
 
 
-    Terminal terminal = TerminalFacade.createTerminal();
+    //Terminal terminal = TerminalFacade.createTerminal();
 
+    System.out.println("Book found!");
+    System.out.println(docs[0].title);
     System.out.println(Arrays.toString(docs[0].author_name));
     System.out.println(Arrays.toString(docs[0].text));
-    System.out.println(numFound);
+    System.out.println("\nCopies found: "+numFound);
 
-    putString(1,4,terminal,docs[0].title);
-    putString(1,5,terminal,docs[0].author_name[0]);
+    //String[] text stores the isbns as well as a variety of tags (themes).
+    //this loop differentiates the tags from the isbns.
 
-    putString(1,6,terminal,"" + docs.length);
+    System.out.println(docs[0].tags);
+
+    //String[] docs[0].tags = new String[docs[0].text.length];
+    int idx=0;
+    for (String s: docs[0].text) {
+      if (s.contains(" ")) {
+        docs[0].text[idx] = s;
+      } else{
+        //check if the string contains a lowercase letter.
+        for (int idx2=0;idx2<s.length();idx2++) {
+          char c = s.charAt(idx2);
+          if ((int) c >= 97 || (int) c <= 122) {
+            docs[0].text[idx] = s;
+            idx2 = s.length();
+          }
+        }
+      }
+      idx++;
+
+
+      }
+
+    }
+
+    //putString(1,4,terminal,docs[0].title);
+    //putString(1,5,terminal,docs[0].author_name[0]);
+
+    //putString(1,6,terminal,"" + docs.length);
 
     //count copies found.
-    int countCopies;
 
     //this loop prints out various statements to check search.
+    /*
     for(int i=0;i<docs.length;i++){
       System.out.println(docs[i].title);
       if(docs[i].author_name[0] != null) System.out.println(docs[i].author_name[0]);
       System.out.println(Arrays.toString(docs[i].isbn));
       System.out.println("\n\n");
     }
-
-
-  }
+    */
 
 
   public static void main(String[] args){//for testing purposes
@@ -194,6 +219,7 @@ public class Search{
     Search sea = new Search();
 
     sea.runSearch();
+
   }
 
 
