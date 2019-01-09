@@ -91,13 +91,23 @@ public class Search{
     }
 
     System.out.println("your search term is: " + searchTermInput);
+
+    //to add the search term to the URL, + needs to replace space.
+    for (char c: searchTermInput.toCharArray()) {
+      if (c == ' ') {
+        searchTerm += '+';
+      } else {
+        searchTerm += c;
+      }
+    }
+
     terminal.setCursorVisible(false);
   }
 
   public String runSearch() {
     //initScreen();
     generateSearchTerm();
-    buildSearch(searchTermInput);
+    buildSearch(searchTerm);
     printSearchResults();
 
     return searchTerm;
@@ -108,26 +118,16 @@ public class Search{
   public static Search buildSearch(String searchTerm){
     Search out = null;
 
-    String formattedSearchTerm = "";
-
-    //to add the search term to the URL, + needs to replace space.
-    for (char c: searchTerm.toCharArray()) {
-      if (c == ' ') {
-        formattedSearchTerm += '+';
-      } else {
-        formattedSearchTerm += c;
-      }
-    }
-
     try{
       //URL object accesses webpage, InputStreamReader allows reading of its data
-      URL webpage = new URL("https://openlibrary.org/search.json?q="+formattedSearchTerm);
+      URL webpage = new URL("https://openlibrary.org/search.json?q="+searchTerm);
+      System.out.println("https://openlibrary.org/search.json?q="+searchTerm);
       Reader json = new InputStreamReader(webpage.openStream());
       //for accessing nonstatic methods in Gson class
       Gson g = new Gson();
       //parses data from json file into an object
       out = g.fromJson(json,Search.class);
-      out.searchTerm = formattedSearchTerm;
+      out.searchTerm = searchTerm;
     }catch(MalformedURLException e){
       e.printStackTrace();
     }catch(IOException e){
