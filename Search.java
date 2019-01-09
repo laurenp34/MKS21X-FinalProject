@@ -159,27 +159,28 @@ public class Search{
     //this loop differentiates the tags from the isbns.
 
     System.out.println(docs[0].tags);
+    //String[] docs[0].tags = new String[100];
 
     //String[] docs[0].tags = new String[docs[0].text.length];
-    int idx=0;
+    docs[0].tags = new ArrayList<String>();
+    //int idx=0;
     for (String s: docs[0].text) {
       if (s.contains(" ")) {
-        docs[0].text[idx] = s;
-      } else{
+        docs[0].tags.add(s);
+      } else {
         //check if the string contains a lowercase letter.
         for (int idx2=0;idx2<s.length();idx2++) {
           char c = s.charAt(idx2);
-          if ((int) c >= 97 || (int) c <= 122) {
-            docs[0].text[idx] = s;
+          if ((int) c >= 97 && (int) c <= 122) {
+            docs[0].tags.add(s);
             idx2 = s.length();
           }
         }
       }
-      idx++;
-
-
+      //idx++;
       }
 
+      System.out.println(docs[0].tags);
     }
 
     //putString(1,4,terminal,docs[0].title);
