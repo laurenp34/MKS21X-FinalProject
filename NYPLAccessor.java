@@ -2,8 +2,9 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 
-import org.w3c.dom;
+import org.w3c.dom.*;
 import javax.xml.parsers.*;
+import org.xml.sax.SAXException;
 
 public class NYPLAccessor implements CatalogAccessor{
   public Copy[] getAllCopies(Book bk){
@@ -55,6 +56,17 @@ public class NYPLAccessor implements CatalogAccessor{
   }
 
   private Document getDocument(String XMLStr){
+    try{
+      DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+      DocumentBuilder builder = factory.newDocumentBuilder();
+      return builder.parse(XMLStr);
+    }catch(ParserConfigurationException e){
+      e.printStackTrace();
+    }catch(SAXException e){
+      e.printStackTrace();
+    }catch(IOException e){
+      e.printStackTrace();
+    }
     return null;
   }
 }
