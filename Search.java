@@ -23,6 +23,7 @@ import java.net.*;
 public class Search{
   private String searchTermInput;
   private int numFound;
+  private String[] isbn;
   private Book[] docs;
   private String[] text;
   private String searchTerm;
