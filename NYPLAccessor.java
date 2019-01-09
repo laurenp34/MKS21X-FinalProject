@@ -2,6 +2,9 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 
+import org.w3c.dom;
+import javax.xml.parsers.*;
+
 public class NYPLAccessor implements CatalogAccessor{
   public Copy[] getAllCopies(Book bk){
     try{
@@ -15,7 +18,10 @@ public class NYPLAccessor implements CatalogAccessor{
       Scanner sca = new Scanner(catSearch.openStream());
       System.out.println("begin extraction");
       ArrayList<String> htmlBlocks = getCopyHTML(sca);
-      for(String s : htmlBlocks) System.out.println(s+"\n_______________________________________________________________________\n");
+      //for(String s : htmlBlocks) System.out.println(s+"\n_______________________________________________________________________\n");
+      for(int i=0;i<htmlBlocks.size();i++){
+        Document d = getDocument(htmlBlocks.get(i));
+      }
       System.out.println("complete");
       return null;
     }catch(IOException e){
@@ -26,6 +32,7 @@ public class NYPLAccessor implements CatalogAccessor{
   private String genSearch(String[] terms){
     return "%28"+String.join("%20%7C%20",terms)+"%29";
   }
+
   private ArrayList<String> getCopyHTML(Scanner sca){
     ArrayList<String> out = new ArrayList<String>();
     while(sca.hasNextLine()){
@@ -45,5 +52,9 @@ public class NYPLAccessor implements CatalogAccessor{
       if(currentLine.contains("</div>")) divDepth --;
     }
     return out+"\n";
+  }
+
+  private Document getDocument(String XMLStr){
+    return null;
   }
 }
