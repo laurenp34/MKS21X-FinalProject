@@ -15,6 +15,7 @@ public class NYPLAccessor implements CatalogAccessor{
       Scanner sca = new Scanner(catSearch.openStream());
       System.out.println("begin extraction");
       ArrayList<String> htmlBlocks = getCopyHTML(sca);
+      for(String s : htmlBlocks) System.out.println(s+"\n_______________________________________________________________________\n");
       System.out.println("complete");
       return null;
     }catch(IOException e){
