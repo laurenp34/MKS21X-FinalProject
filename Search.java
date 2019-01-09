@@ -141,7 +141,8 @@ public class Search{
 
     Terminal terminal = TerminalFacade.createTerminal();
 
-    System.out.println(Arrays.toString(text));
+    System.out.println(Arrays.toString(docs));
+    System.out.println(numFound);
 
     putString(1,4,terminal,docs[0].title);
     putString(1,5,terminal,docs[0].author_name[0]);
