@@ -1,9 +1,14 @@
+import java.net.*;
+import java.io.*;
+
 public class NYPLAccessor implements CatalogAccessor{
   public Copy[] getAllCopies(Book bk){
     String[] ISBNs = bk.getISBNs();
     String searchStr = genSearch(ISBNs);
     String searchUrl = "https://browse.nypl.org/iii/encore/search/C__S"+searchStr+"__Orightresult__U?lang=eng&suite=def";
     System.out.println(searchUrl);
+    URL catSearch = new URL(searchUrl);
+    Scanner sca = new Scanner(catSearch.openConnection());
     return null;
   }
   private String genSearch(String[] terms){
