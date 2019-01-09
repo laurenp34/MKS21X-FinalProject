@@ -11,6 +11,7 @@ public class NYPLAccessor implements CatalogAccessor{
       System.out.println(searchUrl);
       URL catSearch = new URL(searchUrl);
       Scanner sca = new Scanner(catSearch.openStream());
+      ArrayList<String> htmlBlocks = getCopyHTML(sca);
       return null;
     }catch(IOException e){
       e.printStackTrace();
@@ -20,16 +21,24 @@ public class NYPLAccessor implements CatalogAccessor{
   private String genSearch(String[] terms){
     return "%28"+String.join("%20%7C%20",terms)+"%29";
   }
+  private ArrayList<String> getCopyHTML(Scanner sca){
+    ArrayList<String> out = new ArrayList<String>();
+    while(sca.hasNextLine()){
+      if(sca.nextLine().contains("class=\"availableMaxItemsSection\""))
+       out.add("<div>"+getDiv(sca));
+    }
+    return out;
+  }
   private String getDiv(Scanner sca){
     int divDepth = 1;
     String out = "";
     String currentLine = "";
     while(divDepth > 0){
-      out  += currentLine;
+      out  += "\n" + currentLine;
       currentLine = sca.nextLine();
       if(currentLine.contains("<div")) divDepth ++;
       if(currentLine.contains("</div>")) divDepth --;
     }
-    return out;
+    return out+"\n";
   }
 }
