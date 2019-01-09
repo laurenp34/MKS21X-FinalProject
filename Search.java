@@ -150,39 +150,41 @@ public class Search{
     //Terminal terminal = TerminalFacade.createTerminal();
 
     System.out.println("Book found!");
-    System.out.println(docs[0].title);
-    System.out.println(Arrays.toString(docs[0].author_name));
-    System.out.println(Arrays.toString(docs[0].text));
-    System.out.println("\nCopies found: "+numFound);
+    System.out.println("There were "+docs.length+" books that matched your search.");
 
-    //String[] text stores the isbns as well as a variety of tags (themes).
-    //this loop differentiates the tags from the isbns.
+    for (int i=0;i<docs.length;i++) {
+      System.out.println("\n\n------------------");
+      System.out.println(docs[i].title);
+      System.out.println(Arrays.toString(docs[i].author_name));
+      //System.out.println(Arrays.toString(docs[0].text));
 
-    System.out.println(docs[0].tags);
-    //String[] docs[0].tags = new String[100];
+      //String[] text stores the isbns as well as a variety of tags (themes).
+      //this loop differentiates the tags from the isbns.
 
-    //String[] docs[0].tags = new String[docs[0].text.length];
-    docs[0].tags = new ArrayList<String>();
-    //int idx=0;
-    for (String s: docs[0].text) {
-      if (s.contains(" ")) {
-        docs[0].tags.add(s);
-      } else {
-        //check if the string contains a lowercase letter.
-        for (int idx2=0;idx2<s.length();idx2++) {
-          char c = s.charAt(idx2);
-          if ((int) c >= 97 && (int) c <= 122) {
-            docs[0].tags.add(s);
-            idx2 = s.length();
+      // this (below) is for if you change tags back from ArrayList<String> to String[]
+        //String[] docs[0].tags = new String[100];
+        //String[] docs[0].tags = new String[docs[0].text.length];
+      docs[i].tags = new ArrayList<String>();
+      //int idx=0;
+      for (String s: docs[i].text) {
+        if (s.contains(" ")) {
+          docs[i].tags.add(s);
+        } else {
+          //check if the string contains a lowercase letter.
+          for (int idx2=0;idx2<s.length();idx2++) {
+            char c = s.charAt(idx2);
+            if ((int) c >= 97 && (int) c <= 122) {
+              docs[i].tags.add(s);
+              idx2 = s.length();
+            }
           }
         }
-      }
-      //idx++;
-      }
+        //idx++;
+        }
 
-      System.out.println(docs[0].tags);
-    }
-
+        System.out.println("tags: ");
+        System.out.println(docs[i].tags);
+      }
     //putString(1,4,terminal,docs[0].title);
     //putString(1,5,terminal,docs[0].author_name[0]);
 
@@ -199,9 +201,11 @@ public class Search{
       System.out.println("\n\n");
     }
     */
+  }
 
 
-  public static void main(String[] args){//for testing purposes
+  public static void main(String[] args){
+    //for testing purposes
     // method used here effectively converts simplistic search terms from args
     // can be made more indepth and input can come from places other than shell args
     /*
