@@ -6,5 +6,6 @@ public class Book{
   String[] author_name;
   String[] isbn;
   String[] text;
+  String[] subject;
   ArrayList<String> tags;
 }
