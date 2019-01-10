@@ -10,15 +10,15 @@ public class NYPLAccessor implements CatalogAccessor{
   public Copy[] getAllCopies(Book bk){
     try{
       long startTime = System.currentTimeMillis();
-      System.out.println("start");
+      System.out.println("start 0");
       String[] ISBNs = bk.getISBNs();
       String searchStr = genSearch(ISBNs);
       String searchUrl = "https://browse.nypl.org/iii/encore/search/C__S"+searchStr+"__Orightresult__U?lang=eng&suite=def";
       System.out.println(searchUrl);
       URL catSearch = new URL(searchUrl);
-      System.out.println("begin download");
+      System.out.println("begin download " + (System.currentTimeMillis()-startTime));
       Scanner sca = new Scanner(catSearch.openStream());
-      System.out.println("begin extraction");
+      System.out.println("begin extraction" + (System.currentTimeMillis()-startTime));
       ArrayList<String> htmlBlocks = getCopyHTML(sca);
       //for(String s : htmlBlocks) System.out.println(s+"\n_______________________________________________________________________\n");
       ArrayList<Copy> out = new ArrayList<Copy>();
@@ -28,7 +28,7 @@ public class NYPLAccessor implements CatalogAccessor{
         System.out.println(root.getAttribute("id"));
         addCopiesFromBlock(root,out);
       }
-      System.out.println("complete");
+      System.out.println("complete " + (System.currentTimeMillis()-startTime));
       return null;
     }catch(IOException e){
       e.printStackTrace();
