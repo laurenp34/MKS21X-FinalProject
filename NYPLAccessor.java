@@ -19,7 +19,8 @@ public class NYPLAccessor implements CatalogAccessor{
       System.out.println("begin download " + (System.currentTimeMillis()-startTime));
       Scanner sca = new Scanner(catSearch.openStream());
       System.out.println("begin extraction" + (System.currentTimeMillis()-startTime));
-      ArrayList<String> htmlBlocks = getCopyHTML(sca);
+      ArrayList<String> catalogIDs = getResultIDs(sca);
+      /*
       //for(String s : htmlBlocks) System.out.println(s+"\n_______________________________________________________________________\n");
       ArrayList<Copy> out = new ArrayList<Copy>();
       for(int i=0;i<htmlBlocks.size();i++){
@@ -28,6 +29,7 @@ public class NYPLAccessor implements CatalogAccessor{
         System.out.println(root.getAttribute("id"));
         addCopiesFromBlock(root,out);
       }
+      */
       System.out.println("complete " + (System.currentTimeMillis()-startTime));
       return null;
     }catch(IOException e){
@@ -39,7 +41,9 @@ public class NYPLAccessor implements CatalogAccessor{
   private String genSearch(String[] terms){
     return "%28"+String.join("%20%7C%20",terms)+"%29";
   }
-
+  private ArrayList<String> getResultIDs(Scanner sca){
+    return null;
+  }
   private ArrayList<String> getCopyHTML(Scanner sca){
     ArrayList<String> out = new ArrayList<String>();
     while(sca.hasNextLine()){
