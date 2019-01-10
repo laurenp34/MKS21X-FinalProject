@@ -26,11 +26,13 @@ public class Search{
   private String[] isbn;
   private Book[] docs;
   private String searchTerm;
+  private Terminal terminal;
   //private Terminal terminal;
 
   public Search() {
     searchTermInput = "";
     searchTerm = "";
+
 
   }
 
@@ -56,14 +58,10 @@ public class Search{
   public void generateSearchTerm() {
 
     //initialize Screen
-    //Terminal terminal = TerminalFacade.createTerminal(System.in, System.out, Charset.forName("UTF8"));
     Terminal terminal = TerminalFacade.createTextTerminal();
-
     terminal.enterPrivateMode();
     //TerminalFacade.createTextTerminal();  //USE THIS COMMAND INSTEAD!
     terminal.clearScreen();
-    //TerminalFacade.createTextTerminal();
-
     TerminalSize terminalSize = terminal.getTerminalSize();
 
     putString(1,2,terminal,"Search for your book by entering its ISBN:");
@@ -107,11 +105,22 @@ public class Search{
     terminal.setCursorVisible(false);
   }
 
+  public void chooseResult() {
+
+    Terminal terminal = TerminalFacade.createTextTerminal();
+
+    System.out.println("\n\n\nChoose a book (1-"+numFound+"): ");
+    terminal.setCursorVisible(true);
+
+
+  }
+
   public String runSearch() {
     //initScreen();
     generateSearchTerm();
     buildSearch(searchTerm);
     printSearchResults();
+    chooseResult();
 
     return searchTerm;
 
