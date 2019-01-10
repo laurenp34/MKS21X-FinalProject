@@ -57,6 +57,8 @@ public class Search{
 
   public void generateSearchTerm() {
 
+    ArrayList<Character> searchTermInput = new ArrayList<Character>();
+
     //initialize Screen
     Terminal terminal = TerminalFacade.createTextTerminal();
     terminal.enterPrivateMode();
@@ -74,8 +76,6 @@ public class Search{
 
 
       if (key != null) {
-
-        System.out.println(key.getCharacter());
 
         if (key.getKind().equals(Key.Kind.Enter)) {
           terminal.setCursorVisible(false);
