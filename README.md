@@ -25,3 +25,7 @@ Lauren-Merged my search branch with master, which meant merging the two Search.j
 *8 January 2019*\
 Kiran-Successfully wrote method to access only the blocks of code containing the relevant data from the NYPL's catalog search. Though the program still runs relatively slowly, it is now able to successfully retreive data, in the form of HTML only including the necessary sections.\
 Lauren-Successfully modified the searchTerm instance variable and buildSearch() in the object directly rather than thorugh a static method. At the end, was debugging in order to figure out how the data is stored in the instance variables. Will continue looking at the json file and how it is transferred into isntance variables, because the next step is creating a formatted list of search results.
+
+*9 January 2019*\
+Kiran-
+Lauren-At first, tried to change the search input from String to ArrayList<Character> to aid in backspace (removing) elements -- however, this didn't work and somehow messed up many other things so I tried to recover the older (previous) commit. I was in a detached head state. Then I worked on allowing the user to choose the search result. I numbered the results, then gave the user a space to input the corresponding number for a result. I also created a checker that ensured that the input was a integer in range, and if not then it would retry the search. At the end when I pushed my changes I just pushed the head state from before and lost all my commits and work! Will try and recover tomorrow (because I tried on my own and couldn't come up with anything).
