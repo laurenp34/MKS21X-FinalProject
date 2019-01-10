@@ -42,7 +42,15 @@ public class NYPLAccessor implements CatalogAccessor{
     return "%28"+String.join("%20%7C%20",terms)+"%29";
   }
   private ArrayList<String> getResultIDs(Scanner sca){
-    return null;
+    ArrayList<String> out = new ArrayList<String>();
+    while(sca.hasNextLine()){
+      String line = sca.nextLine();
+      if(line.contains("<div id=\"allitemsmax-")){
+        line = line.substring((line.indexOf("<div id=\"allitemsmax-")+"<div id=\"allitemsmax-".length()),line.length());
+        out.add(line.substring(0,line.indexOf("\"")));
+      }
+    }
+    return out;
   }
   private ArrayList<String> getCopyHTML(Scanner sca){
     ArrayList<String> out = new ArrayList<String>();
