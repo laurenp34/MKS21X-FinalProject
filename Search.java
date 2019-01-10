@@ -21,7 +21,7 @@ import java.util.*;
 import java.net.*;
 
 public class Search{
-  private String searchTermInput;
+  private ArrayList<Character> searchTermInput;
   private int numFound;
   private String[] isbn;
   private Book[] docs;
@@ -30,8 +30,8 @@ public class Search{
   //private Terminal terminal;
 
   public Search() {
-    searchTermInput = "";
     searchTerm = "";
+    ArrayList<Character> searchTermInput = new ArrayList<Character>();
 
 
   }
@@ -72,29 +72,37 @@ public class Search{
 
       Key key = terminal.readInput();
 
+
       if (key != null) {
 
         if (key.getKind().equals(Key.Kind.Enter)) {
           terminal.setCursorVisible(false);
           searching = false;
 
-
-        } if (key.getKind().equals(Key.Kind.Escape)) {
+        } else if (key.getKind().equals(Key.Kind.Escape)) {
           terminal.clearScreen();
           terminal.exitPrivateMode();
           System.exit(0);
+      //  } //if they press backspace (deletes)
+        //  else if (key.getKind().equals(Key.Kind.Backspace) && searchTermInput.size() > 0) {
+          //searchTermInput.remove(searchTermInput.size() - 1);
         } else {
-          searchTermInput += key.getCharacter();
+
+          searchTermInput.add((Character) key.getCharacter());
         }
-
-
       }
+
+
+
     }
 
+    for (char c: searchTermInput) {
+      System.out.print(c);
+    }
     System.out.println("your search term is: " + searchTermInput);
 
     //to add the search term to the URL, + needs to replace space.
-    for (char c: searchTermInput.toCharArray()) {
+    for (char c: searchTermInput) {
       if (c == ' ') {
         searchTerm += '+';
       } else {
