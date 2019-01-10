@@ -9,6 +9,7 @@ import org.xml.sax.*;
 public class NYPLAccessor implements CatalogAccessor{
   public Copy[] getAllCopies(Book bk){
     try{
+      long startTime = System.currentTimeMillis();
       System.out.println("start");
       String[] ISBNs = bk.getISBNs();
       String searchStr = genSearch(ISBNs);
@@ -85,6 +86,6 @@ public class NYPLAccessor implements CatalogAccessor{
     return null;
   }
   private void addCopiesFromBlock(Element root,ArrayList<Copy> out){
-    
+
   }
 }
