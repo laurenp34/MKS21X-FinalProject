@@ -39,15 +39,16 @@ public class NYPLAccessor implements CatalogAccessor{
   private ArrayList<String> getCopyHTML(Scanner sca){
     ArrayList<String> out = new ArrayList<String>();
     while(sca.hasNextLine()){
-      if(sca.nextLine().contains("class=\"availableMaxItemsSection\"")){
-        out.add(getDiv(sca));
+      String line = sca.nextLine();
+      if(line.contains("<div id=\"allitemsmax-")){
+        out.add(getDiv(line,sca));
       }
     }
     return out;
   }
-  private String getDiv(Scanner sca){
-    int divDepth = 1;
-    String out = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<div>\n";
+  private String getDiv(String first,Scanner sca){
+    int divDepth = 2;
+    String out = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+first+"\n";
     String currentLine = "";
     while(divDepth > 0){
       out  += "\n" + currentLine;
