@@ -56,8 +56,11 @@ public class Search{
   public void generateSearchTerm() {
 
     //initialize Screen
-    Terminal terminal = TerminalFacade.createTerminal();
+    //Terminal terminal = TerminalFacade.createTerminal(System.in, System.out, Charset.forName("UTF8"));
+    Terminal terminal = TerminalFacade.createTextTerminal();
+
     terminal.enterPrivateMode();
+    //TerminalFacade.createTextTerminal();  //USE THIS COMMAND INSTEAD!
     terminal.clearScreen();
     //TerminalFacade.createTextTerminal();
 
