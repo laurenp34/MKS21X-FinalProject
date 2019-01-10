@@ -23,6 +23,10 @@ public class NYPLAccessor implements CatalogAccessor{
       System.out.println("begin extraction" + (System.currentTimeMillis()-startTime));
       ArrayList<String> catalogIDs = getResultIDs(sca);
       System.out.println("number of pages: "+catalogIDs.size());
+      ArrayList<Copy> out = new ArrayList<Copy>();
+      for(String bookID : catalogIDs){
+        addCopiesFromPage(bookID,out);
+      }
       /*
       //for(String s : htmlBlocks) System.out.println(s+"\n_______________________________________________________________________\n");
       ArrayList<Copy> out = new ArrayList<Copy>();
@@ -99,6 +103,9 @@ public class NYPLAccessor implements CatalogAccessor{
       System.exit(3);
     }
     return null;
+  }
+  private void addCopiesFromPage(String id,ArrayList<Copy> out){
+    
   }
   private void addCopiesFromBlock(Element root,ArrayList<Copy> out){
 
