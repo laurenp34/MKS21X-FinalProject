@@ -77,6 +77,8 @@ public class Search{
 
       if (key != null) {
 
+        System.out.print(key.getCharacter());
+
         if (key.getKind().equals(Key.Kind.Enter)) {
           terminal.setCursorVisible(false);
           searching = false;
