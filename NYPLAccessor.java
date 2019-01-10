@@ -20,10 +20,12 @@ public class NYPLAccessor implements CatalogAccessor{
       System.out.println("begin extraction");
       ArrayList<String> htmlBlocks = getCopyHTML(sca);
       //for(String s : htmlBlocks) System.out.println(s+"\n_______________________________________________________________________\n");
+      ArrayList<Copy> out = new ArrayList<Copy>();
       for(int i=0;i<htmlBlocks.size();i++){
         Document d = getDocument(htmlBlocks.get(i));
         Element root = d.getDocumentElement();
         System.out.println(root.getAttribute("id"));
+        addCopiesFromBlock(root,out);
       }
       System.out.println("complete");
       return null;
@@ -81,5 +83,8 @@ public class NYPLAccessor implements CatalogAccessor{
       System.exit(3);
     }
     return null;
+  }
+  private void addCopiesFromBlock(Element root,ArrayList<Copy> out){
+    
   }
 }
