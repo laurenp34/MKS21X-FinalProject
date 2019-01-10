@@ -19,7 +19,7 @@ public class NYPLAccessor implements CatalogAccessor{
       Scanner sca = new Scanner(catSearch.openStream());
       System.out.println("begin extraction");
       ArrayList<String> htmlBlocks = getCopyHTML(sca);
-      //for(String s : htmlBlocks) System.out.println(s+"\n_______________________________________________________________________\n");
+      for(String s : htmlBlocks) System.out.println(s+"\n_______________________________________________________________________\n");
       for(int i=0;i<htmlBlocks.size();i++){
         Document d = getDocument(htmlBlocks.get(i));
         System.out.println(d);
@@ -40,14 +40,14 @@ public class NYPLAccessor implements CatalogAccessor{
     ArrayList<String> out = new ArrayList<String>();
     while(sca.hasNextLine()){
       if(sca.nextLine().contains("class=\"availableMaxItemsSection\"")){
-        out.add("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<div>\n"+getDiv(sca));
+        out.add(getDiv(sca));
       }
     }
     return out;
   }
   private String getDiv(Scanner sca){
     int divDepth = 1;
-    String out = "";
+    String out = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<div>\n";
     String currentLine = "";
     while(divDepth > 0){
       out  += "\n" + currentLine;
