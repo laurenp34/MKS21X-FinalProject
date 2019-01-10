@@ -17,9 +17,12 @@ public class NYPLAccessor implements CatalogAccessor{
       System.out.println(searchUrl);
       URL catSearch = new URL(searchUrl);
       System.out.println("begin download " + (System.currentTimeMillis()-startTime));
-      Scanner sca = new Scanner(catSearch.openStream());
+      InputStream stream = catSearch.openStream();
+      System.out.println("begin scanner build " + (System.currentTimeMillis()-startTime));
+      Scanner sca = new Scanner(stream);
       System.out.println("begin extraction" + (System.currentTimeMillis()-startTime));
       ArrayList<String> catalogIDs = getResultIDs(sca);
+      System.out.println("number of pages: "+catalogIDs.size());
       /*
       //for(String s : htmlBlocks) System.out.println(s+"\n_______________________________________________________________________\n");
       ArrayList<Copy> out = new ArrayList<Copy>();
