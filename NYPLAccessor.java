@@ -104,8 +104,14 @@ public class NYPLAccessor implements CatalogAccessor{
     }
     return null;
   }
-  private void addCopiesFromPage(String id,ArrayList<Copy> out){
-    
+  private void addCopiesFromPage(String id,ArrayList<Copy> out)throws MalformedURLException,IOException{
+    URL idPage = new URL("https://browse.nypl.org/iii/encore/record/C__R"+id+"?lang=eng");
+    System.out.println("begin download of "+id);
+    InputStream stream = idPage.openStream();
+    System.out.println("begin scanner build ");
+    Scanner sca = new Scanner(stream);
+    System.out.println("begin extraction");
+
   }
   private void addCopiesFromBlock(Element root,ArrayList<Copy> out){
 
