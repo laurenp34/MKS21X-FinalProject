@@ -119,6 +119,9 @@ public class NYPLAccessor implements CatalogAccessor{
     addCopiesFromBlock(root,out);
   }
   private void addCopiesFromBlock(Element root,ArrayList<Copy> out){
-
+    Element tbody = traceDownFirsts(root,"div","table","tbody");
+  }
+  private Element traceDownFirsts(Element root,String... tagNames){
+    return null;
   }
 }
