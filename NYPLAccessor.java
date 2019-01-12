@@ -120,9 +120,8 @@ public class NYPLAccessor implements CatalogAccessor{
   }
   private void addCopiesFromBlock(Element root,ArrayList<Copy> out){
     Element table = traceDownFirsts(root,"div","table");
-    System.out.println(table);
     NodeList rows = table.getElementsByTagName("tr");
-    for(int i=0;i<rows.getLength();i++){
+    for(int i=1;i<rows.getLength();i++){
       Element row = (Element)(rows.item(i));
       NodeList cells = row.getElementsByTagName("td");
       out.add(buildCopy(cells));
@@ -135,8 +134,15 @@ public class NYPLAccessor implements CatalogAccessor{
     }
     return out;
   }
-
+  private String toStringNodeList(NodeList NL){
+    String out = "{";
+    for(int i=0;i<NL.getLength();i++){
+      out += NL.item(0)+",";
+    }
+    return out.substring(0,out.length()-1)+"}";
+  }
   private Copy buildCopy(NodeList cells){
+    if(cells.getLength() < 4) throw new IllegalArgumentException("row length "+cells.getLength());
     return null;
   }
 }
