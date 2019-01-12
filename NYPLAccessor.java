@@ -119,7 +119,8 @@ public class NYPLAccessor implements CatalogAccessor{
     addCopiesFromBlock(root,out);
   }
   private void addCopiesFromBlock(Element root,ArrayList<Copy> out){
-    Element tbody = traceDownFirsts(root,"div","table","tbody");
+    Element table = traceDownFirsts(root,"div","table");
+    System.out.println(table);
   }
   private Element traceDownFirsts(Element root,String... tagNames){
     Element out = root;
