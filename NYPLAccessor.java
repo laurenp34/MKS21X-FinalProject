@@ -122,6 +122,10 @@ public class NYPLAccessor implements CatalogAccessor{
     Element tbody = traceDownFirsts(root,"div","table","tbody");
   }
   private Element traceDownFirsts(Element root,String... tagNames){
-    return null;
+    Element out = root;
+    for(String tagName : tagNames){
+      out = (Element)(root.getElementsByTagName(tagName).item(0));
+    }
+    return out;
   }
 }
