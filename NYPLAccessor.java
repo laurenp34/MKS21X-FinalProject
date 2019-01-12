@@ -59,15 +59,15 @@ public class NYPLAccessor implements CatalogAccessor{
     }
     return out;
   }
-  private ArrayList<String> getCopyHTML(Scanner sca){
+  private String getCopyHTML(Scanner sca){
     ArrayList<String> out = new ArrayList<String>();
     while(sca.hasNextLine()){
       String line = sca.nextLine();
-      if(line.contains("<div id=\"allitemsmax-")){
-        out.add(getDiv(line,sca));
+      if(line.contains("<div id=\"allitems-")){
+        return getDiv(line,sca);
       }
     }
-    return out;
+    return null;
   }
   private String getDiv(String first,Scanner sca){
     int divDepth = 2;
@@ -112,6 +112,11 @@ public class NYPLAccessor implements CatalogAccessor{
     System.out.println("begin scanner build ");
     Scanner sca = new Scanner(stream);
     System.out.println("begin extraction");
+    String htmlBlock = getCopyHTML(sca);
+    System.out.println(htmlBlock);
+    Document html = getDocument(htmlBlock);
+    Element root = html.getDocumentElement();
+    addCopiesFromBlock(root,out);
   }
   private void addCopiesFromBlock(Element root,ArrayList<Copy> out){
 
