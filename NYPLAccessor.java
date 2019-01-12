@@ -147,7 +147,6 @@ public class NYPLAccessor implements CatalogAccessor{
     String callnum = traceDownFirsts((Element)(cells.item(1)),"span","a").getChildNodes().item(0).getNodeValue().trim();
     String status = cells.item(2).getChildNodes().item(0).getNodeValue().trim();
     String message = cells.item(3).getChildNodes().item(0).getNodeValue().trim();
-    System.out.println("loc: "+loc+", callnum: "+callnum+", status: "+status+", message: "+message);
-    return null;
+    return new Copy(loc,callnum,status,message);
   }
 }
