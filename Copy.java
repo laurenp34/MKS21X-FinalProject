@@ -17,4 +17,7 @@ public class Copy{
     available = status.equals("AVAILABLE");
     //ADD DATE CODE
   }
+  public String toString(){
+    return "(Copy w.available="+available+"@"+loc+")";
+  }
 }
