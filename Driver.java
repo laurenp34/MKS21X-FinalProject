@@ -6,5 +6,6 @@ public class Driver{
     Copy[] out = ny.getAllCopies(result);
     System.out.println("\n\n");
     for(Copy c : out) System.out.println(c);
+    System.out.println("complete");
   }
 }
