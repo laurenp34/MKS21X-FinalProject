@@ -223,7 +223,9 @@ public class Search{
       bookFound = true;
 
       System.out.println("\nBook found!");
+      removeBadResults();
       System.out.println("There were "+docs.length+" books that matched your search.");
+      numFound = docs.length;
 
     for (int i=0;i<docs.length;i++) {
       System.out.println("\n\n("+(i+1)+")------------------");
@@ -300,6 +302,15 @@ public class Search{
 
     Book reesult = sea.runSearch();
 
+  }
+  private void removeBadResults(){
+    ArrayList<Book> out = new ArrayList<Book>();
+    System.out.println("hello!");
+    for(Book b : docs){
+      if(!(b.getISBNs()==null || b.getISBNs().length==0)) out.add(b);
+    }
+    Book[] temp = new Book[0];
+    docs = out.toArray(temp);
   }
 
 
