@@ -8,5 +8,5 @@ public class Book{
   String[] text;
   String[] subject;
   ArrayList<String> tags;
-  public String[] getISBNs(){return isbn}
+  public String[] getISBNs(){return isbn;}
 }
