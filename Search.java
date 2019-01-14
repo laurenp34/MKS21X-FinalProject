@@ -64,7 +64,7 @@ public class Search{
     Terminal terminal = TerminalFacade.createTextTerminal();
     terminal.enterPrivateMode();
     //TerminalFacade.createTextTerminal();  //USE THIS COMMAND INSTEAD!
-    terminal.clearScreen();
+    //terminal.clearScreen();
     TerminalSize terminalSize = terminal.getTerminalSize();
 
     System.out.print("Search for your book: ");
@@ -200,8 +200,22 @@ public class Search{
 
     //Terminal terminal = TerminalFacade.createTerminal();
 
-    System.out.println("Book found!");
-    System.out.println("There were "+docs.length+" books that matched your search.");
+    boolean bookFound = false;
+
+    while (!bookFound) {
+
+    if (numFound == 0) {
+      System.out.println("Sorry! There were no books found.");
+      System.out.println("Try your search again.");
+
+      generateSearchTerm();
+
+    } else {
+
+      bookFound = true;
+
+      System.out.println("Book found!");
+      System.out.println("There were "+docs.length+" books that matched your search.");
 
     for (int i=0;i<docs.length;i++) {
       System.out.println("\n\n("+(i+1)+")------------------");
@@ -236,6 +250,8 @@ public class Search{
         System.out.println("tags: ");
         System.out.println(docs[i].tags);
       }
+    }
+  }
     //putString(1,4,terminal,docs[0].title);
     //putString(1,5,terminal,docs[0].author_name[0]);
 
