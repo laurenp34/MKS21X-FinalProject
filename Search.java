@@ -30,6 +30,9 @@ public class Search{
     searchTerm = "";
 
   }
+  public Book getResult(int i){
+    return docs[i];
+  }
 
   public String getSearchTerm() {
     return searchTerm;
