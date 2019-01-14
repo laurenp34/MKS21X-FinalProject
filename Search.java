@@ -67,9 +67,9 @@ public class Search{
     System.out.print("Search for your book: ");
     Scanner sys = new Scanner(System.in);
 
-    String searchTermInput = sys.next();
+    String searchTermInput = sys.nextLine();
     sys.nextLine();
-
+    System.out.println(searchTermInput);
 
 /*
     //run search until enter is pressed.
@@ -96,21 +96,18 @@ public class Search{
           searchTermInput.add((Character) key.getCharacter());
         }
       }
-
-    for (char c: searchTermInput) {
-      System.out.print(c);
-    }
+      */
     System.out.println("your search term is: " + searchTermInput);
 
     //to add the search term to the URL, + needs to replace space.
-    for (char c: searchTermInput) {
+    for (char c: searchTermInput.toCharArray()) {
       if (c == ' ') {
         searchTerm += '+';
       } else {
         searchTerm += c;
       }
     }
-    */
+
 
     terminal.setCursorVisible(false);
   }
