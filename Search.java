@@ -21,13 +21,18 @@ import java.util.*;
 import java.net.*;
 
 public class Search{
-  private String searchTerm;
+  private ArrayList<Character> searchTermInput;
   private int numFound;
+  private String[] isbn;
   private Book[] docs;
+  private String searchTerm;
+  private Terminal terminal;
   //private Terminal terminal;
 
   public Search() {
     searchTerm = "";
+    ArrayList<Character> searchTermInput = new ArrayList<Character>();
+
 
   }
   public Book getResult(int i){
@@ -56,20 +61,24 @@ public class Search{
   public void generateSearchTerm() {
 
     //initialize Screen
-    Terminal terminal = TerminalFacade.createTerminal();
+    Terminal terminal = TerminalFacade.createTextTerminal();
     terminal.enterPrivateMode();
+    //TerminalFacade.createTextTerminal();  //USE THIS COMMAND INSTEAD!
     terminal.clearScreen();
-    //TerminalFacade.createTextTerminal();
-
     TerminalSize terminalSize = terminal.getTerminalSize();
 
-    putString(1,2,terminal,"Search for your book by entering its ISBN:");
+    System.out.print("Search for your book: ");
+    Scanner sys = new Scanner(System.in);
 
+    String searchTermInput = sys.nextLine();
+    System.out.println("\nYou searched for: "+searchTermInput);
+
+/*
     //run search until enter is pressed.
     boolean searching = true;
     while (searching) {
-
       Key key = terminal.readInput();
+
 
       if (key != null) {
 
@@ -77,39 +86,93 @@ public class Search{
           terminal.setCursorVisible(false);
           searching = false;
 
-
-        } if (key.getKind().equals(Key.Kind.Escape)) {
+        } else if (key.getKind().equals(Key.Kind.Escape)) {
           terminal.clearScreen();
           terminal.exitPrivateMode();
           System.exit(0);
+      //  } //if they press backspace (deletes)
+        //  else if (key.getKind().equals(Key.Kind.Backspace) && searchTermInput.size() > 0) {
+          //searchTermInput.remove(searchTermInput.size() - 1);
         } else {
-          searchTerm += key.getCharacter();
+
+          searchTermInput.add((Character) key.getCharacter());
         }
+      }
+      */
 
-
+    //to add the search term to the URL, + needs to replace space.
+    for (char c: searchTermInput.toCharArray()) {
+      if (c == ' ') {
+        searchTerm += '+';
+      } else {
+        searchTerm += c;
       }
     }
 
-    System.out.println("your search term is: " + searchTerm);
+
     terminal.setCursorVisible(false);
   }
+
+  public void chooseResult() {
+
+    Terminal terminal = TerminalFacade.createTextTerminal();
+
+    boolean properIntFound = false;
+    boolean searching = true;
+    int bookChosen = 0;
+    while (!properIntFound) {
+      while (searching) {
+        System.out.println("\n\n\nChoose a book (1-"+numFound+"): ");
+        terminal.setCursorVisible(true);
+
+        Scanner sys = new Scanner(System.in);
+
+        try {
+          bookChosen = sys.nextInt();
+          searching = false;
+        } catch (InputMismatchException e) {
+          System.out.println("Please enter a valid integer.");
+        }
+
+      }
+
+      //will get here if valid integer entered.
+      if (bookChosen < 1 || bookChosen > numFound) {
+        System.out.println("Please enter an integer between 1 and "+numFound);
+      } else {
+        properIntFound = true;
+      }
+  }
+
+  System.out.println("You chose: ");
+  System.out.print(docs[bookChosen-1].title);
+  System.out.print(" by ");
+  for (String name: docs[bookChosen-1].author_name) {
+    System.out.print(name + " ");
+  }
+
+
+}
 
   public String runSearch() {
     //initScreen();
     generateSearchTerm();
     buildSearch(searchTerm);
     printSearchResults();
+    chooseResult();
 
     return searchTerm;
 
   }
 
 
-  public static Search buildSearch(String searchTerm){
+  public Search buildSearch(String searchTerm){
     Search out = null;
+
     try{
       //URL object accesses webpage, InputStreamReader allows reading of its data
       URL webpage = new URL("https://openlibrary.org/search.json?q="+searchTerm);
+      System.out.println("https://openlibrary.org/search.json?q="+searchTerm);
       Reader json = new InputStreamReader(webpage.openStream());
       //for accessing nonstatic methods in Gson class
       Gson g = new Gson();
@@ -121,35 +184,79 @@ public class Search{
     }catch(IOException e){
       e.printStackTrace();
     }
+
+    //since a new search object out was created to store the json data, now we will transfer this data
+    // to the current object calling this method.
+    this.docs = out.docs;
+    this.numFound = out.numFound;
+
+
+
     return out;
   }
 
   public void printSearchResults() {
 
 
-    Terminal terminal = TerminalFacade.createTerminal();
+    //Terminal terminal = TerminalFacade.createTerminal();
 
-    putString(1,4,terminal,docs[0].title);
-    putString(1,5,terminal,docs[0].author_name[0]);
+    System.out.println("Book found!");
+    System.out.println("There were "+docs.length+" books that matched your search.");
 
-    putString(1,6,terminal,"" + docs.length);
+    for (int i=0;i<docs.length;i++) {
+      System.out.println("\n\n------------------");
+      System.out.println(docs[i].title);
+      System.out.println(Arrays.toString(docs[i].author_name));
+      //System.out.println(Arrays.toString(docs[0].text));
+
+      //String[] text stores the isbns as well as a variety of tags (themes).
+      //this loop differentiates the tags from the isbns.
+
+      // this (below) is for if you change tags back from ArrayList<String> to String[]
+        //String[] docs[0].tags = new String[100];
+        //String[] docs[0].tags = new String[docs[0].text.length];
+      docs[i].tags = new ArrayList<String>();
+      //int idx=0;
+      for (String s: docs[i].text) {
+        if (s.contains(" ")) {
+          docs[i].tags.add(s);
+        } else {
+          //check if the string contains a lowercase letter.
+          for (int idx2=0;idx2<s.length();idx2++) {
+            char c = s.charAt(idx2);
+            if ((int) c >= 97 && (int) c <= 122) {
+              docs[i].tags.add(s);
+              idx2 = s.length();
+            }
+          }
+        }
+        //idx++;
+        }
+
+        System.out.println("tags: ");
+        System.out.println(docs[i].tags);
+      }
+    //putString(1,4,terminal,docs[0].title);
+    //putString(1,5,terminal,docs[0].author_name[0]);
+
+    //putString(1,6,terminal,"" + docs.length);
 
     //count copies found.
-    int countCopies;
 
     //this loop prints out various statements to check search.
+    /*
     for(int i=0;i<docs.length;i++){
       System.out.println(docs[i].title);
       if(docs[i].author_name[0] != null) System.out.println(docs[i].author_name[0]);
       System.out.println(Arrays.toString(docs[i].isbn));
       System.out.println("\n\n");
     }
-
-
+    */
   }
 
 
-  public static void main(String[] args){//for testing purposes
+  public static void main(String[] args){
+    //for testing purposes
     // method used here effectively converts simplistic search terms from args
     // can be made more indepth and input can come from places other than shell args
     /*
@@ -168,6 +275,7 @@ public class Search{
     Search sea = new Search();
 
     sea.runSearch();
+
   }
 
 

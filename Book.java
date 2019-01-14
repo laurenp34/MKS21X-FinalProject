@@ -1,6 +1,12 @@
+import java.io.*;
+import java.util.*;
+
 public class Book{
   String title;
   String[] author_name;
   String[] isbn;
-  public String[] getISBNs(){return isbn;}
+  String[] text;
+  String[] subject;
+  ArrayList<String> tags;
+  public String[] getISBNs(){return isbn}
 }
