@@ -64,12 +64,17 @@ public class Search{
     terminal.clearScreen();
     TerminalSize terminalSize = terminal.getTerminalSize();
 
-    putString(1,2,terminal,"Search for your book by entering its ISBN:");
+    System.out.print("Search for your book: ");
+    Scanner sys = new Scanner(System.in);
 
+    String searchTermInput = sys.next();
+    sys.nextLine();
+
+
+/*
     //run search until enter is pressed.
     boolean searching = true;
     while (searching) {
-
       Key key = terminal.readInput();
 
 
@@ -92,10 +97,6 @@ public class Search{
         }
       }
 
-
-
-    }
-
     for (char c: searchTermInput) {
       System.out.print(c);
     }
@@ -109,6 +110,7 @@ public class Search{
         searchTerm += c;
       }
     }
+    */
 
     terminal.setCursorVisible(false);
   }
