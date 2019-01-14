@@ -31,11 +31,11 @@ Kiran-Initially wrote code using the built-in XML DOM parser to access data with
 Lauren-At first, tried to change the search input from String to ArrayList<Character> to aid in backspace (removing) elements -- however, this didn't work and somehow messed up many other things so I tried to recover the older (previous) commit. I was in a detached head state. Then I worked on allowing the user to choose the search result. I numbered the results, then gave the user a space to input the corresponding number for a result. I also created a checker that ensured that the input was a integer in range, and if not then it would retry the search. At the end when I pushed my changes I just pushed the head state from before and lost all my commits and work! Will try and recover tomorrow (because I tried on my own and couldn't come up with anything).\
 *10 January 2019*\
 Kiran-Wrote the beginnings of code to access multiple pages out of the search result, and gained a better understanding of how the w3c DOM parsing library works.\
-Lauren-\
+Lauren-Tried to recreate what I did on 1/9, which was erased. Got up to date and created roughly what I ended up with at the end of the night yesterday. However, at the end of the night it was erased again! It was because when I tried to git push, git rejected this, saying that my branch Search was behind and I needed to git pull first. But when I did that, my work was erased. That's why there are no commits for 1/10 and 1/9. Will work on figuring out why and restoring the work.
 *11 January 2019*\
 Kiran-Quiz day, little work accomplished.\
-Lauren-\
+Lauren- same ^
 *12 January 2019*\
 Kiran-Successfully completed the code for accessing the NYPL webpage and all of its data, and downloading it into the form of Copy objects\
-Lauren-\
+Lauren-Went to StuyHacks and ended up working on a different project instead (sorry :( ) but read up on Github and how branches work to avoid the same problem as the previous two work days.
 *13 January 2019*\
