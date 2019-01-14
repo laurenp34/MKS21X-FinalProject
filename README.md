@@ -32,10 +32,15 @@ Lauren-At first, tried to change the search input from String to ArrayList<Chara
 *10 January 2019*\
 Kiran-Wrote the beginnings of code to access multiple pages out of the search result, and gained a better understanding of how the w3c DOM parsing library works.\
 Lauren-Tried to recreate what I did on 1/9, which was erased. Got up to date and created roughly what I ended up with at the end of the night yesterday. However, at the end of the night it was erased again! It was because when I tried to git push, git rejected this, saying that my branch Search was behind and I needed to git pull first. But when I did that, my work was erased. That's why there are no commits for 1/10 and 1/9. Will work on figuring out why and restoring the work.
+
 *11 January 2019*\
 Kiran-Quiz day, little work accomplished.\
 Lauren- same ^
+
 *12 January 2019*\
 Kiran-Successfully completed the code for accessing the NYPL webpage and all of its data, and downloading it into the form of Copy objects\
 Lauren-Went to StuyHacks and ended up working on a different project instead (sorry :( ) but read up on Github and how branches work to avoid the same problem as the previous two work days.
+
 *13 January 2019*\
+Kiran-
+Lauren-Recreated lost code (choosing search result and ensuring the input is a valid integer within range) , this time using Scanner rather than by reading lanterna key inputs, which is much simpler. Also modified runSearch() to return a Book object so that it is compatible with Kiran's webscraping program. Also added code to re-initiate the search when a search term yields 0 books, and formatted print statements for Demo.
