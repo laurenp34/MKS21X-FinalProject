@@ -124,7 +124,7 @@ public class Search{
     int bookChosen = 0;
     while (!properIntFound) {
       while (searching) {
-        System.out.println("\n\n\nChoose a book (1-"+numFound+"): ");
+        System.out.print("\n\n\nChoose a book (1-"+numFound+"): ");
         terminal.setCursorVisible(true);
 
         Scanner sys = new Scanner(System.in);
@@ -146,7 +146,7 @@ public class Search{
       }
   }
 
-  System.out.println("You chose: ");
+  System.out.println("\nYou chose: ");
   System.out.print(docs[bookChosen-1].title);
   System.out.print(" by ");
   for (String name: docs[bookChosen-1].author_name) {
@@ -174,7 +174,7 @@ public class Search{
     try{
       //URL object accesses webpage, InputStreamReader allows reading of its data
       URL webpage = new URL("https://openlibrary.org/search.json?q="+searchTerm);
-      System.out.println("https://openlibrary.org/search.json?q="+searchTerm);
+      System.out.println("\nhttps://openlibrary.org/search.json?q="+searchTerm);
       Reader json = new InputStreamReader(webpage.openStream());
       //for accessing nonstatic methods in Gson class
       Gson g = new Gson();
@@ -207,8 +207,8 @@ public class Search{
     while (!bookFound) {
 
     if (numFound == 0) {
-      System.out.println("Sorry! There were no books found.");
-      System.out.println("Try your search again.");
+      System.out.println("\nSorry! There were no books found.");
+      System.out.println("Try your search again.\n");
 
       searchTerm = "";
       searchTermInput = "";
@@ -221,7 +221,7 @@ public class Search{
 
       bookFound = true;
 
-      System.out.println("Book found!");
+      System.out.println("\nBook found!");
       System.out.println("There were "+docs.length+" books that matched your search.");
 
     for (int i=0;i<docs.length;i++) {
