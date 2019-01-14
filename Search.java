@@ -113,7 +113,7 @@ public class Search{
     terminal.setCursorVisible(false);
   }
 
-  public void chooseResult() {
+  public Book chooseResult() {
 
     Terminal terminal = TerminalFacade.createTextTerminal();
 
@@ -151,17 +151,17 @@ public class Search{
     System.out.print(name + " ");
   }
 
+  return docs[bookChosen-1];
 
 }
 
-  public String runSearch() {
+  public Book runSearch() {
     //initScreen();
     generateSearchTerm();
     buildSearch(searchTerm);
     printSearchResults();
-    chooseResult();
 
-    return searchTerm;
+    return chooseResult();
 
   }
 
@@ -204,7 +204,7 @@ public class Search{
     System.out.println("There were "+docs.length+" books that matched your search.");
 
     for (int i=0;i<docs.length;i++) {
-      System.out.println("\n\n------------------");
+      System.out.println("\n\n("+(i+1)+")------------------");
       System.out.println(docs[i].title);
       System.out.println(Arrays.toString(docs[i].author_name));
       //System.out.println(Arrays.toString(docs[0].text));
@@ -274,7 +274,7 @@ public class Search{
 
     Search sea = new Search();
 
-    sea.runSearch();
+    Book reesult = sea.runSearch();
 
   }
 
