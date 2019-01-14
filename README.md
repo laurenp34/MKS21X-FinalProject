@@ -1,6 +1,10 @@
 # MKS21X-FinalProject
-note: when running, the necessary classpath is
-`-cp gson-2.8.5.jar\;lanterna.jar\;.`
+TO RUN PROGRAM
+compile: `javac -cp gson-2.8.5.jar:lanterna.jar:.`
+run: `java -cp gson-2.8.5.jar:lanterna.jar:.`
+1. input a book title
+2. select which of the returned results is preferred
+3. a list of copies with availability status and location within the NYPL system will appear.
 # Daily Logs
 *3 January 2019*\
 Kiran-Familiarized myself with Google GSON library and built rudimentary code for inputting a search term and receiving relevant data from OpenLibrary\
@@ -42,5 +46,5 @@ Kiran-Successfully completed the code for accessing the NYPL webpage and all of 
 Lauren-Went to StuyHacks and ended up working on a different project instead (sorry :( ) but read up on Github and how branches work to avoid the same problem as the previous two work days.
 
 *13 January 2019*\
-Kiran-
+Kiran-Improved the printing of copy data downloaded for purposes of demo. Merged code into master alongside Lauren's code and resovled conflicts.\
 Lauren-Recreated lost code (choosing search result and ensuring the input is a valid integer within range) , this time using Scanner rather than by reading lanterna key inputs, which is much simpler. Also modified runSearch() to return a Book object so that it is compatible with Kiran's webscraping program. Also added code to re-initiate the search when a search term yields 0 books, and formatted print statements for Demo.
