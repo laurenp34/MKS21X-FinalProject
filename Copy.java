@@ -18,6 +18,7 @@ public class Copy{
     //ADD DATE CODE
   }
   public String toString(){
-    return "(Copy w.available="+available+"@"+loc+")";
+    if(available) return "  Available Copy @"+loc;
+    else          return "Unavailable Copy @"+loc+" "+status;
   }
 }
