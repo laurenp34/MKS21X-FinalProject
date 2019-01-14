@@ -141,6 +141,7 @@ public class Search{
       //will get here if valid integer entered.
       if (bookChosen < 1 || bookChosen > numFound) {
         System.out.println("Please enter an integer between 1 and "+numFound);
+        searching = true;
       } else {
         properIntFound = true;
       }
