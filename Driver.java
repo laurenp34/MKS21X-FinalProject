@@ -1,4 +1,4 @@
-public class WebScrapeTester{
+public class Driver{
   public static void main(String[] args){
     Search s = new Search();
     Book result = s.runSearch();
