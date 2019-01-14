@@ -28,4 +28,14 @@ Lauren-Successfully modified the searchTerm instance variable and buildSearch() 
 
 *9 January 2019*\
 Kiran-Initially wrote code using the built-in XML DOM parser to access data within the snippets of code previously created. Upon successful parsing, I discovered that the static download of the webpage doesn't include all necessary data, as the browser webpage updates after the initial load filling in data. Changed course to only extract ID data so that pages containing full data can be individually accessed in future.\
-Lauren-At first, tried to change the search input from String to ArrayList<Character> to aid in backspace (removing) elements -- however, this didn't work and somehow messed up many other things so I tried to recover the older (previous) commit. I was in a detached head state. Then I worked on allowing the user to choose the search result. I numbered the results, then gave the user a space to input the corresponding number for a result. I also created a checker that ensured that the input was a integer in range, and if not then it would retry the search. At the end when I pushed my changes I just pushed the head state from before and lost all my commits and work! Will try and recover tomorrow (because I tried on my own and couldn't come up with anything).
+Lauren-At first, tried to change the search input from String to ArrayList<Character> to aid in backspace (removing) elements -- however, this didn't work and somehow messed up many other things so I tried to recover the older (previous) commit. I was in a detached head state. Then I worked on allowing the user to choose the search result. I numbered the results, then gave the user a space to input the corresponding number for a result. I also created a checker that ensured that the input was a integer in range, and if not then it would retry the search. At the end when I pushed my changes I just pushed the head state from before and lost all my commits and work! Will try and recover tomorrow (because I tried on my own and couldn't come up with anything).\
+*10 January 2019*\
+Kiran-Wrote the beginnings of code to access multiple pages out of the search result, and gained a better understanding of how the w3c DOM parsing library works.\
+Lauren-\
+*11 January 2019*\
+Kiran-Quiz day, little work accomplished.\
+Lauren-\
+*12 January 2019*\
+Kiran-Successfully completed the code for accessing the NYPL webpage and all of its data, and downloading it into the form of Copy objects\
+Lauren-\
+*13 January 2019*\
