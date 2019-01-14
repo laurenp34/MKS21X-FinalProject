@@ -114,15 +114,42 @@ public class Search{
 
     Terminal terminal = TerminalFacade.createTextTerminal();
 
-    System.out.println("\n\n\nChoose a book (1-"+numFound+"): ");
-    terminal.setCursorVisible(true);
+    boolean properIntFound = false;
+    boolean searching = true;
+    int bookChosen = 0;
+    while (!properIntFound) {
+      while (searching) {
+        System.out.println("\n\n\nChoose a book (1-"+numFound+"): ");
+        terminal.setCursorVisible(true);
 
-    Scanner sys = new Scanner(System.in);
+        Scanner sys = new Scanner(System.in);
 
-    int bookChosen = sys.nextInt();
+        try {
+          bookChosen = sys.nextInt();
+          searching = false;
+        } catch (InputMismatchException e) {
+          System.out.println("Please enter a valid integer.");
+        }
 
+      }
 
+      //will get here if valid integer entered.
+      if (bookChosen < 1 || bookChosen > numFound) {
+        System.out.println("Please enter an integer between 1 and "+numFound);
+      } else {
+        properIntFound = true;
+      }
   }
+
+  System.out.println("You chose: ");
+  System.out.print(docs[bookChosen-1].title);
+  System.out.print(" by ");
+  for (String name: docs[bookChosen-1].author_name) {
+    System.out.print(name + " ");
+  }
+
+
+}
 
   public String runSearch() {
     //initScreen();
