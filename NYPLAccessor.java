@@ -10,24 +10,24 @@ public class NYPLAccessor implements CatalogAccessor{
   public Copy[] getAllCopies(Book bk){
     try{
       long startTime = System.currentTimeMillis();
-      System.out.println("start 0");
+      //System.out.println("start 0");
       String[] ISBNs = bk.getISBNs();
       String searchStr = genSearch(ISBNs);
       String searchUrl = "https://browse.nypl.org/iii/encore/search/C__S"+searchStr+"__Orightresult__U?lang=eng&suite=def";
-      System.out.println(searchUrl);
+      //System.out.println(searchUrl);
       URL catSearch = new URL(searchUrl);
-      System.out.println("begin download " + (System.currentTimeMillis()-startTime));
+      //System.out.println("begin download " + (System.currentTimeMillis()-startTime));
       InputStream stream = catSearch.openStream();
-      System.out.println("begin scanner build " + (System.currentTimeMillis()-startTime));
+      //System.out.println("begin scanner build " + (System.currentTimeMillis()-startTime));
       Scanner sca = new Scanner(stream);
-      System.out.println("begin extraction" + (System.currentTimeMillis()-startTime));
+      //System.out.println("begin extraction" + (System.currentTimeMillis()-startTime));
       ArrayList<String> catalogIDs = getResultIDs(sca);
-      System.out.println("number of pages: "+catalogIDs.size());
+      //System.out.println("number of pages: "+catalogIDs.size());
       ArrayList<Copy> out = new ArrayList<Copy>();
       for(String bookID : catalogIDs){
         addCopiesFromPage(bookID,out);
       }
-      System.out.println("complete " + (System.currentTimeMillis()-startTime));
+      //System.out.println("complete " + (System.currentTimeMillis()-startTime));
       Copy[] temp = new Copy[0];
       return out.toArray(temp);
     }catch(IOException e){
@@ -97,44 +97,45 @@ public class NYPLAccessor implements CatalogAccessor{
   }
   private void addCopiesFromPage(String id,ArrayList<Copy> out)throws MalformedURLException,IOException{
     URL idPage = new URL("https://browse.nypl.org/iii/encore/record/C__R"+id+"?lang=eng");
-    System.out.println("begin download of "+id);
-    System.out.println("https://browse.nypl.org/iii/encore/record/C__R"+id+"?lang=eng");
+    //System.out.println("begin download of "+id);
+    //System.out.println("https://browse.nypl.org/iii/encore/record/C__R"+id+"?lang=eng");
     InputStream stream = idPage.openStream();
-    System.out.println("begin scanner build ");
+    //System.out.println("begin scanner build ");
     Scanner sca = new Scanner(stream);
-    System.out.println("begin extraction");
+    //System.out.println("begin extraction");
     String htmlBlock = getCopyHTML(sca);
     Document html = getDocument(htmlBlock);
     Element root = html.getDocumentElement();
     addCopiesFromBlock(root,out);
   }
+
+  //(helper to addCopiesFromPage: takes a root element and AL to add copies to, adds all necessary copies)
   private void addCopiesFromBlock(Element root,ArrayList<Copy> out){
-    Element table = traceDownFirsts(root,"div","table");
-    NodeList rows = table.getElementsByTagName("tr");
+    Element table = traceDownFirsts(root,"div","table");//navigate to table
+    NodeList rows = table.getElementsByTagName("tr");//NodeList of the rows
     for(int i=1;i<rows.getLength();i++){
-      Element row = (Element)(rows.item(i));
-      NodeList cells = row.getElementsByTagName("td");
-      out.add(buildCopy(cells));
+      Element row = (Element)(rows.item(i));//typecast from more general Node to Element so that certain tools can be used
+      out.add(buildCopy(row));
     }
   }
-  private Element traceDownFirsts(Element root,String... tagNames){
+  private Element traceDownFirsts(Element root,String... tagNames){//follows XML tree down first element of each new layer with given tag
     Element out = root;
     for(String tagName : tagNames){
+      //move pointer element to the first child node with given name
       out = (Element)(root.getElementsByTagName(tagName).item(0));
     }
     return out;
   }
-  private String toStringNodeList(NodeList NL){
-    String out = "{";
-    for(int i=0;i<NL.getLength();i++){
-      out += NL.item(0)+",";
-    }
-    return out.substring(0,out.length()-1)+"}";
-  }
-  private Copy buildCopy(NodeList cells){
+
+
+  private Copy buildCopy(Element row){//takes a tr element, extracts the four columns and uses that data to construct a new Copy
+    NodeList cells = row.getElementsByTagName("td");
     if(cells.getLength() < 4) throw new IllegalArgumentException("row length "+cells.getLength());
+    //traces down to the internal link, then gets string out
     String loc = traceDownFirsts((Element)(cells.item(0)),"a").getChildNodes().item(0).getNodeValue().trim();
+    //similar to above, but also traces through a span
     String callnum = traceDownFirsts((Element)(cells.item(1)),"span","a").getChildNodes().item(0).getNodeValue().trim();
+    //plain text tr cell, gets text child and then its value, and removes whitespace
     String status = cells.item(2).getChildNodes().item(0).getNodeValue().trim();
     String message = cells.item(3).getChildNodes().item(0).getNodeValue().trim();
     return new Copy(loc,callnum,status,message);
