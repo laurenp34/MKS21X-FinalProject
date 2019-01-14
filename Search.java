@@ -21,7 +21,7 @@ import java.util.*;
 import java.net.*;
 
 public class Search{
-  private ArrayList<Character> searchTermInput;
+  private String searchTermInput;
   private int numFound;
   private String[] isbn;
   private Book[] docs;
@@ -58,13 +58,15 @@ public class Search{
     }
   }
 
-  public void generateSearchTerm() {
+  public void generateSearchTerm(boolean clearScreen) {
 
     //initialize Screen
     Terminal terminal = TerminalFacade.createTextTerminal();
     terminal.enterPrivateMode();
     //TerminalFacade.createTextTerminal();  //USE THIS COMMAND INSTEAD!
-    //terminal.clearScreen();
+    if (clearScreen) {
+      terminal.clearScreen();
+    }
     TerminalSize terminalSize = terminal.getTerminalSize();
 
     System.out.print("Search for your book: ");
@@ -157,7 +159,7 @@ public class Search{
 
   public Book runSearch() {
     //initScreen();
-    generateSearchTerm();
+    generateSearchTerm(true);
     buildSearch(searchTerm);
     printSearchResults();
 
@@ -208,7 +210,12 @@ public class Search{
       System.out.println("Sorry! There were no books found.");
       System.out.println("Try your search again.");
 
-      generateSearchTerm();
+      searchTerm = "";
+      searchTermInput = "";
+
+      generateSearchTerm(false);
+      buildSearch(searchTerm);
+      System.out.println(numFound);
 
     } else {
 
