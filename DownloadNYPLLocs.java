@@ -12,17 +12,33 @@ public class DownloadNYPLLocs{
     runner.writeData();
     System.out.println("complete");
   }
+  DataStructure dataStructure;
   public DownloadNYPLLocs(String url)throws IOException{
     URL jsonPage = new URL(url);
     Reader r = new InputStreamReader(jsonPage.openStream());
     Gson g = new Gson();
-    DataStructure ds = g.fromJson(r,DataStructure.class);
+    dataStructure = g.fromJson(r,DataStructure.class);
 
   }
   public void writeData(){
 
   }
   private class DataStructure{
-
+    Location[] locations;
+    private class Location{
+      Link[] _links;
+      GeoLoc geolocation;
+      String id,name,slug,street_address;
+      String[] synonyms;
+    }
+    private class GeoLoc{
+      double[] coordinates;
+    }
+    private class Link{
+      LinkNest self;
+      private class LinkNest{
+        String about;
+      }
+    }
   }
 }
