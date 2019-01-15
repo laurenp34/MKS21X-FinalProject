@@ -103,7 +103,7 @@ public class NYPLAccessor implements CatalogAccessor{
   private void addCopiesFromPage(String id,ArrayList<Copy> out)throws MalformedURLException,IOException{
     URL idPage = new URL("https://browse.nypl.org/iii/encore/record/C__R"+id+"?lang=eng");
     //System.out.println("begin download of "+id);
-    System.out.println("https://browse.nypl.org/iii/encore/record/C__R"+id+"?lang=eng");
+    //System.out.println("https://browse.nypl.org/iii/encore/record/C__R"+id+"?lang=eng");
     InputStream stream = idPage.openStream();
     //System.out.println("begin scanner build ");
     Scanner sca = new Scanner(stream);
@@ -142,8 +142,14 @@ public class NYPLAccessor implements CatalogAccessor{
     NodeList cells = row.getElementsByTagName("td");
     if(cells.getLength() < 4) throw new IllegalArgumentException("row length "+cells.getLength());
     //traces down to the internal link, then gets string out
-    String locID = traceDownFirsts((Element)(cells.item(0)),"a").getAttributeNode("onclick").getValue().substring(23,25);
-    Branch loc = BranchData.branchWithID(locID,branches);
+    String locID;
+    Branch loc;
+    try{
+      locID = traceDownFirsts((Element)(cells.item(0)),"a").getAttributeNode("onclick").getValue().substring(23,25);
+      loc = BranchData.branchWithID(locID,branches);
+    }catch(NullPointerException e){//when it's not a link
+      loc = new Branch(0,0,"","","unknown");
+    }
     //similar to above, but also traces through a span
     String callnum = traceDownFirsts((Element)(cells.item(1)),"span","a").getChildNodes().item(0).getNodeValue().trim();
     //plain text tr cell, gets text child and then its value, and removes whitespace
