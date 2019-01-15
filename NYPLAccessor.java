@@ -54,11 +54,11 @@ public class NYPLAccessor implements CatalogAccessor{
     }
     return out;
   }
-  private String getCopyHTML(Scanner sca){
+  private String getCopyHTML(Scanner sca,String divID){
     ArrayList<String> out = new ArrayList<String>();
     while(sca.hasNextLine()){
       String line = sca.nextLine();
-      if(line.contains("<div id=\"allitems-")){
+      if(line.contains("<div id=\""+divID)){
         return getDiv(line,sca);
       }
     }
@@ -78,6 +78,7 @@ public class NYPLAccessor implements CatalogAccessor{
   }
 
   private Document getDocument(String XMLStr){
+    if(XMLStr == null) throw new IllegalArgumentException();
     try{
       DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
       DocumentBuilder builder = factory.newDocumentBuilder();
@@ -102,12 +103,17 @@ public class NYPLAccessor implements CatalogAccessor{
   private void addCopiesFromPage(String id,ArrayList<Copy> out)throws MalformedURLException,IOException{
     URL idPage = new URL("https://browse.nypl.org/iii/encore/record/C__R"+id+"?lang=eng");
     //System.out.println("begin download of "+id);
-    //System.out.println("https://browse.nypl.org/iii/encore/record/C__R"+id+"?lang=eng");
+    System.out.println("https://browse.nypl.org/iii/encore/record/C__R"+id+"?lang=eng");
     InputStream stream = idPage.openStream();
     //System.out.println("begin scanner build ");
     Scanner sca = new Scanner(stream);
     //System.out.println("begin extraction");
-    String htmlBlock = getCopyHTML(sca);
+    String htmlBlock = getCopyHTML(sca,"allitems-");
+    if(htmlBlock==null){
+      stream = idPage.openStream();
+      sca = new Scanner(stream);
+      htmlBlock = getCopyHTML(sca,"allavailitems-");
+    }
     Document html = getDocument(htmlBlock);
     Element root = html.getDocumentElement();
     addCopiesFromBlock(root,out);
