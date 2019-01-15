@@ -14,6 +14,15 @@ public class BranchData{
     Gson g = new Gson();
     return g.fromJson(reader,Branch[].class);
   }
+  public static Branch branchWithID(String id,Branch[] branches){
+    id = id.toUpperCase();
+    for(int i=0;i<branches.length;i++){
+      if(branches[i].getID().equals(id)){
+        return branches[i];
+      }
+    }
+    return null;
+  }
   DataStructure dataStructure;
   Branch[] producedBranches;
   private BranchData(String url)throws IOException{
