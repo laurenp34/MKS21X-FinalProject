@@ -12,4 +12,10 @@ public class Branch{
     this.id = id;
     this.name = name;
   }
+  public String getID(){
+    return id;
+  }
+  public String getName(){
+    return name;
+  }
 }
