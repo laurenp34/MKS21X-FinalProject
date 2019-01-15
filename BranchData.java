@@ -4,21 +4,26 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 
-public class DownloadNYPLLocs{
-  public static void main(String[] args)throws IOException{
+public class BranchData{
+  private static void mainNYPL(String[] args)throws IOException{
     DownloadNYPLLocs runner = new DownloadNYPLLocs("https://refinery.nypl.org/api/nypl/locations/v1.0/locations");
     runner.printData();
   }
+  public static Branch[] getBranches(String fileName)throws IOException{
+    FileReader reader = new FileReader(fileName);
+    Gson g = new Gson();
+    return g.fromJson(reader,Branch[].class);
+  }
   DataStructure dataStructure;
   Branch[] producedBranches;
-  public DownloadNYPLLocs(String url)throws IOException{
+  private BranchData(String url)throws IOException{
     URL jsonPage = new URL(url);
     Reader r = new InputStreamReader(jsonPage.openStream());
     Gson g = new Gson();
     dataStructure = g.fromJson(r,DataStructure.class);
     producedBranches = buildBranches();
   }
-  public Branch[] buildBranches(){
+  private Branch[] buildBranches(){
     int branchCount = dataStructure.locations.length;
     Branch[] out = new Branch[branchCount];
     for(int i=0;i<branchCount;i++){
@@ -26,7 +31,7 @@ public class DownloadNYPLLocs{
     }
     return out;
   }
-  public void printData(){
+  private void printData(){
     Gson g = new Gson();
     System.out.println(g.toJson(producedBranches));
   }
