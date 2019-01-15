@@ -9,7 +9,7 @@ public class DownloadNYPLLocs{
     DownloadNYPLLocs runner = new DownloadNYPLLocs("https://refinery.nypl.org/api/nypl/locations/v1.0/locations");
     FileWriter fw = new FileWriter("NYPLLocations.json");
     BufferedWriter writer = new BufferedWriter(fw);
-    runner.writeData();
+    runner.writeData(writer);
     System.out.println("complete");
   }
   DataStructure dataStructure;
@@ -29,8 +29,9 @@ public class DownloadNYPLLocs{
     }
     return out;
   }
-  public void writeData(){
-    
+  public void writeData(BufferedWriter writer){
+    Gson g = new Gson();
+    g.toJson(producedBranches,writer);
   }
   private class DataStructure{
     Location[] locations;
