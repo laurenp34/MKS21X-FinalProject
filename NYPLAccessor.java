@@ -132,12 +132,13 @@ public class NYPLAccessor implements CatalogAccessor{
     NodeList cells = row.getElementsByTagName("td");
     if(cells.getLength() < 4) throw new IllegalArgumentException("row length "+cells.getLength());
     //traces down to the internal link, then gets string out
-    String loc = traceDownFirsts((Element)(cells.item(0)),"a").getChildNodes().item(0).getNodeValue().trim();
+    String locID = traceDownFirsts((Element)(cells.item(0)),"a").getAttributeNode("onclick").getValue().substring(23,25);
+    System.out.println(locID);
     //similar to above, but also traces through a span
     String callnum = traceDownFirsts((Element)(cells.item(1)),"span","a").getChildNodes().item(0).getNodeValue().trim();
     //plain text tr cell, gets text child and then its value, and removes whitespace
     String status = cells.item(2).getChildNodes().item(0).getNodeValue().trim();
     String message = cells.item(3).getChildNodes().item(0).getNodeValue().trim();
-    return new Copy(loc,callnum,status,message);
+    return new Copy("temp",callnum,status,message);
   }
 }

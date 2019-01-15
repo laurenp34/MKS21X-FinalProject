@@ -8,9 +8,10 @@ public class Copy{
   private String status;
   private boolean available;
   //private Date dueDate;
-  public Copy(Branch location,String callnum,String status,String message){
-    this.location = location;
-    loc = location.getName();
+  public Copy(String locID,String callnum,String status,String message){
+    //this.location = location;
+    //loc = location.getName();
+    loc = locID;
     this.callnum = callnum;
     this.status = status;
     this.message = message;
