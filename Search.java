@@ -2,6 +2,7 @@
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
+/*
 import com.googlecode.lanterna.TerminalFacade;
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.input.Key.Kind;
@@ -16,6 +17,7 @@ import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.input.KeyMappingProfile;
 //import com.googlecode.lanterna.screen.AbstractScreen ;
 //import com.googlecode.lanterna.screen.TerminalScreen;
+*/
 import java.io.*;
 import java.util.*;
 import java.net.*;
@@ -26,7 +28,6 @@ public class Search{
   private String[] isbn;
   private Book[] docs;
   private String searchTerm;
-  private Terminal terminal;
   //private Terminal terminal;
 
   public Search() {
@@ -43,6 +44,8 @@ public class Search{
     return searchTerm;
   }
 
+  /*
+
   public static void putString(int r, int c,Terminal t, String s){
     t.moveCursor(r,c);
     for(int i = 0; i < s.length();i++){
@@ -57,9 +60,12 @@ public class Search{
       t.putCharacter(s.charAt(i));
     }
   }
+  */
 
   public void generateSearchTerm(boolean clearScreen) {
 
+
+    /*
     //initialize Screen
     Terminal terminal = TerminalFacade.createTextTerminal();
     terminal.enterPrivateMode();
@@ -68,11 +74,19 @@ public class Search{
       terminal.clearScreen();
     }
     TerminalSize terminalSize = terminal.getTerminalSize();
+    */
+
+    if (clearScreen) {
+      System.out.print("\033[H\033[2J");
+      System.out.flush();
+    }
 
     System.out.print("Search for your book: ");
     Scanner sys = new Scanner(System.in);
 
     String searchTermInput = sys.nextLine();
+    System.out.print("\u001b[1000D");
+    //sys.close();
     System.out.println("\nYou searched for: "+searchTermInput);
 
 /*
@@ -110,14 +124,11 @@ public class Search{
         searchTerm += c;
       }
     }
-
-
-    terminal.setCursorVisible(false);
   }
 
   public Book chooseResult() {
 
-    Terminal terminal = TerminalFacade.createTextTerminal();
+
 
     boolean properIntFound = false;
     boolean searching = true;
@@ -125,7 +136,7 @@ public class Search{
     while (!properIntFound) {
       while (searching) {
         System.out.print("\n\n\nChoose a book (1-"+numFound+"): ");
-        terminal.setCursorVisible(true);
+        //System.out.print(u"\u001b[1000D");
 
         Scanner sys = new Scanner(System.in);
 
