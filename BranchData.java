@@ -6,7 +6,7 @@ import java.util.*;
 
 public class BranchData{
   private static void mainNYPL(String[] args)throws IOException{
-    DownloadNYPLLocs runner = new DownloadNYPLLocs("https://refinery.nypl.org/api/nypl/locations/v1.0/locations");
+    BranchData runner = new BranchData("https://refinery.nypl.org/api/nypl/locations/v1.0/locations");
     runner.printData();
   }
   public static Branch[] getBranches(String fileName){
