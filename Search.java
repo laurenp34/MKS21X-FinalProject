@@ -138,7 +138,7 @@ public class Search{
         if (numFound > 1) {
           System.out.print("\n\n\nChoose a book (1-"+numFound+"): ");
         } else {
-          System.out.print("\n\n\nChoose a book (1): ")
+          System.out.print("\n\n\nChoose a book (1): ");
         }
         //System.out.print(u"\u001b[1000D");
 
