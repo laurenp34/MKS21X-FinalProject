@@ -7,10 +7,7 @@ import java.util.*;
 public class DownloadNYPLLocs{
   public static void main(String[] args)throws IOException{
     DownloadNYPLLocs runner = new DownloadNYPLLocs("https://refinery.nypl.org/api/nypl/locations/v1.0/locations");
-    FileWriter fw = new FileWriter("NYPLLocations.json");
-    BufferedWriter writer = new BufferedWriter(fw);
-    runner.writeData(writer);
-    System.out.println("complete");
+    runner.printData();
   }
   DataStructure dataStructure;
   Branch[] producedBranches;
@@ -29,18 +26,18 @@ public class DownloadNYPLLocs{
     }
     return out;
   }
-  public void writeData(BufferedWriter writer){
+  public void printData(){
     Gson g = new Gson();
-    g.toJson(producedBranches,writer);
+    System.out.println(g.toJson(producedBranches));
   }
   private class DataStructure{
     Location[] locations;
     private class Location{
-      Link[] _links;
+      Link _links;
       GeoLoc geolocation;
       String id,name;
       public Branch buildBranch(){
-        String url = _links[0].self.about;
+        String url = _links.self.about;
         double lat = geolocation.coordinates[0];
         double lon = geolocation.coordinates[1];
         return new Branch(lat,lon,url,id,name);
