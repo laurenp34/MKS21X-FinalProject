@@ -7,6 +7,10 @@ import javax.xml.parsers.*;
 import org.xml.sax.*;
 
 public class NYPLAccessor implements CatalogAccessor{
+  private Branch[] branches;
+  public NYPLAccessor(Branch[] branches){
+    this.branches = branches;
+  }
   public Copy[] getAllCopies(Book bk){
     try{
       long startTime = System.currentTimeMillis();
@@ -132,7 +136,8 @@ public class NYPLAccessor implements CatalogAccessor{
     NodeList cells = row.getElementsByTagName("td");
     if(cells.getLength() < 4) throw new IllegalArgumentException("row length "+cells.getLength());
     //traces down to the internal link, then gets string out
-    String loc = traceDownFirsts((Element)(cells.item(0)),"a").getChildNodes().item(0).getNodeValue().trim();
+    String locID = traceDownFirsts((Element)(cells.item(0)),"a").getAttributeNode("onclick").getValue().substring(23,25);
+    Branch loc = BranchData.branchWithID(locID,branches);
     //similar to above, but also traces through a span
     String callnum = traceDownFirsts((Element)(cells.item(1)),"span","a").getChildNodes().item(0).getNodeValue().trim();
     //plain text tr cell, gets text child and then its value, and removes whitespace
