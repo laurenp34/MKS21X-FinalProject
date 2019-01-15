@@ -19,10 +19,18 @@ public class DownloadNYPLLocs{
     Reader r = new InputStreamReader(jsonPage.openStream());
     Gson g = new Gson();
     dataStructure = g.fromJson(r,DataStructure.class);
-
+    producedBranches = buildBranches();
+  }
+  public Branch[] buildBranches(){
+    int branchCount = dataStructure.locations.length;
+    Branch[] out = new Branch[branchCount];
+    for(int i=0;i<branchCount;i++){
+      out[i] = dataStructure.locations[i].buildBranch();
+    }
+    return out;
   }
   public void writeData(){
-
+    
   }
   private class DataStructure{
     Location[] locations;
