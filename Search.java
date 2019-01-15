@@ -135,7 +135,11 @@ public class Search{
     int bookChosen = 0;
     while (!properIntFound) {
       while (searching) {
-        System.out.print("\n\n\nChoose a book (1-"+numFound+"): ");
+        if (numFound > 1) {
+          System.out.print("\n\n\nChoose a book (1-"+numFound+"): ");
+        } else {
+          System.out.print("\n\n\nChoose a book (1): ")
+        }
         //System.out.print(u"\u001b[1000D");
 
         Scanner sys = new Scanner(System.in);
