@@ -162,6 +162,7 @@ public class Search{
       }
   }
 
+
   System.out.println("\nYou chose: ");
   System.out.print(docs[bookChosen-1].title);
   System.out.print(" by ");
