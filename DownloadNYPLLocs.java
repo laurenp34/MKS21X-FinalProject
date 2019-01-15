@@ -12,11 +12,17 @@ public class DownloadNYPLLocs{
     runner.writeData();
     System.out.println("complete");
   }
-  public DownloadNYPLLocs(String url){
+  public DownloadNYPLLocs(String url)throws IOException{
+    URL jsonPage = new URL(url);
+    Reader r = new InputStreamReader(jsonPage.openStream());
+    Gson g = new Gson();
+    DataStructure ds = g.fromJson(r,DataStructure.class);
 
   }
   public void writeData(){
-    
-  }
 
+  }
+  private class DataStructure{
+
+  }
 }
