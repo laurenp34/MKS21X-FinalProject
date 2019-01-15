@@ -29,8 +29,13 @@ public class DownloadNYPLLocs{
     private class Location{
       Link[] _links;
       GeoLoc geolocation;
-      String id,name,slug,street_address;
-      String[] synonyms;
+      String id,name;
+      public Branch buildBranch(){
+        String url = _links[0].self.about;
+        double lat = geolocation.coordinates[0];
+        double lon = geolocation.coordinates[1];
+        return new Branch(lat,lon,url,id,name);
+      }
       private class GeoLoc{
         double[] coordinates;
       }
