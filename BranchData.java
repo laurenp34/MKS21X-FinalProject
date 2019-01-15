@@ -9,10 +9,14 @@ public class BranchData{
     DownloadNYPLLocs runner = new DownloadNYPLLocs("https://refinery.nypl.org/api/nypl/locations/v1.0/locations");
     runner.printData();
   }
-  public static Branch[] getBranches(String fileName)throws IOException{
-    FileReader reader = new FileReader(fileName);
-    Gson g = new Gson();
-    return g.fromJson(reader,Branch[].class);
+  public static Branch[] getBranches(String fileName){
+    try{
+      FileReader reader = new FileReader(fileName);
+      Gson g = new Gson();
+      return g.fromJson(reader,Branch[].class);
+    }catch(IOException e){
+      return null;
+    }
   }
   public static Branch branchWithID(String id,Branch[] branches){
     id = id.toUpperCase();
