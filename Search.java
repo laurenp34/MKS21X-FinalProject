@@ -79,13 +79,15 @@ public class Search{
     if (clearScreen) {
       System.out.print("\033[H\033[2J");
       System.out.flush();
+      System.out.println("\033[?25h"); //shwo cursor.
     }
 
     System.out.print("Search for your book: ");
     Scanner sys = new Scanner(System.in);
 
     String searchTermInput = sys.nextLine();
-    System.out.print("\u001b[1000D");
+    System.out.print("\033[?25l");
+
     //sys.close();
     System.out.println("\nYou searched for: "+searchTermInput);
 

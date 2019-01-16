@@ -7,6 +7,10 @@ import javax.xml.parsers.*;
 import org.xml.sax.*;
 
 public class NYPLAccessor implements CatalogAccessor{
+  private Branch[] branches;
+  public NYPLAccessor(Branch[] branches){
+    this.branches = branches;
+  }
   public Copy[] getAllCopies(Book bk){
     try{
       long startTime = System.currentTimeMillis();
@@ -50,11 +54,11 @@ public class NYPLAccessor implements CatalogAccessor{
     }
     return out;
   }
-  private String getCopyHTML(Scanner sca){
+  private String getCopyHTML(Scanner sca,String divID){
     ArrayList<String> out = new ArrayList<String>();
     while(sca.hasNextLine()){
       String line = sca.nextLine();
-      if(line.contains("<div id=\"allitems-")){
+      if(line.contains("<div id=\""+divID)){
         return getDiv(line,sca);
       }
     }
@@ -74,6 +78,7 @@ public class NYPLAccessor implements CatalogAccessor{
   }
 
   private Document getDocument(String XMLStr){
+    if(XMLStr == null) throw new IllegalArgumentException();
     try{
       DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
       DocumentBuilder builder = factory.newDocumentBuilder();
@@ -103,7 +108,12 @@ public class NYPLAccessor implements CatalogAccessor{
     //System.out.println("begin scanner build ");
     Scanner sca = new Scanner(stream);
     //System.out.println("begin extraction");
-    String htmlBlock = getCopyHTML(sca);
+    String htmlBlock = getCopyHTML(sca,"allitems-");
+    if(htmlBlock==null){
+      stream = idPage.openStream();
+      sca = new Scanner(stream);
+      htmlBlock = getCopyHTML(sca,"allavailitems-");
+    }
     Document html = getDocument(htmlBlock);
     Element root = html.getDocumentElement();
     addCopiesFromBlock(root,out);
@@ -132,7 +142,14 @@ public class NYPLAccessor implements CatalogAccessor{
     NodeList cells = row.getElementsByTagName("td");
     if(cells.getLength() < 4) throw new IllegalArgumentException("row length "+cells.getLength());
     //traces down to the internal link, then gets string out
-    String loc = traceDownFirsts((Element)(cells.item(0)),"a").getChildNodes().item(0).getNodeValue().trim();
+    String locID;
+    Branch loc;
+    try{
+      locID = traceDownFirsts((Element)(cells.item(0)),"a").getAttributeNode("onclick").getValue().substring(23,25);
+      loc = BranchData.branchWithID(locID,branches);
+    }catch(NullPointerException e){//when it's not a link
+      loc = new Branch(0,0,"","","unknown");
+    }
     //similar to above, but also traces through a span
     String callnum = traceDownFirsts((Element)(cells.item(1)),"span","a").getChildNodes().item(0).getNodeValue().trim();
     //plain text tr cell, gets text child and then its value, and removes whitespace
