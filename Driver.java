@@ -8,5 +8,12 @@ public class Driver{
     System.out.println("\n\n");
     for(Copy c : out) System.out.println(c);
     System.out.println("complete");
+    for (Branch b: NYPLBranches) {
+      System.out.println(b.getName());
+      if(b.getStoredCopies() != null){
+        System.out.println(b.numCopies());
+      }
+    }
+    System.out.print("\033[?25h"); // show cursor.
   }
 }
