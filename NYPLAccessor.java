@@ -155,6 +155,8 @@ public class NYPLAccessor implements CatalogAccessor{
     //plain text tr cell, gets text child and then its value, and removes whitespace
     String status = cells.item(2).getChildNodes().item(0).getNodeValue().trim();
     String message = cells.item(3).getChildNodes().item(0).getNodeValue().trim();
-    return new Copy(loc,callnum,status,message);
-  }  
+    Copy out = new Copy(loc,callnum,status,message);
+    loc.addCopy(out);
+    return out;
+  }
 }
