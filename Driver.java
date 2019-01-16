@@ -6,7 +6,25 @@ public class Driver{
     CatalogAccessor ny = new NYPLAccessor(NYPLBranches);
     Copy[] out = ny.getAllCopies(result);
     System.out.println("\n\n");
-    for(Copy c : out) System.out.println(c);
+
+    for (Branch b: NYPLBranches) {
+      b = new Branch(b.getLat(),b.getLon(),b.getUrl(),b.getID(),b.getName());
+    }
+
+    for(Copy c : out) {
+      System.out.println(c);
+      if (c.getAvail()) {
+        for (Branch b: NYPLBranches) {
+          if (c.getBranch().getName().equals(b.getName())) {
+            System.out.println("\tBranch: "+b.getName());
+            System.out.println(b.getStoredCopies());
+            Copy cc = new Copy(b,"test","test","test");
+            b.addCopy(cc);
+          }
+        }
+      }
+    }
+
     System.out.println("complete");
     for (Branch b: NYPLBranches) {
       System.out.println(b.getName());
