@@ -86,7 +86,7 @@ public class Search{
     Scanner sys = new Scanner(System.in);
 
     String searchTermInput = sys.nextLine();
-    System.out.print("\033[?25l");
+    System.out.print("\033[?25l"); // hide cursor.
 
     //sys.close();
     System.out.println("\nYou searched for: "+searchTermInput);
@@ -142,6 +142,7 @@ public class Search{
         } else {
           System.out.print("\n\n\nChoose a book (1): ");
         }
+        System.out.println("\033[?25h"); //shwo cursor.
         //System.out.print(u"\u001b[1000D");
 
         Scanner sys = new Scanner(System.in);
@@ -149,6 +150,7 @@ public class Search{
         try {
           bookChosen = sys.nextInt();
           searching = false;
+          System.out.print("\033[?25l"); // hide cursor.
         } catch (InputMismatchException e) {
           System.out.println("Please enter a valid integer.");
         }
