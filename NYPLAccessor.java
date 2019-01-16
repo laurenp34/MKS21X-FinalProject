@@ -156,5 +156,5 @@ public class NYPLAccessor implements CatalogAccessor{
     String status = cells.item(2).getChildNodes().item(0).getNodeValue().trim();
     String message = cells.item(3).getChildNodes().item(0).getNodeValue().trim();
     return new Copy(loc,callnum,status,message);
-  }
+  }  
 }
