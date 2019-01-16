@@ -51,3 +51,11 @@ Lauren-Went to StuyHacks and ended up working on a different project instead (so
 *13 January 2019*\
 Kiran-Improved the printing of copy data downloaded for purposes of demo. Merged code into master alongside Lauren's code and resovled conflicts.\
 Lauren-Recreated lost code (choosing search result and ensuring the input is a valid integer within range) , this time using Scanner rather than by reading lanterna key inputs, which is much simpler. Also modified runSearch() to return a Book object so that it is compatible with Kiran's webscraping program. Also added code to re-initiate the search when a search term yields 0 books, and formatted print statements for Demo.
+
+*14 January 2019*\
+Kiran-\
+Lauren-Familiarized myself with ANSI escape code, and used it to show the text as it's being inputted (rather than before when you couldn't see each character as you typed). Also looked at example code for creating a progress bar using ANSI, which would be useful for the library data loading into the calendar, or fetching the availability results from NYPL. \
+
+*15 January 2019*\
+Kiran-\
+Lauren-Used ANSI to show and hide the cursor. Also familiarized myself with Kiran's code that she added today^^. Tried to use storedCopies (AL in Branch) to generate another list of branches with the copy available, however storedCopies kept turning up null. Spent a long time trying to figure out why, and wrote many debug parts, but ultimately couldn't get anywhere.\
