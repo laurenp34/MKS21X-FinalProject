@@ -6,6 +6,7 @@ public class Driver{
     CatalogAccessor ny = new NYPLAccessor(NYPLBranches);
     Copy[] out = ny.getAllCopies(result);
     System.out.println("\n\n");
+    /*
 
     for (Branch b: NYPLBranches) {
       b = new Branch(b.getLat(),b.getLon(),b.getUrl(),b.getID(),b.getName());
@@ -24,12 +25,12 @@ public class Driver{
         }
       }
     }
-
+*/
     System.out.println("complete");
     for (Branch b: NYPLBranches) {
-      System.out.println(b.getName());
+      System.out.print(b.getName());
       if(b.getStoredCopies() != null){
-        System.out.println(b.numCopies());
+        System.out.println(": "+b.numCopies());
       }
     }
     System.out.print("\033[?25h"); // show cursor.
