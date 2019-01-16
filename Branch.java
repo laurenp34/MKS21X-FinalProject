@@ -36,6 +36,7 @@ public class Branch{
     return storedCopies;
   }
   public boolean addCopy(Copy copy) {
+    if(storedCopies==null) storedCopies = new ArrayList<Copy>();
     storedCopies.add(copy);
     return true;
   }
