@@ -7,6 +7,10 @@ import org.xml.sax.*;
 
 
 public class Map{
+  public static void main(String[] args){
+    Branch[] branches = BranchData.getBranches("NYPLLocations.json");
+    Map m = new Map(branches);
+  }
   private Branch[] branches;
   private Document kml;
   public Map(Branch[] branches){
@@ -33,9 +37,12 @@ public class Map{
     return out;
   }
   public Element buildExterior(Document doc){
-    doc.createElement("kml");
-    System.out.println(doc.getDocumentElement());
-    return null;
+    Element kml = doc.createElement("kml");
+    doc.appendChild(kml);
+    kml.setAttribute("xmlns","http://www.opengis.net/kml/2.2");
+    Element root = doc.createElement("Document");
+    kml.appendChild(root);
+    return root;
   }
   public void addPlaceMark(Branch b,Element root){
 
