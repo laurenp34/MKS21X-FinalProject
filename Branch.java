@@ -41,9 +41,14 @@ public class Branch{
     return true;
   }
   public String toStringAvailables(){
-    return "";
+    if(storedCopies==null) return "";
+    String out = "";
+    for (Copy c : storedCopies){
+      out += c+"\n";
+    }
+    return out;
   }
   public String coordString(){
-    return "";
+    return lon+","+lat+",0";
   }
 }
