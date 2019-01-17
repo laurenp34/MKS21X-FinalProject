@@ -36,6 +36,10 @@ public class Driver{
         }
       }
     }
+    System.out.println("\n\n...");
+    Map m = new Map(NYPLBranches);
+    m.toFile("map.kml");
+    System.out.println("map file: /map.kml");
     System.out.print("\033[?25h"); // show cursor.
   }
 }
