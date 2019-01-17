@@ -4,13 +4,14 @@ public class Branch{
   private String name;
   private String displayUrl;
   private String id;
-  private ArrayList<Copy> storedCopies;
+  private ArrayList<Copy> storedCopies = new ArrayList<Copy>();
   public Branch(double lat,double lon,String url,String id,String name){
     this.lat = lat;
     this.lon = lon;
     displayUrl = url;
     this.id = id;
     this.name = name;
+    ArrayList<Copy> storedCopies = new ArrayList<Copy>();
   }
   public void addCopy(Copy c){
     if(storedCopies==null) storedCopies = new ArrayList<Copy>();
@@ -21,5 +22,26 @@ public class Branch{
   }
   public String getName(){
     return name;
+  }
+  public int numCopies(){
+    return storedCopies.size();
+  }
+  public double getLat() {
+    return lat;
+  }
+  public double getLon() {
+    return lon;
+  }
+  public String getUrl() {
+    return displayUrl;
+  }
+
+  public ArrayList<Copy> getStoredCopies() {
+    return storedCopies;
+  }
+  public boolean addCopy(Copy copy) {
+    if(storedCopies==null) storedCopies = new ArrayList<Copy>();
+    storedCopies.add(copy);
+    return true;
   }
 }

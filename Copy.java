@@ -19,4 +19,10 @@ public class Copy{
     if(available) return "  Available Copy @"+location.getName();
     else          return "Unavailable Copy @"+location.getName()+" "+status;
   }
+  public Branch getBranch() {
+    return location;
+  }
+  public boolean getAvail() {
+    return available;
+  }
 }
