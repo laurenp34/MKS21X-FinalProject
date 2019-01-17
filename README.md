@@ -54,13 +54,13 @@ Kiran-Improved the printing of copy data downloaded for purposes of demo. Merged
 Lauren-Recreated lost code (choosing search result and ensuring the input is a valid integer within range) , this time using Scanner rather than by reading lanterna key inputs, which is much simpler. Also modified runSearch() to return a Book object so that it is compatible with Kiran's webscraping program. Also added code to re-initiate the search when a search term yields 0 books, and formatted print statements for Demo.\
 
 *14 January 2019*\
-Kiran-\
+Kiran-Intense period cramps meant I didn't work.\
 Lauren-Familiarized myself with ANSI escape code, and used it to show the text as it's being inputted (rather than before when you couldn't see each character as you typed). Also looked at example code for creating a progress bar using ANSI, which would be useful for the library data loading into the calendar, or fetching the availability results from NYPL. \
 
 *15 January 2019*\
-Kiran-\
+Kiran-Found the json file in which library location data for the NYPL is stored, and wrote a file to parse said JSON file and turn it into our own Branch objects, which I then saved in an external file for quick access during a program run. Wrote a static method that takes an unchanging JSON file and generates a Branch array, for use in the rest of the program. Restructured Copy construction to use the now built Branch objects (required manual modification of some NYPL system IDs to match their own code, obnoxiously). Merged all of this in. \
 Lauren-Used ANSI to show and hide the cursor. Also familiarized myself with Kiran's code that she added today^^. Tried to use storedCopies (AL in Branch) to generate another list of branches with the copy available, however storedCopies kept turning up null. Spent a long time trying to figure out why, and wrote many debug parts, but ultimately couldn't get anywhere.\
 
 *16 January 2019*\
-Kiran-\
+Kiran-Corrected issues in yesterdays code, reformatted Driver to display copies sorted by branch.(With Lauren, in person) Researched the structure of a KML file and how the corresponding DOM Document would need to be built. Using this information, wrote the Map object, which in its construction takes a series of Branches and makes them Placemarks in a KML DOM Document which is in turn written to an external file. Succeeded at displaying this file in an online KML file viewer. (Google MyMaps)\
 Lauren-Began by creating updateDueDMY method which parses the status of each unavailable book into int day,mon,yr. Then used this to update the dueDate of the Copy object. Along the way, created Date class and the get and set methods for it. In Driver, created a very basic Date[][] calendar, however even though Date() was initialized it threw NullPointerExceptions. Will continue debugging and testing these new methods tomorrow.\
