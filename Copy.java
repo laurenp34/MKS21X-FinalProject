@@ -44,7 +44,10 @@ public class Copy{
   public int getDueY() {
     return dueYear;
   }
-  public void updatedueDate() {
+  public Date getDueDate(){
+    return dueDate;
+  }
+  public void updateDueDMY() {
     if (!available && status.subSequence(0,3).equals("DUE")) {
       String month = (String) status.subSequence(4,6);
       dueMonth = Integer.parseInt(month);
@@ -54,6 +57,15 @@ public class Copy{
 
       String year = (String) status.subSequence(10,12);
       dueYear = Integer.parseInt(year);
+    }
+  }
+
+  public void updateDueDate(Date[][] calendar) {
+
+    Copy c = this;
+    if (dueMonth >= 1 && dueMonth <= 2) { // for now calendar only has 2 months
+      dueDate = calendar[dueMonth-1][dueDay-1];
+      //dueDate.addCopy(c);
     }
   }
 }
