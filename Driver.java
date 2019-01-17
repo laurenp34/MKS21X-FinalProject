@@ -9,6 +9,7 @@ public class Driver{
     CatalogAccessor ny = new NYPLAccessor(NYPLBranches);
     Copy[] out = ny.getAllCopies(result);
 
+/* -- LAUREN DEBUGGING WITH DATE and COPY
     Date[][] calendar = new Date[2][31]; // start out with only 2 months: jan-feb
     int dayIndex = 1;
     int monthIndex = 1;
@@ -20,6 +21,7 @@ public class Driver{
       }
       monthIndex++;
     }
+    *//*
 
     for (Date[] month: calendar) {
       for (Date d: month) {
@@ -41,7 +43,7 @@ public class Driver{
         System.out.println(d+"\t"+d.getCopiesDue());
       }
     }
-
+*/
     System.out.println("\n\n");
     /*
 
