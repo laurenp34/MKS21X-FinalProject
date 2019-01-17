@@ -65,7 +65,7 @@ public class Copy{
     Copy c = this;
     if (dueMonth >= 1 && dueMonth <= 2) { // for now calendar only has 2 months
       dueDate = calendar[dueMonth-1][dueDay-1];
-      //dueDate.addCopy(c);
+      dueDate.addCopy(c);
     }
   }
 }
