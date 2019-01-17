@@ -60,3 +60,7 @@ Lauren-Familiarized myself with ANSI escape code, and used it to show the text a
 *15 January 2019*\
 Kiran-\
 Lauren-Used ANSI to show and hide the cursor. Also familiarized myself with Kiran's code that she added today^^. Tried to use storedCopies (AL in Branch) to generate another list of branches with the copy available, however storedCopies kept turning up null. Spent a long time trying to figure out why, and wrote many debug parts, but ultimately couldn't get anywhere.\
+
+*16 January 2019*\
+Kiran-\
+Lauren-Began by creating updateDueDMY method which parses the status of each unavailable book into int day,mon,yr. Then used this to update the dueDate of the Copy object. Along the way, created Date class and the get and set methods for it. In Driver, created a very basic Date[][] calendar, however even though Date() was initialized it threw NullPointerExceptions. Will continue debugging and testing these new methods tomorrow.\
