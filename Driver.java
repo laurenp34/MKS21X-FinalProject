@@ -9,24 +9,23 @@ public class Driver{
     CatalogAccessor ny = new NYPLAccessor(NYPLBranches);
     Copy[] out = ny.getAllCopies(result);
 
-/* -- LAUREN DEBUGGING WITH DATE and COPY
+/* -- LAUREN DEBUGGING WITH DATE and COPY */
     Date[][] calendar = new Date[2][31]; // start out with only 2 months: jan-feb
     int dayIndex = 1;
     int monthIndex = 1;
-    for (Date[] month: calendar) {
-      for (Date d: month) {
-        d = new Date(monthIndex,dayIndex,2019);
-        //System.out.print(d);
+    for (int i1=0;i1<calendar.length;i1++) {
+      Date[] month = calendar[i1];
+      dayIndex=1;
+      for (int i2=0;i2<month.length;i2++) {
+        month[i2] = new Date(monthIndex,dayIndex,2019);
         dayIndex++;
       }
       monthIndex++;
     }
-    *//*
+
 
     for (Date[] month: calendar) {
-      for (Date d: month) {
-        System.out.print(d);
-      }
+      System.out.println(Arrays.toString(month));
     }
 
     //System.out.println(Arrays.deepToString(calendar));
@@ -43,9 +42,9 @@ public class Driver{
         System.out.println(d+"\t"+d.getCopiesDue());
       }
     }
-*/
+
     System.out.println("\n\n");
-    /*
+
 
     for (Branch b: NYPLBranches) {
       b = new Branch(b.getLat(),b.getLon(),b.getUrl(),b.getID(),b.getName());
@@ -64,7 +63,7 @@ public class Driver{
         }
       }
     }
-*/
+
     System.out.println("complete");
     for (Branch b: NYPLBranches) {
       if(b.getStoredCopies() != null){
