@@ -40,4 +40,10 @@ public class Branch{
     storedCopies.add(copy);
     return true;
   }
+  public String toStringAvailables(){
+    return "";
+  }
+  public String coordString(){
+    return "";
+  }
 }
