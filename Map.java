@@ -21,7 +21,9 @@ public class Map{
     Document out = initializeDocument();
     Element docElt = buildExterior(out);
     for(Branch b : branches){
-      addPlaceMark(b,docElt,out);
+      if(b.getStoredCopies() != null){
+        addPlaceMark(b,docElt,out);
+      }
     }
     return out;
   }
