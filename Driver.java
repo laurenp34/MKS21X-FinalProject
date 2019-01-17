@@ -21,12 +21,27 @@ public class Driver{
       monthIndex++;
     }
 
+    for (Date[] month: calendar) {
+      for (Date d: month) {
+        System.out.print(d);
+      }
+    }
+
     //System.out.println(Arrays.deepToString(calendar));
 
 
     for (Copy c: out) {
-      c.updatedueDate();
+      c.updateDueDMY();
+      c.updateDueDate(calendar);
+      System.out.println(c.getDueDate());
     }
+
+    for (Date[] month: calendar) {
+      for (Date d: month) {
+        System.out.println(d+"\t"+d.getCopiesDue());
+      }
+    }
+
     System.out.println("\n\n");
     /*
 
