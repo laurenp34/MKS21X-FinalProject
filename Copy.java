@@ -6,7 +6,11 @@ public class Copy{
   private String message;
   private String status;
   private boolean available;
-  //private Date dueDate;
+  private Date dueDate;
+  private int dueDay;
+  private int dueMonth;
+  private int dueYear;
+
   public Copy(Branch loc,String callnum,String status,String message){
     this.location = loc;
     this.callnum = callnum;
@@ -24,5 +28,17 @@ public class Copy{
   }
   public boolean getAvail() {
     return available;
+  }
+  public void updatedueDate() {
+    if (!available && message.subSequence(0,3).equals("DUE")) {
+      String month = message.subSequence(4,6);
+      dueMonth = Integer.parseInt(month);
+
+      String day = message.subSequence(7,9);
+      dueDay = Integer.parseInt(day);
+
+      String year = message.subSequence(10,12);
+      dueYear = Integer.parseInt(year);
+    }
   }
 }
