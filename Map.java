@@ -54,6 +54,8 @@ public class Map{
     root.appendChild(mark);
   }
   private Element textElement(Document doc,String tag,String content){
-    return null;
+    Element out = doc.createElement(tag);
+    out.appendChild( doc.createTextNode(content) );
+    return out;
   }
 }
