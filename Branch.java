@@ -13,10 +13,6 @@ public class Branch{
     this.name = name;
     ArrayList<Copy> storedCopies = new ArrayList<Copy>();
   }
-  public void addCopy(Copy c){
-    if(storedCopies==null) storedCopies = new ArrayList<Copy>();
-    storedCopies.add(c);
-  }
   public String getID(){
     return id;
   }
