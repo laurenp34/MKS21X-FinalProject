@@ -1,10 +1,18 @@
-public class Date {
-  public int day;
-  public int month;
+import java.io.*;
+import java.util.*;
 
-  public Date(int newDay, int newMonth) {
+
+public class Date {
+  private int day;
+  private int month;
+  private int year;
+  private ArrayList<Copy> copiesDueToday;
+
+  public Date(int newDay, int newMonth, int newYear) {
     day = newDay;
     month = newMonth;
+    year = newYear;
+    copiesDueToday = new ArrayList<Copy>();
   }
 
   public int getDay() {
@@ -13,5 +21,15 @@ public class Date {
   public int getMonth() {
     return month;
   }
+  public ArrayList<Copy> getCopiesDue() {
+    return copiesDueToday;
+  }
+
+  public void addCopy(Copy c) {
+    copiesDueToday.add(c);
+  }
+
+
+
 
 }
