@@ -21,7 +21,7 @@ public class Map{
     Document out = initializeDocument();
     Element docElt = buildExterior(out);
     for(Branch b : branches){
-      addPlaceMark(b,docElt);
+      addPlaceMark(b,docElt,out);
     }
     return out;
   }
@@ -44,7 +44,16 @@ public class Map{
     kml.appendChild(root);
     return root;
   }
-  private void addPlaceMark(Branch b,Element root){
-
+  private void addPlaceMark(Branch b,Element root,Document doc){
+    Element mark = doc.createElement("Placemark");
+    mark.appendChild(textElement(doc,"name",b.getName()));
+    mark.appendChild(textElement(doc,"description",b.toStringAvailables()));
+    Element pt = doc.createElement("Point");
+    pt.appendChild(textElement(doc,"coordinates",b.coordString()));
+    mark.appendChild(pt);
+    root.appendChild(mark);
+  }
+  private Element textElement(Document doc,String tag,String content){
+    return null;
   }
 }
