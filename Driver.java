@@ -33,6 +33,7 @@ public class Driver{
         System.out.println(": "+b.numCopies());
         for (Copy c: b.getStoredCopies()) {
           System.out.println("\t"+c);
+          System.out.println(c.getMessage());
           c.updatedueDate();
           System.out.println("\t"+c.getDueM()+"/"+c.getDueD()+"/"+c.getDueY());
         }
