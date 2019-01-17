@@ -25,7 +25,7 @@ public class Map{
     }
     return out;
   }
-  public Document initializeDocument(){
+  private Document initializeDocument(){
     Document out = null;
     try{
       DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -36,7 +36,7 @@ public class Map{
     }
     return out;
   }
-  public Element buildExterior(Document doc){
+  private Element buildExterior(Document doc){
     Element kml = doc.createElement("kml");
     doc.appendChild(kml);
     kml.setAttribute("xmlns","http://www.opengis.net/kml/2.2");
@@ -44,7 +44,7 @@ public class Map{
     kml.appendChild(root);
     return root;
   }
-  public void addPlaceMark(Branch b,Element root){
+  private void addPlaceMark(Branch b,Element root){
 
   }
 }
