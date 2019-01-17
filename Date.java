@@ -8,7 +8,7 @@ public class Date {
   private int year;
   private ArrayList<Copy> copiesDueToday;
 
-  public Date(int newDay, int newMonth, int newYear) {
+  public Date(int newMonth, int newDay, int newYear) {
     day = newDay;
     month = newMonth;
     year = newYear;
@@ -27,6 +27,10 @@ public class Date {
 
   public void addCopy(Copy c) {
     copiesDueToday.add(c);
+  }
+
+  public String toString() {
+    return month+"/"+day+"/"+year;
   }
 
 
