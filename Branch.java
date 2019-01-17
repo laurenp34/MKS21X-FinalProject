@@ -49,6 +49,6 @@ public class Branch{
     return out;
   }
   public String coordString(){
-    return lon+","+lat+",0";
+    return lat+","+lon+",0";
   }
 }
