@@ -5,17 +5,24 @@ import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import org.xml.sax.*;
 
+//these come from http://www.java2s.com/Tutorials/Java/XML/How_to_convert_org_w3c_dom_Document_to_String.htm
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+
 
 public class Map{
   public static void main(String[] args){
     Branch[] branches = BranchData.getBranches("NYPLLocations.json");
     Map m = new Map(branches);
+    m.toFile("temp.kml");
   }
   private Branch[] branches;
   private Document kml;
   public Map(Branch[] branches){
     this.branches = branches;
-    buildDocument();
+    kml = buildDocument();
   }
   private Document buildDocument(){
     Document out = initializeDocument();
@@ -59,5 +66,25 @@ public class Map{
     Element out = doc.createElement(tag);
     out.appendChild( doc.createTextNode(content) );
     return out;
+  }
+
+  public void toFile(String fileName){
+    try{
+      DOMSource domSource = new DOMSource(kml);
+      TransformerFactory factory = TransformerFactory.newInstance();
+      Transformer transformer = factory.newTransformer();
+      StreamResult out = new StreamResult();
+      FileWriter fw = new FileWriter(fileName);
+      out.setWriter(fw);
+      transformer.transform(domSource,out);
+    }catch(TransformerConfigurationException e){
+      e.printStackTrace();
+    }catch(TransformerException e){
+      e.printStackTrace();
+    }catch(IOException e){
+      e.printStackTrace();
+    }
+    //though the code doesn't actually come from here, my understanding of transformers comes from
+    //http://www.java2s.com/Tutorials/Java/XML/How_to_convert_org_w3c_dom_Document_to_String.htm
   }
 }
