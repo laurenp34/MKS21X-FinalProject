@@ -1,3 +1,6 @@
+import java.util.*;
+import java.io.*;
+
 public class Driver{
   public static void main(String[] args){
     Search s = new Search();
@@ -5,6 +8,25 @@ public class Driver{
     Branch[] NYPLBranches = BranchData.getBranches("NYPLLocations.json");
     CatalogAccessor ny = new NYPLAccessor(NYPLBranches);
     Copy[] out = ny.getAllCopies(result);
+
+    Date[][] calendar = new Date[2][31]; // start out with only 2 months: jan-feb
+    int dayIndex = 1;
+    int monthIndex = 1;
+    for (Date[] month: calendar) {
+      for (Date d: month) {
+        d = new Date(monthIndex,dayIndex,2019);
+        //System.out.print(d);
+        dayIndex++;
+      }
+      monthIndex++;
+    }
+
+    //System.out.println(Arrays.deepToString(calendar));
+
+
+    for (Copy c: out) {
+      c.updatedueDate();
+    }
     System.out.println("\n\n");
     /*
 
@@ -33,9 +55,8 @@ public class Driver{
         System.out.println(": "+b.numCopies());
         for (Copy c: b.getStoredCopies()) {
           System.out.println("\t"+c);
-          System.out.println(c.getMessage());
-          c.updatedueDate();
-          System.out.println("\t"+c.getDueM()+"/"+c.getDueD()+"/"+c.getDueY());
+          //c.updatedueDate();
+          //System.out.println("\t"+c.getDueM()+"/"+c.getDueD()+"/"+c.getDueY());
         }
       }
     }
