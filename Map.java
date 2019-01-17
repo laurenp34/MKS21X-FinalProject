@@ -33,6 +33,8 @@ public class Map{
     return out;
   }
   public Element buildExterior(Document doc){
+    doc.createElement("kml");
+    System.out.println(doc.getDocumentElement());
     return null;
   }
   public void addPlaceMark(Branch b,Element root){
