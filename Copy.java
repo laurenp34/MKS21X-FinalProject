@@ -29,6 +29,9 @@ public class Copy{
   public boolean getAvail() {
     return available;
   }
+  public String getMessage() {
+    return message;
+  }
   public int getDueD() {
     return dueDay;
   }
@@ -39,14 +42,14 @@ public class Copy{
     return dueYear;
   }
   public void updatedueDate() {
-    if (!available && message.subSequence(0,3).equals("DUE")) {
-      String month = message.subSequence(4,6);
+    if (!available && status.subSequence(0,3).equals("DUE")) {
+      String month = (String) status.subSequence(4,6);
       dueMonth = Integer.parseInt(month);
 
-      String day = message.subSequence(7,9);
+      String day = (String) status.subSequence(7,9);
       dueDay = Integer.parseInt(day);
 
-      String year = message.subSequence(10,12);
+      String year = (String) status.subSequence(10,12);
       dueYear = Integer.parseInt(year);
     }
   }
