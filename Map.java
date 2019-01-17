@@ -17,17 +17,25 @@ public class Map{
     Document out = initializeDocument();
     Element docElt = buildExterior(out);
     for(Branch b : branches){
-      addPlaceMark(b,out);
+      addPlaceMark(b,docElt);
     }
     return out;
   }
   public Document initializeDocument(){
-    return null;
+    Document out = null;
+    try{
+      DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+      DocumentBuilder builder = factory.newDocumentBuilder();
+      out = builder.newDocument();
+    }catch(ParserConfigurationException e){
+      e.printStackTrace();
+    }
+    return out;
   }
   public Element buildExterior(Document doc){
     return null;
   }
-  public void addPlaceMark(Branch b,Document doc){
+  public void addPlaceMark(Branch b,Element root){
 
   }
 }
