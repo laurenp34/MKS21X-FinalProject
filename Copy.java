@@ -29,6 +29,15 @@ public class Copy{
   public boolean getAvail() {
     return available;
   }
+  public int getDueD() {
+    return dueDay;
+  }
+  public int getDueM() {
+    return dueMonth;
+  }
+  public int getDueY() {
+    return dueYear;
+  }
   public void updatedueDate() {
     if (!available && message.subSequence(0,3).equals("DUE")) {
       String month = message.subSequence(4,6);
