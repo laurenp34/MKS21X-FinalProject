@@ -10,6 +10,7 @@ public class Driver{
     Copy[] out = ny.getAllCopies(result);
 
 /* -- LAUREN DEBUGGING WITH DATE and COPY */
+    //create a calendar w jan-feb 2019 (each 2 31 days)
     Date[][] calendar = new Date[2][31]; // start out with only 2 months: jan-feb
     int dayIndex = 1;
     int monthIndex = 1;
@@ -23,18 +24,17 @@ public class Driver{
       monthIndex++;
     }
 
-
+/* debug to make sure calenadr worked 
     for (Date[] month: calendar) {
       System.out.println(Arrays.toString(month));
     }
+    */
 
     //System.out.println(Arrays.deepToString(calendar));
-
 
     for (Copy c: out) {
       c.updateDueDMY();
       c.updateDueDate(calendar);
-      System.out.println(c.getDueDate());
     }
 
     for (Date[] month: calendar) {
@@ -46,10 +46,7 @@ public class Driver{
     System.out.println("\n\n");
 
 
-    for (Branch b: NYPLBranches) {
-      b = new Branch(b.getLat(),b.getLon(),b.getUrl(),b.getID(),b.getName());
-    }
-
+/* debug print loop.
     for(Copy c : out) {
       System.out.println(c);
       if (c.getAvail()) {
@@ -63,8 +60,10 @@ public class Driver{
         }
       }
     }
+    */
 
     System.out.println("complete");
+
     for (Branch b: NYPLBranches) {
       if(b.getStoredCopies() != null){
         System.out.print(b.getName());
