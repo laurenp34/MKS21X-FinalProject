@@ -28,10 +28,17 @@ public class Date {
   public void addCopy(Copy c) {
     copiesDueToday.add(c);
   }
-
   public String toString() {
     return month+"/"+day+"/"+year;
   }
+  public static Date getFirstDateOfMonth(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
+        return cal.getTime();
+    }
+
+
 
 
 
