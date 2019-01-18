@@ -64,3 +64,7 @@ Lauren-Used ANSI to show and hide the cursor. Also familiarized myself with Kira
 *16 January 2019*\
 Kiran-Corrected issues in yesterdays code, reformatted Driver to display copies sorted by branch.(With Lauren, in person) Researched the structure of a KML file and how the corresponding DOM Document would need to be built. Using this information, wrote the Map object, which in its construction takes a series of Branches and makes them Placemarks in a KML DOM Document which is in turn written to an external file. Succeeded at displaying this file in an online KML file viewer. (Google MyMaps)\
 Lauren-Began by creating updateDueDMY method which parses the status of each unavailable book into int day,mon,yr. Then used this to update the dueDate of the Copy object. Along the way, created Date class and the get and set methods for it. In Driver, created a very basic Date[][] calendar, however even though Date() was initialized it threw NullPointerExceptions. Will continue debugging and testing these new methods tomorrow.\
+
+*17 January 2019*\
+Kiran-\
+Lauren-Didn't accomplish much because I had so much work from other classes, but I did read up on Calendar APIs and creating a plaintext calendar or some external software. Looked into GregorianCalendar which can provide the current day and time, which will be useful for the calendar. Will look more into it tomorrow and discuss with Kiran whether the calendar will be plaintext or not, and then begin writing code.\
