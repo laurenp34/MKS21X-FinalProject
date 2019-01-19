@@ -44,7 +44,7 @@ public class Branch{
     if(storedCopies==null) return "";
     String out = "";
     for (Copy c : storedCopies){
-      out += c+"\n";
+      if(c.getAvail()) out += c+"\n";
     }
     return out;
   }
