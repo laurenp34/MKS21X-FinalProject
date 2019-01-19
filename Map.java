@@ -30,7 +30,7 @@ public class Map{
     docElt.appendChild(styleBlock(out,"containsAvlailables","000000"));
     docElt.appendChild(styleBlock(out,"allUnavailable","aaaaaa"));
     for(Branch b : branches){
-      if(!(b.toStringAvailables().equals(""))){
+      if(b.hasCopies()){
         addPlaceMark(b,docElt,out);
       }
     }

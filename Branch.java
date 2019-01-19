@@ -32,6 +32,9 @@ public class Branch{
     return displayUrl;
   }
 
+  public boolean hasCopies(){
+    return (!(storedCopies==null)) && (storedCopies.size()!=0);
+  }
   public ArrayList<Copy> getStoredCopies() {
     return storedCopies;
   }
