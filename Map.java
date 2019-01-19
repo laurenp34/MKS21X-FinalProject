@@ -27,6 +27,8 @@ public class Map{
   private Document buildDocument(){
     Document out = initializeDocument();
     Element docElt = buildExterior(out);
+    addPointStyle(out,"containsAvlailables","black");
+    addPointStyle(out,"allUnavailable","gray");
     for(Branch b : branches){
       if(!(b.toStringAvailables().equals(""))){
         addPlaceMark(b,docElt,out);
@@ -62,12 +64,15 @@ public class Map{
     mark.appendChild(pt);
     root.appendChild(mark);
   }
+  private void addPointStyle(Document doc,String name,String color){
+
+  }
   private Element textElement(Document doc,String tag,String content){
     Element out = doc.createElement(tag);
     out.appendChild( doc.createTextNode(content) );
     return out;
   }
-
+  
   public void toFile(String fileName){
     try{
       DOMSource domSource = new DOMSource(kml);
