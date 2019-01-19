@@ -27,8 +27,8 @@ public class Map{
   private Document buildDocument(){
     Document out = initializeDocument();
     Element docElt = buildExterior(out);
-    addPointStyle(out,"containsAvlailables","black");
-    addPointStyle(out,"allUnavailable","gray");
+    docElt.appendChild(styleBlock(out,"containsAvlailables","000000"));
+    docElt.appendChild(styleBlock(out,"allUnavailable","aaaaaa"));
     for(Branch b : branches){
       if(!(b.toStringAvailables().equals(""))){
         addPlaceMark(b,docElt,out);
@@ -61,18 +61,27 @@ public class Map{
     mark.appendChild(textElement(doc,"description",b.toStringAvailables()));
     Element pt = doc.createElement("Point");
     pt.appendChild(textElement(doc,"coordinates",b.coordString()));
+    String styleID = "";
+    if(b.hasAvailable()) styleID = "containsAvlailables";
+    else styleID = "allUnavailable";
+    mark.appendChild(textElement(doc,"styleUrl","#"+styleID));
     mark.appendChild(pt);
     root.appendChild(mark);
   }
-  private void addPointStyle(Document doc,String name,String color){
-
+  private Element styleBlock(Document doc,String name,String color){
+    Element style = doc.createElement("Style");
+    style.setAttribute("id",name);
+    Element iconStyle = doc.createElement("IconStyle");
+    iconStyle.appendChild(textElement(doc,"color",color));
+    style.appendChild(iconStyle);
+    return style;
   }
   private Element textElement(Document doc,String tag,String content){
     Element out = doc.createElement(tag);
     out.appendChild( doc.createTextNode(content) );
     return out;
   }
-  
+
   public void toFile(String fileName){
     try{
       DOMSource domSource = new DOMSource(kml);
