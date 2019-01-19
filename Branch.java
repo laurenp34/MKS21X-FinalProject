@@ -35,6 +35,13 @@ public class Branch{
   public ArrayList<Copy> getStoredCopies() {
     return storedCopies;
   }
+  public boolean hasAvailable(){
+    if(storedCopies==null) return false;
+    for(Copy c : storedCopies){
+      if(c.getAvail()) return true;
+    }
+    return false;
+  }
   public boolean addCopy(Copy copy) {
     if(storedCopies==null) storedCopies = new ArrayList<Copy>();
     storedCopies.add(copy);
