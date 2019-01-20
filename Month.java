@@ -3,8 +3,8 @@ public class Month {
   private int num;
   private int year;
   private MyDate[] monthDays;
-  private String[] months = {"January","February","March","April","May","June","July","August","September"}
-,"October","Novemer","December"};
+  private String[] months = {"January","February","March","April","May","June","July","August","September","October","Novemer","December"};
+
   public Month(int numm,int yearr) {
     num = numm;
     year = yearr;
@@ -22,8 +22,9 @@ public class Month {
       monthDays = new MyDate[30];
     }
 
-
-
+    for (int i=0;i<monthDays.length;i++) {
+      monthDays[i] = new MyDate(num,i+1,year);
+    }
   }
 
 }
