@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.time.LocalDateTime;
 
 public class Driver{
   public static void main(String[] args){
@@ -32,17 +33,32 @@ public class Driver{
 
     //System.out.println(Arrays.deepToString(calendar));
 
-    Date dat = new Date(); // this date represents today
-    Month firstMonth = new Month(dat.getMonth(),dat.getYear());
-    Month lastMonth = new Month(dat.getMonth(),dat.getYear());
+    //Date dat = new Date(); // this date represents today
+    LocalDateTime now = LocalDateTime.now();
+    int nowYear = now.getYear();
+    int nowMonth = now.getMonthValue();
+    int nowDay = now.getDayOfMonth();
 
-    for (Copy c: out) {
+    Month firstMonth = new Month(nowMonth,nowYear);
+    Month lastMonth = new Month(nowMonth,nowYear);
+
+    for (int i=0;i<out.length;i++) {
+      Copy c = out[i];
       MyDate d = c.updateDueDMY();
-      if (d.getDay() !=0 && d.getMonth() < firstMonth.getNum() && d.getYear() <= firstMonth.getYear()) {
-        firstMonth = new Month(d.getMonth(),d.getYear());
+      int dDay = d.getDay();
+      int dMonth = d.getMonth();
+      int dYear = d.getYear();
+      System.out.println(d);
+
+      if (dDay !=0 && dMonth < firstMonth.getNum() && dYear <= firstMonth.getYear()) {
+        firstMonth = new Month(dMonth,dYear);
       }
-      if (d.getDay() !=0 && d.getMonth() > lastMonth.getNum() && d.getYear() >= lastMonth.getYear()) {
-        lastMonth = new Month(d.getMonth(),d.getYear());
+      System.out.print(dYear >= lastMonth.getYear());
+      System.out.print(dYear);
+      System.out.print(lastMonth.getYear());
+      if (dDay !=0 && dMonth > lastMonth.getNum() && dYear >= lastMonth.getYear()) {
+        System.out.println("updating lastMonth: "+dMonth);
+        lastMonth = new Month(dMonth,dYear);
       }
       c.updateDueDate(calendar);
     }
@@ -83,6 +99,8 @@ public class Driver{
         System.out.println(": "+b.numCopies());
         for (Copy c: b.getStoredCopies()) {
           System.out.println("\t"+c);
+          System.out.println(c.getStatus());
+          System.out.println(c.getDueM());
           //c.updatedueDate();
           //System.out.println("\t"+c.getDueM()+"/"+c.getDueD()+"/"+c.getDueY());
         }
