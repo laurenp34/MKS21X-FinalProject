@@ -68,3 +68,11 @@ Lauren-Began by creating updateDueDMY method which parses the status of each una
 *17 January 2019*\
 Kiran-\
 Lauren-Kiran helped me fix the errors I couldn't fix last night, so Date now has a working storedCopies array (problem was with loop logic). Didn't accomplish much else because I had so much work from other classes, but I did read up on Calendar APIs and creating a plaintext calendar or some external software. Looked into GregorianCalendar which can provide the current day and time, which will be useful for the calendar. Will look more into it tomorrow and discuss with Kiran whether the calendar will be plaintext or not, and then begin writing code.
+
+*18 January 2019*\
+Kiran-
+Lauren-In class Mr. K helped me fix method in Copy.java by adding an import statement. Other than that no work was done because of StuySquad and road trip.
+ 
+ *19 January 2019*\
+ Kiran-
+ Lauren-Updated Date.java and Calendar.java to have different manes (different from Java built in objects). Began the calendar-making process by including in Driver code to find the start and end months the calendar should include. Created new Month object - stores a MyDate[] - to be used in calendar. Sucessfully made constructor for this new object that initializes array w correct number of days and correct days. Update updateDueDateDMY() to return Date -to be used in finding first and last month. Also fixed errors in getFirstDateOfMonth().
