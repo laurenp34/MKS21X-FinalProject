@@ -58,7 +58,7 @@ public class Copy{
       dueDay = Integer.parseInt(day);
 
       String year = (String) status.subSequence(10,12);
-      dueYear = Integer.parseInt(year);
+      dueYear = Integer.parseInt(year) + 2000;
     }
 
     MyDate result = new MyDate(dueMonth,dueDay,dueYear);
