@@ -1,3 +1,7 @@
+import java.io.*;
+import java.util.*;
+
+
 public class Month {
   private String name;
   private int num;
@@ -25,6 +29,22 @@ public class Month {
     for (int i=0;i<monthDays.length;i++) {
       monthDays[i] = new MyDate(num,i+1,year);
     }
+  }
+
+  public MyDate[] getMonthArray() {
+    return monthDays;
+  }
+
+  public int getNum() {
+    return num;
+  }
+  public int getYear(){
+    return year;
+  }
+
+  public static void main(String[] args) {
+    Month jan = new Month(1,2019);
+    System.out.println(Arrays.toString(jan.monthDays));
   }
 
 }
