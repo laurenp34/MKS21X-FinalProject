@@ -12,6 +12,7 @@ public class Driver{
 
 /* -- LAUREN DEBUGGING WITH DATE and COPY */
     //create a calendar w jan-feb 2019 (each 2 31 days)
+    /*
     MyDate[][] calendar = new MyDate[2][31]; // start out with only 2 months: jan-feb
     int dayIndex = 1;
     int monthIndex = 1;
@@ -24,6 +25,7 @@ public class Driver{
       }
       monthIndex++;
     }
+    */
 
 /* debug to make sure calenadr worked
     for (Date[] month: calendar) {
@@ -61,6 +63,9 @@ public class Driver{
 
     System.out.println("first month: "+firstMonth.getNum()+" "+firstMonth.getYear());
     System.out.println("last month: "+lastMonth.getNum()+" "+lastMonth.getYear());
+
+    LibraryCalendar lc = new LibraryCalendar(firstMonth,lastMonth);
+    System.out.println(lc);
 
     for (MyDate[] month: calendar) {
       for (MyDate d: month) {
