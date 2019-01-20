@@ -53,11 +53,7 @@ public class Driver{
       if (dDay !=0 && dMonth < firstMonth.getNum() && dYear <= firstMonth.getYear()) {
         firstMonth = new Month(dMonth,dYear);
       }
-      System.out.print(dYear >= lastMonth.getYear());
-      System.out.print(dYear);
-      System.out.print(lastMonth.getYear());
       if (dDay !=0 && dMonth > lastMonth.getNum() && dYear >= lastMonth.getYear()) {
-        System.out.println("updating lastMonth: "+dMonth);
         lastMonth = new Month(dMonth,dYear);
       }
       c.updateDueDate(calendar);
