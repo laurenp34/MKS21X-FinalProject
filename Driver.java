@@ -11,20 +11,20 @@ public class Driver{
 
 /* -- LAUREN DEBUGGING WITH DATE and COPY */
     //create a calendar w jan-feb 2019 (each 2 31 days)
-    Date[][] calendar = new Date[2][31]; // start out with only 2 months: jan-feb
+    MyDate[][] calendar = new MyDate[2][31]; // start out with only 2 months: jan-feb
     int dayIndex = 1;
     int monthIndex = 1;
     for (int i1=0;i1<calendar.length;i1++) {
-      Date[] month = calendar[i1];
+      MyDate[] month = calendar[i1];
       dayIndex=1;
       for (int i2=0;i2<month.length;i2++) {
-        month[i2] = new Date(monthIndex,dayIndex,2019);
+        month[i2] = new MyDate(monthIndex,dayIndex,2019);
         dayIndex++;
       }
       monthIndex++;
     }
 
-/* debug to make sure calenadr worked 
+/* debug to make sure calenadr worked
     for (Date[] month: calendar) {
       System.out.println(Arrays.toString(month));
     }
@@ -37,8 +37,8 @@ public class Driver{
       c.updateDueDate(calendar);
     }
 
-    for (Date[] month: calendar) {
-      for (Date d: month) {
+    for (MyDate[] month: calendar) {
+      for (MyDate d: month) {
         System.out.println(d+"\t"+d.getCopiesDue());
       }
     }
