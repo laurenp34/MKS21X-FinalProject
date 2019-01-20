@@ -65,12 +65,16 @@ public class Copy{
     return result;
   }
 
-  public void updateDueDate(MyDate[][] calendar) {
+  public void updateDueDate(LibraryCalendar libcal) {
+
+    Month[] cal = libcal.getCal();
 
     Copy c = this;
-    if (dueMonth >= 1 && dueMonth <= 2) { // for now calendar only has 2 months
-      dueDate = calendar[dueMonth-1][dueDay-1];
-      dueDate.addCopy(c);
-    }
+
+    int monthDiff = this.getDueM() - cal[0].getNum(); // index for month.
+
+    Month mon = cal[monthDiff];
+    dueDate = mon[dueDay-1];
+    dueDate.addCopy(c);
   }
 }
