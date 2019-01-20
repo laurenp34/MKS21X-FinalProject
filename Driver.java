@@ -32,10 +32,23 @@ public class Driver{
 
     //System.out.println(Arrays.deepToString(calendar));
 
+    Date dat = new Date(); // this date represents today
+    Month firstMonth = new Month(dat.getMonth(),dat.getYear());
+    Month lastMonth = new Month(dat.getMonth(),dat.getYear());
+
     for (Copy c: out) {
-      c.updateDueDMY();
+      MyDate d = c.updateDueDMY();
+      if (d.getDay() !=0 && d.getMonth() < firstMonth.getNum() && d.getYear() <= firstMonth.getYear()) {
+        firstMonth = new Month(d.getMonth(),d.getYear());
+      }
+      if (d.getDay() !=0 && d.getMonth() > lastMonth.getNum() && d.getYear() >= lastMonth.getYear()) {
+        lastMonth = new Month(d.getMonth(),d.getYear());
+      }
       c.updateDueDate(calendar);
     }
+
+    System.out.println("first month: "+firstMonth.getNum()+" "+firstMonth.getYear());
+    System.out.println("last month: "+lastMonth.getNum()+" "+lastMonth.getYear());
 
     for (MyDate[] month: calendar) {
       for (MyDate d: month) {
