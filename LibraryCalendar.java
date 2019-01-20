@@ -26,5 +26,9 @@ public class LibraryCalendar {
     return Arrays.toString(cal);
   }
 
+  public Month[] getCal() {
+    return cal;
+  }
+
 
 }
