@@ -1,4 +1,6 @@
 import java.time.LocalDateTime;
+import java.io.*;
+import java.util.*;
 
 public class LibraryCalendar {
   MyDate today;
@@ -13,6 +15,15 @@ public class LibraryCalendar {
     today = new MyDate(todayMonth,todayDay,todayYear);
 
     cal = new Month[(lastMonth.getNum()-todayMonth)+1]; // assumes they're in the same year.
+
+    for (int i=0;i<cal.length;i++) {
+      Month current = new Month(firstMonth.getNum()+i,todayYear);
+      cal[i] = current;
+    }
+  }
+
+  public String toString() {
+    return Arrays.toString(cal);
   }
 
 
