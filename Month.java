@@ -42,6 +42,10 @@ public class Month {
     return year;
   }
 
+  public String toString(){
+    return Arrays.toString(monthDays);
+  }
+
   public static void main(String[] args) {
     Month jan = new Month(1,2019);
     System.out.println(Arrays.toString(jan.monthDays));
