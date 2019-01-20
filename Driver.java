@@ -58,20 +58,27 @@ public class Driver{
       if (dDay !=0 && dMonth > lastMonth.getNum() && dYear >= lastMonth.getYear()) {
         lastMonth = new Month(dMonth,dYear);
       }
-      c.updateDueDate(calendar);
     }
 
     System.out.println("first month: "+firstMonth.getNum()+" "+firstMonth.getYear());
     System.out.println("last month: "+lastMonth.getNum()+" "+lastMonth.getYear());
 
-    LibraryCalendar lc = new LibraryCalendar(firstMonth,lastMonth);
-    System.out.println(lc);
+    LibraryCalendar cal = new LibraryCalendar(firstMonth,lastMonth);
+    System.out.println(cal);
 
+    for (Copy c: out) {
+      if (c.getDueD() != 0) {
+        c.updateDueDate(cal);
+      }
+    }
+
+/*
     for (MyDate[] month: calendar) {
       for (MyDate d: month) {
         System.out.println(d+"\t"+d.getCopiesDue());
       }
     }
+    */
 
     System.out.println("\n\n");
 
