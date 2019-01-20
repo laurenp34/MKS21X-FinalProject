@@ -49,7 +49,7 @@ public class Copy{
   public MyDate getDueDate(){
     return dueDate;
   }
-  public void updateDueDMY() {
+  public MyDate updateDueDMY() {
     if (!available && status.subSequence(0,3).equals("DUE")) {
       String month = (String) status.subSequence(4,6);
       dueMonth = Integer.parseInt(month);
@@ -60,6 +60,9 @@ public class Copy{
       String year = (String) status.subSequence(10,12);
       dueYear = Integer.parseInt(year);
     }
+
+    MyDate result = new MyDate(dueMonth,dueDay,dueYear);
+    return result;
   }
 
   public void updateDueDate(MyDate[][] calendar) {
