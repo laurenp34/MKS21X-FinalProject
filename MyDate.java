@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.*;
 import java.util.Calendar;
+import java.util.Date;
+
 
 
 public class MyDate {
@@ -22,6 +24,9 @@ public class MyDate {
   public int getMonth() {
     return month;
   }
+  public int getYear() {
+    return year;
+  }
   public ArrayList<Copy> getCopiesDue() {
     return copiesDueToday;
   }
@@ -33,10 +38,13 @@ public class MyDate {
     return month+"/"+day+"/"+year;
   }
   public static MyDate getFirstDateOfMonth(MyDate date){
+        Date d = new Date(date.getYear(),date.getMonth(),date.getDay());
         Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
+        cal.setTime(d);
         cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
-        return cal.getTime();
+        Date returnD = cal.getTime();
+        MyDate returnMD = new MyDate(returnD.getMonth(),returnD.getDay(),returnD.getYear());
+        return returnMD;
     }
 
 
