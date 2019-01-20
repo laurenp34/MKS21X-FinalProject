@@ -1,12 +1,14 @@
 import org.w3c.dom.*;
+import java.util.*;
+import java.io.*;
 
 public class Copy{
   private Branch location;
-  private String callnum;
+  private String  callnum;
   private String message;
   private String status;
   private boolean available;
-  private Date dueDate;
+  private MyDate dueDate;
   private int dueDay;
   private int dueMonth;
   private int dueYear;
@@ -44,7 +46,7 @@ public class Copy{
   public int getDueY() {
     return dueYear;
   }
-  public Date getDueDate(){
+  public MyDate getDueDate(){
     return dueDate;
   }
   public void updateDueDMY() {
@@ -60,7 +62,7 @@ public class Copy{
     }
   }
 
-  public void updateDueDate(Date[][] calendar) {
+  public void updateDueDate(MyDate[][] calendar) {
 
     Copy c = this;
     if (dueMonth >= 1 && dueMonth <= 2) { // for now calendar only has 2 months
