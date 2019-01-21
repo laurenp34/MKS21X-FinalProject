@@ -68,11 +68,20 @@ public class Copy{
   public void updateDueDate(LibraryCalendar libcal) {
 
     Month[] cal = libcal.getCal();
+    int monthDiff = 0;
 
     Copy c = this;
-
-    int monthDiff = this.getDueM() - cal[0].getNum(); // index for month.
-    System.out.print("\t"+monthDiff);
+    if (this.getDueY() == cal[0].getYear()) {
+      monthDiff = this.getDueM() - cal[0].getNum(); // index for month.
+    } /*else {    Code initially to work with books due before today. (incl. books due last yr)
+      int countMon = 0;
+      for (Month m: cal) {
+        if (m.getYear() == cal[0].getYear()) {
+          countMon ++; // countMOn counts how many months in the calendar are in the previous year.
+        }
+      }
+      monthDiff = countMon + (this.getDueM() - 1);
+    }*/
 
     Month mon = cal[monthDiff];
     dueDate = mon.getMonthArray()[dueDay-1];
