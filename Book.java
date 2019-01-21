@@ -9,4 +9,7 @@ public class Book{
   String[] subject;
   ArrayList<String> tags;
   public String[] getISBNs(){return isbn;}
+  public String getTitle() {
+    return title;
+  }
 }
