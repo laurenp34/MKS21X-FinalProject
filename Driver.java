@@ -10,6 +10,8 @@ public class Driver{
     CatalogAccessor ny = new NYPLAccessor(NYPLBranches);
     Copy[] out = ny.getAllCopies(result);
 
+    System.out.println(out.length);
+
 /* -- LAUREN DEBUGGING WITH DATE and COPY */
     //create a calendar w jan-feb 2019 (each 2 31 days)
     /*
@@ -50,7 +52,7 @@ public class Driver{
       int dDay = d.getDay();
       int dMonth = d.getMonth();
       int dYear = d.getYear();
-      System.out.println(d);
+      //System.out.println(d);
 
       /* no need to update first month b/c calendar won't span into the past.
       if (dDay !=0 && ((dMonth < firstMonth.getNum()  && dYear <= firstMonth.getYear()) || dYear < firstMonth.getYear())) {
@@ -68,6 +70,34 @@ public class Driver{
     //System.out.println(cal);
 
     Copy.countCopies(out,cal);
+    System.out.println("\nEnter a number to check out: ");
+    System.out.println("\t1: Locations of available books");
+    System.out.println("\t2: Upcoming due dates and locations");
+
+    boolean searching = true;
+    int input =0;
+    while (searching) {
+
+      System.out.println("\033[?25h"); //shwo cursor.
+      Scanner sys = new Scanner(System.in);
+
+      try {
+        input = sys.nextInt();
+        searching = false;
+        System.out.print("\033[?25l"); // hide cursor.
+      } catch (InputMismatchException e) {
+        System.out.println("Please enter a valid integer.");
+      }
+
+      if (input > 1 && input < 2) {
+        System.out.print("\033[H\033[2J");//clear screen.
+        System.out.flush();
+      } else {
+        System.out.println("Please enter a valid input.");
+        searching = true;
+      }
+
+    }
 
     for (int i=0;i<cal.getCal().length;i++) {
       Month mon = cal.getCal()[i];
