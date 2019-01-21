@@ -67,18 +67,38 @@ public class Driver{
     LibraryCalendar cal = new LibraryCalendar(firstMonth,lastMonth);
     System.out.println(cal);
 
-    int countOverdue;
-    int countAvailable;
+    int countOverdue = 0;
+    int countOnHold =0;
+    int countInTrans = 0;
+    int countAvailable = 0;
+    int countStorage = 0;
 
     for (Copy c: out) {
-      if (c.getDueD() != 0) {
-        if (c.getDueY() == firstMonth.getYear()) {
-          c.updateDueDate(cal);
-        } else  if (c.getDueY() + 1 == firstMonth.getYear()){
-          countOverdue ++;
+      System.out.println(c.getAvail() + c.getMessage()+c.getStatus());
+      if (c.getAvail()) {
+        countAvailable ++;
+      } else {
+        if (c.getStatus().contains("IN TRANSIT")) {
+          countInTrans ++;
+        } else if (c.getStatus().contains("ON HOLDSHELF")) {
+          countOnHold ++;
+        } else if (c.getStatus().contains("storage")) {
+          countStorage ++;
+        } else { // if the status contains a due date:
+          if (c.getDueD() != 0) {
+            if (c.getDueY() == firstMonth.getYear()) {
+              c.updateDueDate(cal);
+            } else  if (c.getDueY() + 1 == firstMonth.getYear()){
+              countOverdue ++;
+            }
+          }
         }
       }
     }
+    System.out.println("Available copes: "+countAvailable);
+    System.out.println("Copies on hold: "+countOnHold);
+    System.out.println("Copies in transit: "+countInTrans);
+    System.out.println("Copies in storage: "+countStorage);
 
     for (int i=0;i<cal.getCal().length;i++) {
       Month mon = cal.getCal()[i];
