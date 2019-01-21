@@ -7,7 +7,7 @@ public class Driver{
   public static void seeAvailable(Branch[] NYPLBranches) {
 
     for (Branch b: NYPLBranches) {
-      if (b.getStoredCopies() != null) {
+      if (b.countAvailCopies() > 0) {
         System.out.println("\n"+b.getName());
         System.out.println("\tAvailable copies: "+b.countAvailCopies());
       }
@@ -19,17 +19,19 @@ public class Driver{
     for (int i=0;i<cal.getCal().length;i++) {
       Month mon = cal.getCal()[i];
       MyDate[] calArray = mon.getMonthArray();
+      System.out.println("\n\n--------------------\n"+mon.getName()+", "+mon.getYear());
       for (int i2=0;i2<calArray.length;i2++) {
         MyDate date = calArray[i2];
-        System.out.print("\n"+date);
+        System.out.print("\n\n"+date.getDay());
         if (date.getCopiesDue().size() > 0) {
-          System.out.println("\tCopies due: "+date.getCopiesDue().size());
+          System.out.println("   Copies due: "+date.getCopiesDue().size());
           for (Copy c: date.getCopiesDue()) {
-            System.out.println("\t"+c.getBranch());
+            System.out.println("\t"+c.getBranch().getName());
           }
         }
       }
     }
+    System.out.println("---------------------------");
   }
 
   public static void handleInput(Branch[] NYPLBranches, LibraryCalendar cal) {
@@ -81,7 +83,7 @@ public class Driver{
     Copy[] out = ny.getAllCopies(result);
 
     if (out.length > 0) {
-      System.out.println("\n\n\nThere were "+out.length+" copies of "+result.getTitle()+" found in the NYPL database.");
+      System.out.println("\n\n\nThere were "+out.length+" copies of "+result.getTitle()+" found in the NYPL database.\n\n");
     } else {
       System.out.println("\n\n\nSorry, there were no results found for "+result.getTitle()+" in the NYPL database.");
       System.out.println("\033[?25h"); //shwo cursor.
