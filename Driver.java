@@ -7,12 +7,26 @@ public class Driver{
   public static void seeAvailable(Branch[] NYPLBranches) {
 
     for (Branch b: NYPLBranches) {
-      if (b.getStoredCopies != null) {
+      if (b.getStoredCopies() != null) {
         System.out.println("\n"+b.getName());
-        System.out.println("\tAvailable copies: "+b.countCopies());
+        System.out.println("\tAvailable copies: "+b.countAvailCopies());
       }
     }
 
+  }
+
+  public static void seeUpcoming(LibraryCalendar cal) {
+    for (int i=0;i<cal.getCal().length;i++) {
+      Month mon = cal.getCal()[i];
+      MyDate[] calArray = mon.getMonthArray();
+      for (int i2=0;i2<calArray.length;i2++) {
+        MyDate date = calArray[i2];
+        System.out.println("\n"+date);
+        if (date.getCopiesDue().size() > 0) {
+          System.out.println("\tCopies due: "+date.getCopiesDue().size());
+        }
+      }
+    }
   }
 
 
