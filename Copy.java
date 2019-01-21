@@ -1,6 +1,7 @@
 import org.w3c.dom.*;
 import java.util.*;
 import java.io.*;
+import java.time.LocalDateTime;
 
 public class Copy{
   private Branch location;
@@ -49,6 +50,55 @@ public class Copy{
   public MyDate getDueDate(){
     return dueDate;
   }
+
+  public static void countCopies(Copy[] out, LibraryCalendar cal) {
+
+    LocalDateTime now = LocalDateTime.now();
+    int nowYear = now.getYear();
+    int nowMonth = now.getMonthValue();
+    int nowDay = now.getDayOfMonth();
+
+    int countOverdue = 0;
+    int countOnHold =0;
+    int countInTrans = 0;
+    int countAvailable = 0;
+    int countUnavailable = 0;
+    int countStorage = 0;
+    int countLoaned = 0;
+
+    for (Copy c: out) {
+      //System.out.println(c.getAvail() + c.getMessage()+c.getStatus());
+      if (c.getAvail()) {
+        countAvailable ++;
+      } else {
+        countUnavailable ++;
+        if (c.getStatus().contains("IN TRANSIT")) {
+          countInTrans ++;
+        } else if (c.getStatus().contains("ON HOLDSHELF")) {
+          countOnHold ++;
+        } else if (c.getStatus().contains("storage")) {
+          countStorage ++;
+        } else { // if the status contains a due date:
+          if (c.getDueD() != 0) {
+            countLoaned ++;
+            if (c.getDueY() == nowYear) {
+              c.updateDueDate(cal);
+            } else  if ((c.getDueY() < nowYear) || (c.getDueD() < nowDay && c.getDueM() == nowMonth)){
+              countOverdue ++;
+            }
+          }
+        }
+      }
+    }
+    System.out.println("Available copes: "+countAvailable);
+    System.out.println("Unavailable copies: "+countUnavailable);
+    System.out.println("\tCopies loaned out: "+countLoaned);
+    System.out.println("\tCopies overdue: "+countOverdue);
+    System.out.println("\tCopies on hold: "+countOnHold);
+    System.out.println("\tCopies in transit: "+countInTrans);
+    System.out.println("\tCopies in storage: "+countStorage);
+  }
+
   public MyDate updateDueDMY() {
     if (!available && status.subSequence(0,3).equals("DUE")) {
       String month = (String) status.subSequence(4,6);
