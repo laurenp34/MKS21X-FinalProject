@@ -41,6 +41,7 @@ public class Driver{
       System.out.println("\n\n\nThere were "+out.length+" copies of "+result.getTitle()+" found in the NYPL database.");
     } else {
       System.out.println("\n\n\nSorry, there were no results found for "+result.getTitle()+" in the NYPL database.");
+      System.out.println("\033[?25h"); //shwo cursor.
       System.exit(1);
     }
 
@@ -141,6 +142,13 @@ public class Driver{
 
     System.out.println("\n\n");
 
+    if (input == 1) {
+      Driver.seeAvailable(NYPLBranches);
+    }
+    if (input == 2) {
+      Driver.seeUpcoming(cal);
+    }
+
 
 /* debug print loop.
     for(Copy c : out) {
@@ -158,6 +166,7 @@ public class Driver{
     }
     */
 
+/*
     System.out.println("complete");
 
     for (Branch b: NYPLBranches) {
@@ -173,6 +182,6 @@ public class Driver{
         }
       }
     }
-    System.out.print("\033[?25h"); // show cursor.
+    System.out.print("\033[?25h"); // show cursor.*/
   }
 }
