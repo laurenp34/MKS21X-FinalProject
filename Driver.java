@@ -29,6 +29,46 @@ public class Driver{
     }
   }
 
+  public static void handleInput() {
+
+    System.out.println("\n\n\nEnter a number to check out: ");
+    System.out.println("\t1: Locations of available books");
+    System.out.println("\t2: Upcoming due dates and locations");
+
+    boolean searching = true;
+    int input =0;
+    while (searching) {
+
+      System.out.println("\033[?25h"); //shwo cursor.
+      Scanner sys = new Scanner(System.in);
+
+      try {
+        input = sys.nextInt();
+        searching = false;
+        System.out.print("\033[?25l"); // hide cursor.
+      } catch (InputMismatchException e) {
+        System.out.println("Please enter a valid integer.");
+      }
+
+      if (input < 1 || input > 2) {
+        System.out.println("Please enter a valid input.");
+        searching = true;
+      } else {
+        System.out.print("\033[H\033[2J");//clear screen.
+        System.out.flush();
+      }
+
+    }
+
+    if (input == 1) {
+      Driver.seeAvailable(NYPLBranches);
+    }
+    if (input == 2) {
+      Driver.seeUpcoming(cal);
+    }
+
+  }
+
 
   public static void main(String[] args){
     Search s = new Search();
@@ -103,52 +143,6 @@ public class Driver{
     //System.out.println(cal);
 
     Copy.countCopies(out,cal);
-    System.out.println("\nEnter a number to check out: ");
-    System.out.println("\t1: Locations of available books");
-    System.out.println("\t2: Upcoming due dates and locations");
-
-    boolean searching = true;
-    int input =0;
-    while (searching) {
-
-      System.out.println("\033[?25h"); //shwo cursor.
-      Scanner sys = new Scanner(System.in);
-
-      try {
-        input = sys.nextInt();
-        searching = false;
-        System.out.print("\033[?25l"); // hide cursor.
-      } catch (InputMismatchException e) {
-        System.out.println("Please enter a valid integer.");
-      }
-
-      if (input < 1 || input > 2) {
-        System.out.println("Please enter a valid input.");
-        searching = true;
-      } else {
-        System.out.print("\033[H\033[2J");//clear screen.
-        System.out.flush();
-      }
-
-    }
-
-/*
-    for (MyDate[] month: calendar) {
-      for (MyDate d: month) {
-        System.out.println(d+"\t"+d.getCopiesDue());
-      }
-    }
-    */
-
-    System.out.println("\n\n");
-
-    if (input == 1) {
-      Driver.seeAvailable(NYPLBranches);
-    }
-    if (input == 2) {
-      Driver.seeUpcoming(cal);
-    }
-
 
 /* debug print loop.
     for(Copy c : out) {
