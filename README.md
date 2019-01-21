@@ -47,16 +47,32 @@ Lauren- same ^
 
 *12 January 2019*\
 Kiran-Successfully completed the code for accessing the NYPL webpage and all of its data, and downloading it into the form of Copy objects\
-Lauren-Went to StuyHacks and ended up working on a different project instead (sorry :( ) but read up on Github and how branches work to avoid the same problem as the previous two work days.\
+Lauren-Went to StuyHacks and ended up working on a different project instead (sorry :( ) but read up on Github and how branches work to avoid the same problem as the previous two work days.
 
 *13 January 2019*\
 Kiran-Improved the printing of copy data downloaded for purposes of demo. Merged code into master alongside Lauren's code and resovled conflicts.\
-Lauren-Recreated lost code (choosing search result and ensuring the input is a valid integer within range) , this time using Scanner rather than by reading lanterna key inputs, which is much simpler. Also modified runSearch() to return a Book object so that it is compatible with Kiran's webscraping program. Also added code to re-initiate the search when a search term yields 0 books, and formatted print statements for Demo.\
+Lauren-Recreated lost code (choosing search result and ensuring the input is a valid integer within range) , this time using Scanner rather than by reading lanterna key inputs, which is much simpler. Also modified runSearch() to return a Book object so that it is compatible with Kiran's webscraping program. Also added code to re-initiate the search when a search term yields 0 books, and formatted print statements for Demo.
 
 *14 January 2019*\
-Kiran-\
-Lauren-Familiarized myself with ANSI escape code, and used it to show the text as it's being inputted (rather than before when you couldn't see each character as you typed). Also looked at example code for creating a progress bar using ANSI, which would be useful for the library data loading into the calendar, or fetching the availability results from NYPL. \
+Kiran-Intense period cramps meant I didn't work.\
+Lauren-Familiarized myself with ANSI escape code, and used it to show the text as it's being inputted (rather than before when you couldn't see each character as you typed). Also looked at example code for creating a progress bar using ANSI, which would be useful for the library data loading into the calendar, or fetching the availability results from NYPL. 
 
 *15 January 2019*\
+Kiran-Found the json file in which library location data for the NYPL is stored, and wrote a file to parse said JSON file and turn it into our own Branch objects, which I then saved in an external file for quick access during a program run. Wrote a static method that takes an unchanging JSON file and generates a Branch array, for use in the rest of the program. Restructured Copy construction to use the now built Branch objects (required manual modification of some NYPL system IDs to match their own code, obnoxiously). Merged all of this in. \
+Lauren-Used ANSI to show and hide the cursor. Also familiarized myself with Kiran's code that she added today^^. Tried to use storedCopies (AL in Branch) to generate another list of branches with the copy available, however storedCopies kept turning up null. Spent a long time trying to figure out why, and wrote many debug parts, but ultimately couldn't get anywhere.
+
+*16 January 2019*\
+Kiran-Corrected issues in yesterdays code, reformatted Driver to display copies sorted by branch.(With Lauren, in person) Researched the structure of a KML file and how the corresponding DOM Document would need to be built. Using this information, wrote the Map object, which in its construction takes a series of Branches and makes them Placemarks in a KML DOM Document which is in turn written to an external file. Succeeded at displaying this file in an online KML file viewer. (Google MyMaps)\
+Lauren-Began by creating updateDueDMY method which parses the status of each unavailable book into int day,mon,yr. Then used this to update the dueDate of the Copy object. Along the way, created Date class and the get and set methods for it. In Driver, created a very basic Date[][] calendar, however even though Date() was initialized it threw NullPointerExceptions. Will continue debugging and testing these new methods tomorrow.
+
+*17 January 2019*\
 Kiran-\
-Lauren-Used ANSI to show and hide the cursor. Also familiarized myself with Kiran's code that she added today^^. Tried to use storedCopies (AL in Branch) to generate another list of branches with the copy available, however storedCopies kept turning up null. Spent a long time trying to figure out why, and wrote many debug parts, but ultimately couldn't get anywhere.\
+Lauren-Kiran helped me fix the errors I couldn't fix last night, so Date now has a working storedCopies array (problem was with loop logic). Didn't accomplish much else because I had so much work from other classes, but I did read up on Calendar APIs and creating a plaintext calendar or some external software. Looked into GregorianCalendar which can provide the current day and time, which will be useful for the calendar. Will look more into it tomorrow and discuss with Kiran whether the calendar will be plaintext or not, and then begin writing code.
+
+*18 January 2019*\
+Kiran-
+Lauren-In class Mr. K helped me fix method in Copy.java by adding an import statement. Other than that no work was done because of StuySquad and road trip.
+ 
+ *19 January 2019*\
+ Kiran-
+ Lauren-Updated Date.java and Calendar.java to have different manes (different from Java built in objects). Began the calendar-making process by including in Driver code to find the start and end months the calendar should include. Created new Month object - stores a MyDate[] - to be used in calendar. Sucessfully made constructor for this new object that initializes array w correct number of days and correct days. Update updateDueDateDMY() to return Date -to be used in finding first and last month. Also fixed errors in getFirstDateOfMonth().
