@@ -37,7 +37,12 @@ public class Driver{
     CatalogAccessor ny = new NYPLAccessor(NYPLBranches);
     Copy[] out = ny.getAllCopies(result);
 
-    System.out.println(out.length);
+    if (out.length > 0) {
+      System.out.println("\n\n\nThere were "+out.length+" copies of "+result.getTitle()+" found in the NYPL database.");
+    } else {
+      System.out.println("\n\n\nSorry, there were no results found for "+result.getTitle()+" in the NYPL database.");
+      System.exit(1);
+    }
 
 /* -- LAUREN DEBUGGING WITH DATE and COPY */
     //create a calendar w jan-feb 2019 (each 2 31 days)
@@ -124,18 +129,6 @@ public class Driver{
         System.out.flush();
       }
 
-    }
-
-    for (int i=0;i<cal.getCal().length;i++) {
-      Month mon = cal.getCal()[i];
-      MyDate[] calArray = mon.getMonthArray();
-      for (int i2=0;i2<calArray.length;i2++) {
-        MyDate date = calArray[i2];
-        System.out.println(date);
-        if (date.getCopiesDue().size() > 0) {
-          System.out.println("\t"+date.getCopiesDue());
-        }
-      }
     }
 
 /*
