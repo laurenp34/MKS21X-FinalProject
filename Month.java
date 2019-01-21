@@ -7,7 +7,7 @@ public class Month {
   private int num;
   private int year;
   private MyDate[] monthDays;
-  private String[] months = {"January","February","March","April","May","June","July","August","September","October","Novemer","December"};
+  private String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
 
   public Month(int numm,int yearr) {
     num = numm;
