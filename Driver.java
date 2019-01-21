@@ -72,6 +72,18 @@ public class Driver{
       }
     }
 
+    for (int i=0;i<cal.getCal().length;i++) {
+      Month mon = cal.getCal()[i];
+      MyDate[] calArray = mon.getMonthArray();
+      for (int i2=0;i2<calArray.length;i2++) {
+        MyDate date = calArray[i2];
+        System.out.println(date);
+        if (date.getCopiesDue().size() > 0) {
+          System.out.println("\t"+date.getCopiesDue());
+        }
+      }
+    }
+
 /*
     for (MyDate[] month: calendar) {
       for (MyDate d: month) {
