@@ -41,6 +41,9 @@ public class Month {
   public int getYear(){
     return year;
   }
+  public String getName(){
+    return name;
+  }
 
   public String toString(){
     return Arrays.toString(monthDays);
