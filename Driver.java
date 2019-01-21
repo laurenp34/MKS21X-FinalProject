@@ -171,6 +171,7 @@ public class Driver{
         if (ans.equals("no")) {
           cont = false;
           searching = false;
+          System.out.println("Thanks for using the Library Database!! Have a great day.");
           System.out.println("\033[?25h"); //shwo cursor.
 
         } else if (ans.equals("yes")) {
