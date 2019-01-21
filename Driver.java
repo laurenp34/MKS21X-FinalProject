@@ -21,9 +21,12 @@ public class Driver{
       MyDate[] calArray = mon.getMonthArray();
       for (int i2=0;i2<calArray.length;i2++) {
         MyDate date = calArray[i2];
-        System.out.println("\n"+date);
+        System.out.print("\n"+date);
         if (date.getCopiesDue().size() > 0) {
           System.out.println("\tCopies due: "+date.getCopiesDue().size());
+          for (Copy c: date.getCopiesDue()) {
+            System.out.println("\t"+c.getBranch());
+          }
         }
       }
     }
@@ -151,10 +154,11 @@ public class Driver{
       Driver.handleInput(NYPLBranches,cal);
 
       boolean searching = true;
+      System.out.println("\n\n\n\n\n");
 
       while (searching) {
 
-        System.out.println("\n\nWould you like to continue? (yes / no)");
+        System.out.println("\nWould you like to continue? (yes / no)");
         System.out.println("\033[?25h"); //shwo cursor.
 
         Scanner sys = new Scanner(System.in);
@@ -165,6 +169,8 @@ public class Driver{
         if (ans.equals("no")) {
           cont = false;
           searching = false;
+          System.out.println("\033[?25h"); //shwo cursor.
+
         } else if (ans.equals("yes")) {
           searching = false;
         } else {
