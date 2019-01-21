@@ -52,10 +52,10 @@ public class Driver{
       int dYear = d.getYear();
       System.out.println(d);
 
-      if (dDay !=0 && dMonth < firstMonth.getNum() && dYear <= firstMonth.getYear()) {
+      if (dDay !=0 && ((dMonth < firstMonth.getNum()  && dYear <= firstMonth.getYear()) || dYear < firstMonth.getYear())) {
         firstMonth = new Month(dMonth,dYear);
       }
-      if (dDay !=0 && dMonth > lastMonth.getNum() && dYear >= lastMonth.getYear()) {
+      if (dDay !=0 && ((dMonth > lastMonth.getNum() && dYear >= lastMonth.getYear()) || dYear > lastMonth.getYear())) {
         lastMonth = new Month(dMonth,dYear);
       }
     }
