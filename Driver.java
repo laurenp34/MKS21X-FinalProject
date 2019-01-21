@@ -3,6 +3,19 @@ import java.io.*;
 import java.time.LocalDateTime;
 
 public class Driver{
+
+  public static void seeAvailable(Branch[] NYPLBranches) {
+
+    for (Branch b: NYPLBranches) {
+      if (b.getStoredCopies != null) {
+        System.out.println("\n"+b.getName());
+        System.out.println("\tAvailable copies: "+b.countCopies());
+      }
+    }
+
+  }
+
+
   public static void main(String[] args){
     Search s = new Search();
     Book result = s.runSearch();
@@ -89,12 +102,12 @@ public class Driver{
         System.out.println("Please enter a valid integer.");
       }
 
-      if (input > 1 && input < 2) {
-        System.out.print("\033[H\033[2J");//clear screen.
-        System.out.flush();
-      } else {
+      if (input < 1 || input > 2) {
         System.out.println("Please enter a valid input.");
         searching = true;
+      } else {
+        System.out.print("\033[H\033[2J");//clear screen.
+        System.out.flush();
       }
 
     }
