@@ -30,7 +30,7 @@ public class Map{
     docElt.appendChild(styleBlock(out,"containsAvlailables","000000"));
     docElt.appendChild(styleBlock(out,"allUnavailable","aaaaaa"));
     for(Branch b : branches){
-      if(b.hasCopies()){
+      if(b.hasAvailable()){
         addPlaceMark(b,docElt,out);
       }
     }
@@ -58,7 +58,7 @@ public class Map{
   private void addPlaceMark(Branch b,Element root,Document doc){
     Element mark = doc.createElement("Placemark");
     mark.appendChild(textElement(doc,"name",b.getName()));
-    mark.appendChild(textElement(doc,"description",b.toStringAvailables()));
+    mark.appendChild(textElement(doc,"description",b.numAvailables()+" copies available"));
     Element pt = doc.createElement("Point");
     pt.appendChild(textElement(doc,"coordinates",b.coordString()));
     String styleID = "";

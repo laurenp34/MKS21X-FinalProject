@@ -22,6 +22,13 @@ public class Branch{
   public int numCopies(){
     return storedCopies.size();
   }
+  public int numAvailables(){
+    int out = 0;
+    for(int i=0;i<storedCopies.size();i++){
+      if(storedCopies.get(i).getAvail()) out++;
+    }
+    return out;
+  }
   public double getLat() {
     return lat;
   }
@@ -54,7 +61,7 @@ public class Branch{
     if(storedCopies==null) return "";
     String out = "";
     for (Copy c : storedCopies){
-      out += c+"\n";
+      if(c.getAvail()) out += c+"\n";
     }
     return out;
   }
