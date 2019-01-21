@@ -74,80 +74,7 @@ public class Driver{
 
   }
 
-
-  public static void main(String[] args){
-    Search s = new Search();
-    Book result = s.runSearch();
-    Branch[] NYPLBranches = BranchData.getBranches("NYPLLocations.json");
-    CatalogAccessor ny = new NYPLAccessor(NYPLBranches);
-    Copy[] out = ny.getAllCopies(result);
-
-    if (out.length > 0) {
-      System.out.println("\n\n\nThere were "+out.length+" copies of "+result.getTitle()+" found in the NYPL database.\n\n");
-    } else {
-      System.out.println("\n\n\nSorry, there were no results found for "+result.getTitle()+" in the NYPL database.");
-      System.out.println("\033[?25h"); //shwo cursor.
-      System.exit(1);
-    }
-
-/* -- LAUREN DEBUGGING WITH DATE and COPY */
-    //create a calendar w jan-feb 2019 (each 2 31 days)
-    /*
-    MyDate[][] calendar = new MyDate[2][31]; // start out with only 2 months: jan-feb
-    int dayIndex = 1;
-    int monthIndex = 1;
-    for (int i1=0;i1<calendar.length;i1++) {
-      MyDate[] month = calendar[i1];
-      dayIndex=1;
-      for (int i2=0;i2<month.length;i2++) {
-        month[i2] = new MyDate(monthIndex,dayIndex,2019);
-        dayIndex++;
-      }
-      monthIndex++;
-    }
-    */
-
-/* debug to make sure calenadr worked
-    for (Date[] month: calendar) {
-      System.out.println(Arrays.toString(month));
-    }
-    */
-
-    //System.out.println(Arrays.deepToString(calendar));
-
-    //Date dat = new Date(); // this date represents today
-    LocalDateTime now = LocalDateTime.now();
-    int nowYear = now.getYear();
-    int nowMonth = now.getMonthValue();
-    int nowDay = now.getDayOfMonth();
-
-    Month firstMonth = new Month(nowMonth,nowYear);
-    Month lastMonth = new Month(nowMonth,nowYear);
-
-    for (int i=0;i<out.length;i++) {
-      Copy c = out[i];
-      MyDate d = c.updateDueDMY();
-      int dDay = d.getDay();
-      int dMonth = d.getMonth();
-      int dYear = d.getYear();
-      //System.out.println(d);
-
-      /* no need to update first month b/c calendar won't span into the past.
-      if (dDay !=0 && ((dMonth < firstMonth.getNum()  && dYear <= firstMonth.getYear()) || dYear < firstMonth.getYear())) {
-        firstMonth = new Month(dMonth,dYear);
-      }*/
-      if (dDay !=0 && ((dMonth > lastMonth.getNum() && dYear >= lastMonth.getYear()) || dYear > lastMonth.getYear())) {
-        lastMonth = new Month(dMonth,dYear);
-      }
-    }
-
-    //System.out.println("first month: "+firstMonth.getNum()+" "+firstMonth.getYear());
-    //System.out.println("last month: "+lastMonth.getNum()+" "+lastMonth.getYear());
-
-    LibraryCalendar cal = new LibraryCalendar(firstMonth,lastMonth);
-    //System.out.println(cal);
-
-    Copy.countCopies(out,cal);
+  public static void runInputHandler(Branch[] NYPLBranches, Copy[] out, LibraryCalendar cal) {
 
     boolean cont = true;
 
@@ -182,6 +109,30 @@ public class Driver{
       }
 
     }
+
+  }
+
+
+  public static void main(String[] args){
+    Search s = new Search();
+    Book result = s.runSearch();
+    Branch[] NYPLBranches = BranchData.getBranches("NYPLLocations.json");
+    CatalogAccessor ny = new NYPLAccessor(NYPLBranches);
+    Copy[] out = ny.getAllCopies(result);
+
+    if (out.length > 0) {
+      System.out.println("\n\n\nThere were "+out.length+" copies of "+result.getTitle()+" found in the NYPL database.\n\n");
+    } else {
+      System.out.println("\n\n\nSorry, there were no results found for "+result.getTitle()+" in the NYPL database.");
+      System.out.println("\033[?25h"); //shwo cursor.
+      System.exit(1);
+    }
+
+    LibraryCalendar.newLibraryCalendar(out);
+
+    Copy.countCopies(out,cal);
+
+    Driver.runInputHandler(NYPLBranches,out,cal);
 
 
 
