@@ -52,9 +52,10 @@ public class Driver{
       int dYear = d.getYear();
       System.out.println(d);
 
+      /* no need to update first month b/c calendar won't span into the past.
       if (dDay !=0 && ((dMonth < firstMonth.getNum()  && dYear <= firstMonth.getYear()) || dYear < firstMonth.getYear())) {
         firstMonth = new Month(dMonth,dYear);
-      }
+      }*/
       if (dDay !=0 && ((dMonth > lastMonth.getNum() && dYear >= lastMonth.getYear()) || dYear > lastMonth.getYear())) {
         lastMonth = new Month(dMonth,dYear);
       }
@@ -66,9 +67,16 @@ public class Driver{
     LibraryCalendar cal = new LibraryCalendar(firstMonth,lastMonth);
     System.out.println(cal);
 
+    int countOverdue;
+    int countAvailable;
+
     for (Copy c: out) {
       if (c.getDueD() != 0) {
-        c.updateDueDate(cal);
+        if (c.getDueY() == firstMonth.getYear()) {
+          c.updateDueDate(cal);
+        } else  if (c.getDueY() + 1 == firstMonth.getYear()){
+          countOverdue ++;
+        }
       }
     }
 
