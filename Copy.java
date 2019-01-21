@@ -72,9 +72,10 @@ public class Copy{
     Copy c = this;
 
     int monthDiff = this.getDueM() - cal[0].getNum(); // index for month.
+    System.out.print("\t"+monthDiff);
 
     Month mon = cal[monthDiff];
-    dueDate = mon[dueDay-1];
+    dueDate = mon.getMonthArray()[dueDay-1];
     dueDate.addCopy(c);
   }
 }
