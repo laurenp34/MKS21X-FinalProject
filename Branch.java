@@ -40,4 +40,13 @@ public class Branch{
     storedCopies.add(copy);
     return true;
   }
+  public int countAvailCopies() {
+    int count =0;
+    for (Copy c: storedCopies) {
+      if (c.getAvail()) {
+        count ++;
+      }
+    }
+    return count;
+  }
 }
