@@ -61,51 +61,13 @@ public class Driver{
       }
     }
 
-    System.out.println("first month: "+firstMonth.getNum()+" "+firstMonth.getYear());
-    System.out.println("last month: "+lastMonth.getNum()+" "+lastMonth.getYear());
+    //System.out.println("first month: "+firstMonth.getNum()+" "+firstMonth.getYear());
+    //System.out.println("last month: "+lastMonth.getNum()+" "+lastMonth.getYear());
 
     LibraryCalendar cal = new LibraryCalendar(firstMonth,lastMonth);
-    System.out.println(cal);
+    //System.out.println(cal);
 
-    int countOverdue = 0;
-    int countOnHold =0;
-    int countInTrans = 0;
-    int countAvailable = 0;
-    int countUnavailable = 0;
-    int countStorage = 0;
-    int countLoaned = 0;
-
-    for (Copy c: out) {
-      System.out.println(c.getAvail() + c.getMessage()+c.getStatus());
-      if (c.getAvail()) {
-        countAvailable ++;
-      } else {
-        countUnavailable ++;
-        if (c.getStatus().contains("IN TRANSIT")) {
-          countInTrans ++;
-        } else if (c.getStatus().contains("ON HOLDSHELF")) {
-          countOnHold ++;
-        } else if (c.getStatus().contains("storage")) {
-          countStorage ++;
-        } else { // if the status contains a due date:
-          if (c.getDueD() != 0) {
-            countLoaned ++;
-            if (c.getDueY() == firstMonth.getYear()) {
-              c.updateDueDate(cal);
-            } else  if (c.getDueY() + 1 == firstMonth.getYear()){
-              countOverdue ++;
-            }
-          }
-        }
-      }
-    }
-    System.out.println("Available copes: "+countAvailable);
-    System.out.println("Unavailable copies: "+countUnavailable);
-    System.out.println("\tCopies loaned out: "+copiesLoaned);
-    System.out.println("\tCopies overdue: "+copiesOverdue);
-    System.out.println("\tCopies on hold: "+countOnHold);
-    System.out.println("\tCopies in transit: "+countInTrans);
-    System.out.println("\tCopies in storage: "+countStorage);
+    Copy.countCopies(out,cal);
 
     for (int i=0;i<cal.getCal().length;i++) {
       Month mon = cal.getCal()[i];
