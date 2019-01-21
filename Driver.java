@@ -29,7 +29,7 @@ public class Driver{
     }
   }
 
-  public static void handleInput() {
+  public static void handleInput(Branch[] NYPLBranches, LibraryCalendar cal) {
 
     System.out.println("\n\n\nEnter a number to check out: ");
     System.out.println("\t1: Locations of available books");
@@ -143,6 +143,38 @@ public class Driver{
     //System.out.println(cal);
 
     Copy.countCopies(out,cal);
+
+    boolean cont = true;
+
+    while (cont){
+
+      Driver.handleInput(NYPLBranches,cal);
+
+      boolean searching = true;
+
+      while (searching) {
+
+        System.out.println("\n\nWould you like to continue? (yes / no)");
+        System.out.println("\033[?25h"); //shwo cursor.
+
+        Scanner sys = new Scanner(System.in);
+
+        String ans = sys.nextLine();
+        System.out.print("\033[?25l"); // hide cursor.
+
+        if (ans.equals("no")) {
+          cont = false;
+          searching = false;
+        } else if (ans.equals("yes")) {
+          searching = false;
+        } else {
+          System.out.println("Please enter either yes or no.");
+        }
+      }
+
+    }
+
+
 
 /* debug print loop.
     for(Copy c : out) {
