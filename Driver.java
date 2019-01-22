@@ -158,9 +158,9 @@ public class Driver{
     System.out.flush();
 
     if (out.length > 0) {
-      System.out.println("There were "+out.length+" copies of "+result.getTitle()+" found in the NYPL database.\n\n");
+      System.out.println("\nThere were "+out.length+" copies of "+result.getTitle()+" found in the NYPL database.\n\n");
     } else {
-      System.out.println("Sorry, there were no results found for "+result.getTitle()+" in the NYPL database.");
+      System.out.println("\n\nSorry, there were no results found for "+result.getTitle()+" in the NYPL database.");
       System.out.println("\033[?25h"); //shwo cursor.
       System.exit(1);
     }
