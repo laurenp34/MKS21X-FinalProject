@@ -29,6 +29,20 @@ public class Driver{
     int nowMonth = now.getMonthValue();
     int nowDay = now.getDayOfMonth();
 
+    boolean found = true;
+
+    for (Month m: cal.getCal()) {
+      for (MyDate date: m.getMonthArray()) {
+        if (date.getCopiesDue().size() > 0) {
+          found = true;
+        }
+      }
+    }
+
+    if (!found) {
+      System.out.println("\nSorry, there are no books due in the future! No calendar could be generated.");
+    } else {
+
     for (int i=0;i<cal.getCal().length;i++) {
       Month mon = cal.getCal()[i];
       MyDate[] calArray = mon.getMonthArray();
@@ -51,6 +65,7 @@ public class Driver{
     }
     System.out.println("\n---------------------------");
   }
+}
 
   public static void handleInput(Branch[] NYPLBranches, LibraryCalendar cal) {
 
