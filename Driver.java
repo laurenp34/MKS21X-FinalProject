@@ -158,54 +158,18 @@ public class Driver{
     System.out.flush();
 
     if (out.length > 0) {
-      System.out.println("\n\n\nThere were "+out.length+" copies of "+result.getTitle()+" found in the NYPL database.\n\n");
+      System.out.println("There were "+out.length+" copies of "+result.getTitle()+" found in the NYPL database.\n\n");
     } else {
-      System.out.println("\n\n\nSorry, there were no results found for "+result.getTitle()+" in the NYPL database.");
+      System.out.println("Sorry, there were no results found for "+result.getTitle()+" in the NYPL database.");
       System.out.println("\033[?25h"); //shwo cursor.
       System.exit(1);
     }
 
     LibraryCalendar cal = LibraryCalendar.newLibraryCalendar(out);
-    //System.out.println(cal);
 
     Copy.countCopies(out,cal);
 
     Driver.runInputHandler(NYPLBranches,out,cal);
 
-
-
-  /* debug print loop.
-      for(Copy c : out) {
-        System.out.println(c);
-        if (c.getAvail()) {
-          for (Branch b: NYPLBranches) {
-            if (c.getBranch().getName().equals(b.getName())) {
-              System.out.println("\tBranch: "+b.getName());
-              System.out.println(b.getStoredCopies());
-              Copy cc = new Copy(b,"test","test","test");
-              b.addCopy(cc);
-            }
-          }
-        }
-      }
-      */
-
-  /*
-      System.out.println("complete");
-
-      for (Branch b: NYPLBranches) {
-        if(b.getStoredCopies() != null){
-          System.out.print(b.getName());
-          System.out.println(": "+b.numCopies());
-          for (Copy c: b.getStoredCopies()) {
-            System.out.println("\t"+c);
-            System.out.println(c.getStatus());
-            System.out.println(c.getDueM());
-            //c.updatedueDate();
-            //System.out.println("\t"+c.getDueM()+"/"+c.getDueD()+"/"+c.getDueY());
-          }
-        }
-      }
-      System.out.print("\033[?25h"); // show cursor.*/
   }
 }
