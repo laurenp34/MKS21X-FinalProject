@@ -88,7 +88,7 @@ public class LibraryCalendar {
     //System.out.println("first month: "+firstMonth.getNum()+" "+firstMonth.getYear());
     //System.out.println("last month: "+lastMonth.getNum()+" "+lastMonth.getYear());
 
-    LibraryCalendar cal = new LibraryCalendar(lastMonth);
+    LibraryCalendar cal = new LibraryCalendar(firstMonth,lastMonth);
     return cal;
 
   }
