@@ -6,7 +6,7 @@ public class LibraryCalendar {
   MyDate today;
   Month[] cal;
 
-  public LibraryCalendar(Month firstMonth,Month lastMonth) {
+  public LibraryCalendar(Month lastMonth) {
     LocalDateTime now = LocalDateTime.now();
     int todayYear = now.getYear();
     int todayMonth = now.getMonthValue();
@@ -16,9 +16,16 @@ public class LibraryCalendar {
 
     cal = new Month[(lastMonth.getNum()-todayMonth)+1]; // assumes they're in the same year.
 
-    for (int i=0;i<cal.length;i++) {
-      Month current = new Month(firstMonth.getNum()+i,todayYear);
-      cal[i] = current;
+    if (cal.length == 1) {
+      cal[0] = new Month(today);
+    } else {
+      cal[0] = new Month(today);
+
+      for (int i=1;i<cal.length;i++) {
+        Month current = new Month(todayMonth+i,todayYear);
+        cal[i] = current;
+      }
+
     }
   }
 
@@ -62,9 +69,15 @@ public class LibraryCalendar {
     //System.out.println("first month: "+firstMonth.getNum()+" "+firstMonth.getYear());
     //System.out.println("last month: "+lastMonth.getNum()+" "+lastMonth.getYear());
 
-    LibraryCalendar cal = new LibraryCalendar(firstMonth,lastMonth);
+    LibraryCalendar cal = new LibraryCalendar(lastMonth);
     return cal;
 
+  }
+
+  public static void main(String[] args) {
+    Month mar = new Month(3,2019);
+    LibraryCalendar l = new LibraryCalendar(mar);
+    System.out.println(l);
   }
 
 
