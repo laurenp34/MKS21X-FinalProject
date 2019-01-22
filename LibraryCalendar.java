@@ -29,6 +29,25 @@ public class LibraryCalendar {
     }
   }
 
+
+  public LibraryCalendar(Month firstMonth, Month lastMonth) {
+    LocalDateTime now = LocalDateTime.now();
+    int todayYear = now.getYear();
+    int todayMonth = now.getMonthValue();
+    int todayDay = now.getDayOfMonth();
+
+    today = new MyDate(todayMonth,todayDay,todayYear);
+
+    cal = new Month[(lastMonth.getNum()-firstMonth.getNum())+1]; // assumes they're in the same year.
+
+      for (int i=0;i<cal.length;i++) {
+        Month current = new Month(firstMonth.getNum()+i,todayYear);
+        cal[i] = current;
+      }
+
+    }
+
+
   public String toString() {
     return Arrays.toString(cal);
   }
@@ -76,7 +95,8 @@ public class LibraryCalendar {
 
   public static void main(String[] args) {
     Month mar = new Month(3,2019);
-    LibraryCalendar l = new LibraryCalendar(mar);
+    Month may = new Month(5,2019);
+    LibraryCalendar l = new LibraryCalendar(mar,may);
     System.out.println(l);
   }
 
