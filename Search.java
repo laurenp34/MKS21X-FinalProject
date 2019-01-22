@@ -166,6 +166,8 @@ public class Search{
       }
   }
 
+  System.out.print("\033[H\033[2J");
+  System.out.flush();
 
   System.out.println("\nYou chose: ");
   System.out.print(docs[bookChosen-1].title);
