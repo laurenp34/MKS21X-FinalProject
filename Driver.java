@@ -171,5 +171,13 @@ public class Driver{
 
     Driver.runInputHandler(NYPLBranches,out,cal);
 
+    Map m = new Map(NYPLBranches);
+
+    m.toFile("map.kml");
+
+    System.out.println("KML File saved to /map.kml\nTo open file:\n1. Open https://mymaps.google.com/, signed into a Google account\n2. Choose the option \"Create a New Map\"\n3. Within the 'Untitled Layer' panel, click 'Import'\n4. Select the /map.kml file from your local files\n\tThis will display the map of where the book is currently available");
+
+    System.out.print("\033[?25h"); // show cursor.
+
   }
 }
