@@ -79,8 +79,10 @@ public class Search{
     if (clearScreen) {
       System.out.print("\033[H\033[2J");
       System.out.flush();
-      System.out.println("\033[?25h"); //shwo cursor.
+
     }
+
+    System.out.println("\033[?25h"); //shwo cursor.
 
     System.out.print("Search for your book: ");
     Scanner sys = new Scanner(System.in);
@@ -90,6 +92,7 @@ public class Search{
 
     //sys.close();
     System.out.println("\nYou searched for: "+searchTermInput);
+    System.out.println("\n\n\nLoading . . . ");
 
 /*
     //run search until enter is pressed.
@@ -176,6 +179,8 @@ public class Search{
     System.out.print(name + " ");
   }
 
+  System.out.println("\n\nLoading . . . ");
+
   return docs[bookChosen-1];
 
 }
@@ -197,7 +202,7 @@ public class Search{
     try{
       //URL object accesses webpage, InputStreamReader allows reading of its data
       URL webpage = new URL("https://openlibrary.org/search.json?q="+searchTerm);
-      System.out.println("\nhttps://openlibrary.org/search.json?q="+searchTerm);
+      //System.out.println("\nhttps://openlibrary.org/search.json?q="+searchTerm);
       Reader json = new InputStreamReader(webpage.openStream());
       //for accessing nonstatic methods in Gson class
       Gson g = new Gson();
@@ -226,6 +231,9 @@ public class Search{
     //Terminal terminal = TerminalFacade.createTerminal();
 
     boolean bookFound = false;
+
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
 
     while (!bookFound) {
 
@@ -327,7 +335,6 @@ public class Search{
   }
   private void removeBadResults(){
     ArrayList<Book> out = new ArrayList<Book>();
-    System.out.println("hello!");
     for(Book b : docs){
       if(!(b.getISBNs()==null || b.getISBNs().length==0)) out.add(b);
     }
