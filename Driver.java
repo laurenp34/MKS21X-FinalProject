@@ -6,11 +6,18 @@ public class Driver{
 
   public static void seeAvailable(Branch[] NYPLBranches) {
 
+    int countAvail = 0;
+
     for (Branch b: NYPLBranches) {
       if (b.countAvailCopies() > 0) {
+        countAvail ++;
         System.out.println("\n"+b.getName());
         System.out.println("\tAvailable copies: "+b.countAvailCopies());
       }
+    }
+
+    if (countAvail == 0) {
+      System.out.println("\nSorry, there are no available copies to view!");
     }
 
   }
@@ -31,7 +38,7 @@ public class Driver{
         }
       }
     }
-    System.out.println("---------------------------");
+    System.out.println("\n---------------------------");
   }
 
   public static void handleInput(Branch[] NYPLBranches, LibraryCalendar cal) {
@@ -83,11 +90,10 @@ public class Driver{
       Driver.handleInput(NYPLBranches,cal);
 
       boolean searching = true;
-      System.out.println("\n\n\n\n\n");
 
       while (searching) {
 
-        System.out.println("\nWould you like to continue? (yes / no)");
+        System.out.println("\n\n\n\nWould you like to continue? (yes / no)");
         System.out.println("\033[?25h"); //shwo cursor.
 
         Scanner sys = new Scanner(System.in);
@@ -103,6 +109,8 @@ public class Driver{
 
         } else if (ans.equals("yes")) {
           searching = false;
+          System.out.print("\033[H\033[2J");
+          System.out.flush();
         } else {
           System.out.println("Please enter either yes or no.");
         }
@@ -120,6 +128,9 @@ public class Driver{
     CatalogAccessor ny = new NYPLAccessor(NYPLBranches);
     Copy[] out = ny.getAllCopies(result);
 
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+
     if (out.length > 0) {
       System.out.println("\n\n\nThere were "+out.length+" copies of "+result.getTitle()+" found in the NYPL database.\n\n");
     } else {
@@ -128,7 +139,7 @@ public class Driver{
       System.exit(1);
     }
 
-    LibraryCalendar.newLibraryCalendar(out);
+    LibraryCalendar cal = LibraryCalendar.newLibraryCalendar(out);
 
     Copy.countCopies(out,cal);
 
