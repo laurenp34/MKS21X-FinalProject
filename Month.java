@@ -31,6 +31,33 @@ public class Month {
     }
   }
 
+  public Month(MyDate startDate) { // generates rest of month from start date.
+
+    int startDay = startDate.getDay();
+
+    num = startDate.getMonth();
+    year = startDate.getYear();
+    name = months[num-1];
+
+    if (num == 1 || num == 3 || num == 5 || num == 7 || num == 8 || num == 10 || num == 12) {
+      monthDays = new MyDate[31-startDay + 1 ];
+    } else if (num == 2) {
+      if (year % 4 == 0) {
+        monthDays = new MyDate[29 - startDay + 1];
+      } else {
+        monthDays = new MyDate[28 - startDay + 1];
+      }
+    } else {
+      monthDays = new MyDate[30 - startDay + 1];
+    }
+
+    for (int i=0;i<monthDays.length;i++) {
+      monthDays[i] = new MyDate(num,i+startDay,year);
+    }
+
+
+  }
+
   public MyDate[] getMonthArray() {
     return monthDays;
   }
@@ -52,6 +79,10 @@ public class Month {
   public static void main(String[] args) {
     Month jan = new Month(1,2019);
     System.out.println(Arrays.toString(jan.monthDays));
+
+    MyDate hi = new MyDate(11,4,2019);
+    Month nov = new Month(hi);
+    System.out.println(Arrays.toString(nov.monthDays));
   }
 
 }
