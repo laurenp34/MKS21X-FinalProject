@@ -33,7 +33,12 @@ public class Driver{
       Month mon = cal.getCal()[i];
       MyDate[] calArray = mon.getMonthArray();
       System.out.println("\n\n--------------------\n"+mon.getName()+", "+mon.getYear());
+      boolean first = true;
       for (int i2=0;i2<calArray.length;i2++) {
+        if (i==0 && first) {
+          i2=nowDay-1;
+          first = false;
+        }
         MyDate date = calArray[i2];
         System.out.print("\n\n"+date.getDay());
         if (date.getCopiesDue().size() > 0) {
