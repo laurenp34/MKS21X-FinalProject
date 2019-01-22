@@ -91,7 +91,7 @@ public class Search{
     System.out.print("\033[?25l"); // hide cursor.
 
     //sys.close();
-    System.out.println("\nYou searched for: "+searchTermInput);
+    //System.out.println("\nYou searched for: "+searchTermInput);
     System.out.println("\n\n\nLoading . . . ");
 
 /*
