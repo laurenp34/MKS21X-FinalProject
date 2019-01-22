@@ -5,6 +5,7 @@ run: `java -cp gson-2.8.5.jar:lanterna.jar:.`
 1. input a book title
 2. select which of the returned results is preferred
 3. a list of copies with availability status and location within the NYPL system will appear.
+4. Follow instructions within the program for viewing map
 
 **Useful link: ascii-table.com/ansi-escape-sequences-vt-100.php
 
@@ -66,21 +67,21 @@ Kiran-Corrected issues in yesterdays code, reformatted Driver to display copies 
 Lauren-Began by creating updateDueDMY method which parses the status of each unavailable book into int day,mon,yr. Then used this to update the dueDate of the Copy object. Along the way, created Date class and the get and set methods for it. In Driver, created a very basic Date[][] calendar, however even though Date() was initialized it threw NullPointerExceptions. Will continue debugging and testing these new methods tomorrow.
 
 *17 January 2019*\
-Kiran-\
+Kiran-Completed and corrected errors in the toFile method for Map. Began testing the contents of the map on various books, with success. Began research into how the Style blocks of KML files work to be able to distinguish between locations where all books are checked out and where there are currently available clopies.\
 Lauren-Kiran helped me fix the errors I couldn't fix last night, so Date now has a working storedCopies array (problem was with loop logic). Didn't accomplish much else because I had so much work from other classes, but I did read up on Calendar APIs and creating a plaintext calendar or some external software. Looked into GregorianCalendar which can provide the current day and time, which will be useful for the calendar. Will look more into it tomorrow and discuss with Kiran whether the calendar will be plaintext or not, and then begin writing code.
 
 *18 January 2019*\
-Kiran-
+Kiran-In class tested the capability of school computers to load KML files (and approved the somewhat roundabout way of displaying the files by Mr. K) Got home late so I didn't work at home.
 Lauren-In class Mr. K helped me fix method in Copy.java by adding an import statement. Other than that no work was done because of StuySquad and road trip.
  
  *19 January 2019*\
- Kiran-
+ Kiran-Made extensive efforts to learn how to style a KML file in a way that the style would appear on Google MyMaps. Despite the fact that I was able to build code that was able to build a Style block, nothing changed when I attempted to view the file online. After attempting to exactly replicate the style blocks of KML files exported from MyMaps, still with no success, I ultimately gave up on styling the map.\
  Lauren-Updated Date.java and Calendar.java to have different manes (different from Java built in objects). Began the calendar-making process by including in Driver code to find the start and end months the calendar should include. Created new Month object - stores a MyDate[] - to be used in calendar. Sucessfully made constructor for this new object that initializes array w correct number of days and correct days. Update updateDueDateDMY() to return Date -to be used in finding first and last month. Also fixed errors in getFirstDateOfMonth().
  
  *20 January 2019*\
- Kiran-\
+ Kiran-Took a day off to work on other final projects.\
  Lauren-Began process of creating calendar. Finished debugging date and updateDueDate(), so I scrapped  the previous testing calendar to create one based on real data from books. Also used LocalDateTime object to find current day and month. So now a dynamic LibraryCalendar can be created given real book data. Began formatting calendar for better printing. 
  
  *21 January 2019*\
- Kiran-
+ Kiran-Created some last minute final touches to make the Map display clearer (most notably, changed the format to show a count of available books rather than the toString of each individual copy). Additionally, clarified instructions for using the KML file and merged the Map branch back into master.\
  Lauren-Created input options for viewing the NYPL results. created counters for different attributes to print at the top of the results. Finalized formatting for everyting (new pages, new lines, error stmts, removing debug stmts, etc.). Also migrated everything in Driver to static methods to look cleaner. In calendar, made sure that it doesn't print past today (doesn't print days from the past). To do so I created other constructors in Month and LibraryCalendar. Merged with Kiran, added her map code to another option in InputHandler. Everything works!!
