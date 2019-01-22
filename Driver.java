@@ -166,7 +166,7 @@ public class Driver{
     }
 
     LibraryCalendar cal = LibraryCalendar.newLibraryCalendar(out);
-    System.out.println(cal);
+    //System.out.println(cal);
 
     Copy.countCopies(out,cal);
 
@@ -174,38 +174,38 @@ public class Driver{
 
 
 
-/* debug print loop.
-    for(Copy c : out) {
-      System.out.println(c);
-      if (c.getAvail()) {
-        for (Branch b: NYPLBranches) {
-          if (c.getBranch().getName().equals(b.getName())) {
-            System.out.println("\tBranch: "+b.getName());
-            System.out.println(b.getStoredCopies());
-            Copy cc = new Copy(b,"test","test","test");
-            b.addCopy(cc);
+  /* debug print loop.
+      for(Copy c : out) {
+        System.out.println(c);
+        if (c.getAvail()) {
+          for (Branch b: NYPLBranches) {
+            if (c.getBranch().getName().equals(b.getName())) {
+              System.out.println("\tBranch: "+b.getName());
+              System.out.println(b.getStoredCopies());
+              Copy cc = new Copy(b,"test","test","test");
+              b.addCopy(cc);
+            }
           }
         }
       }
-    }
-    */
+      */
 
-/*
-    System.out.println("complete");
+  /*
+      System.out.println("complete");
 
-    for (Branch b: NYPLBranches) {
-      if(b.getStoredCopies() != null){
-        System.out.print(b.getName());
-        System.out.println(": "+b.numCopies());
-        for (Copy c: b.getStoredCopies()) {
-          System.out.println("\t"+c);
-          System.out.println(c.getStatus());
-          System.out.println(c.getDueM());
-          //c.updatedueDate();
-          //System.out.println("\t"+c.getDueM()+"/"+c.getDueD()+"/"+c.getDueY());
+      for (Branch b: NYPLBranches) {
+        if(b.getStoredCopies() != null){
+          System.out.print(b.getName());
+          System.out.println(": "+b.numCopies());
+          for (Copy c: b.getStoredCopies()) {
+            System.out.println("\t"+c);
+            System.out.println(c.getStatus());
+            System.out.println(c.getDueM());
+            //c.updatedueDate();
+            //System.out.println("\t"+c.getDueM()+"/"+c.getDueD()+"/"+c.getDueY());
+          }
         }
       }
-    }
-    System.out.print("\033[?25h"); // show cursor.*/
+      System.out.print("\033[?25h"); // show cursor.*/
   }
 }
