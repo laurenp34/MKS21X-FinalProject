@@ -23,6 +23,12 @@ public class Driver{
   }
 
   public static void seeUpcoming(LibraryCalendar cal) {
+
+    LocalDateTime now = LocalDateTime.now();
+    int nowYear = now.getYear();
+    int nowMonth = now.getMonthValue();
+    int nowDay = now.getDayOfMonth();
+
     for (int i=0;i<cal.getCal().length;i++) {
       Month mon = cal.getCal()[i];
       MyDate[] calArray = mon.getMonthArray();
@@ -140,6 +146,7 @@ public class Driver{
     }
 
     LibraryCalendar cal = LibraryCalendar.newLibraryCalendar(out);
+    System.out.println(cal);
 
     Copy.countCopies(out,cal);
 
