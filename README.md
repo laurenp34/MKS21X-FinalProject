@@ -1,7 +1,7 @@
 # MKS21X-FinalProject
 TO RUN PROGRAM
-compile: `javac -cp gson-2.8.5.jar:lanterna.jar:.`
-run: `java -cp gson-2.8.5.jar:lanterna.jar:.`
+compile: `javac -cp gson-2.8.5.jar:. Driver.java`\
+run: `java -cp gson-2.8.5.jar:. Driver`\
 1. input a book title
 2. select which of the returned results is preferred
 3. a list of copies with availability status and location within the NYPL system will appear.
@@ -71,7 +71,7 @@ Kiran-Completed and corrected errors in the toFile method for Map. Began testing
 Lauren-Kiran helped me fix the errors I couldn't fix last night, so Date now has a working storedCopies array (problem was with loop logic). Didn't accomplish much else because I had so much work from other classes, but I did read up on Calendar APIs and creating a plaintext calendar or some external software. Looked into GregorianCalendar which can provide the current day and time, which will be useful for the calendar. Will look more into it tomorrow and discuss with Kiran whether the calendar will be plaintext or not, and then begin writing code.
 
 *18 January 2019*\
-Kiran-In class tested the capability of school computers to load KML files (and approved the somewhat roundabout way of displaying the files by Mr. K) Got home late so I didn't work at home.
+Kiran-In class tested the capability of school computers to load KML files (and approved the somewhat roundabout way of displaying the files by Mr. K) Got home late so I didn't work at home.\
 Lauren-In class Mr. K helped me fix method in Copy.java by adding an import statement. Other than that no work was done because of StuySquad and road trip.
  
  *19 January 2019*\
