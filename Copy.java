@@ -83,7 +83,7 @@ public class Copy{
             countLoaned ++;
             if (c.getDueY() == nowYear) {
               c.updateDueDate(cal);
-            } else  if ((c.getDueY() < nowYear) || (c.getDueD() < nowDay && c.getDueM() == nowMonth)){
+            } else if ((c.getDueY() < nowYear) || (c.getDueD() < nowDay && c.getDueM() == nowMonth)){
               countOverdue ++;
             }
           }
