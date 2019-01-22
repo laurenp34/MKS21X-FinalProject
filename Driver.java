@@ -72,6 +72,7 @@ public class Driver{
     System.out.println("\n\n\nEnter a number to check out: ");
     System.out.println("\t1: Locations of available books");
     System.out.println("\t2: Upcoming due dates and locations");
+    System.out.println("\t3: Map showing branches with available copies.");
 
     boolean searching = true;
     int input =0;
@@ -88,7 +89,7 @@ public class Driver{
         System.out.println("Please enter a valid integer.");
       }
 
-      if (input < 1 || input > 2) {
+      if (input < 1 || input > 3) {
         System.out.println("Please enter a valid input.");
         searching = true;
       } else {
@@ -103,6 +104,13 @@ public class Driver{
     }
     if (input == 2) {
       Driver.seeUpcoming(cal);
+    }
+    if (input == 3) {
+      Map m = new Map(NYPLBranches);
+
+      m.toFile("map.kml");
+
+      System.out.println("KML File saved to /map.kml\nTo open file:\n1. Open https://mymaps.google.com/, signed into a Google account\n2. Choose the option \"Create a New Map\"\n3. Within the 'Untitled Layer' panel, click 'Import'\n4. Select the /map.kml file from your local files\n\tThis will display the map of where the book is currently available");
     }
 
   }
@@ -171,11 +179,6 @@ public class Driver{
 
     Driver.runInputHandler(NYPLBranches,out,cal);
 
-    Map m = new Map(NYPLBranches);
-
-    m.toFile("map.kml");
-
-    System.out.println("KML File saved to /map.kml\nTo open file:\n1. Open https://mymaps.google.com/, signed into a Google account\n2. Choose the option \"Create a New Map\"\n3. Within the 'Untitled Layer' panel, click 'Import'\n4. Select the /map.kml file from your local files\n\tThis will display the map of where the book is currently available");
 
     System.out.print("\033[?25h"); // show cursor.
 
