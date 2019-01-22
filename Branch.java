@@ -22,6 +22,24 @@ public class Branch{
   public int numCopies(){
     return storedCopies.size();
   }
+  public int numAvailables(){
+    int out = 0;
+    for(int i=0;i<storedCopies.size();i++){
+      if(storedCopies.get(i).getAvail()) out++;
+    }
+    return out;
+  }
+  public String toStringAvailables(){
+   if(storedCopies==null) return "";
+   String out = "";
+   for (Copy c : storedCopies){
+     if(c.getAvail()) out += c+"\n";
+   }
+   return out;
+ }
+ public String coordString(){
+    return lat+","+lon+",0";
+  }
   public double getLat() {
     return lat;
   }
@@ -32,8 +50,18 @@ public class Branch{
     return displayUrl;
   }
 
+  public boolean hasCopies(){
+    return (!(storedCopies==null)) && (storedCopies.size()!=0);
+  }
   public ArrayList<Copy> getStoredCopies() {
     return storedCopies;
+  }
+  public boolean hasAvailable(){
+    if(storedCopies==null) return false;
+    for(Copy c : storedCopies){
+      if(c.getAvail()) return true;
+    }
+    return false;
   }
   public boolean addCopy(Copy copy) {
     if(storedCopies==null) storedCopies = new ArrayList<Copy>();
@@ -47,7 +75,7 @@ public class Branch{
         if (c.getAvail()) {
           count ++;
         }
-      }    
+      }
     }
     return count;
   }
