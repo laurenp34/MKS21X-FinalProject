@@ -76,3 +76,11 @@ Lauren-In class Mr. K helped me fix method in Copy.java by adding an import stat
  *19 January 2019*\
  Kiran-
  Lauren-Updated Date.java and Calendar.java to have different manes (different from Java built in objects). Began the calendar-making process by including in Driver code to find the start and end months the calendar should include. Created new Month object - stores a MyDate[] - to be used in calendar. Sucessfully made constructor for this new object that initializes array w correct number of days and correct days. Update updateDueDateDMY() to return Date -to be used in finding first and last month. Also fixed errors in getFirstDateOfMonth().
+ 
+ *20 January 2019*\
+ Kiran-\
+ Lauren-Began process of creating calendar. Finished debugging date and updateDueDate(), so I scrapped  the previous testing calendar to create one based on real data from books. Also used LocalDateTime object to find current day and month. So now a dynamic LibraryCalendar can be created given real book data. Began formatting calendar for better printing. 
+ 
+ *21 January 2019*\
+ Kiran-
+ Lauren-Created input options for viewing the NYPL results. created counters for different attributes to print at the top of the results. Finalized formatting for everyting (new pages, new lines, error stmts, removing debug stmts, etc.). Also migrated everything in Driver to static methods to look cleaner. In calendar, made sure that it doesn't print past today (doesn't print days from the past). To do so I created other constructors in Month and LibraryCalendar. Merged with Kiran, added her map code to another option in InputHandler. Everything works!!
